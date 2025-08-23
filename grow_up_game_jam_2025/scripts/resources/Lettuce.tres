@@ -7,5 +7,5 @@ script = ExtResource("1_6sxgd")
 base_stat = 0
 shape = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
 compatible_matchup = ""
-incompatible_matchup = ""
+incompatible_matchup = Array[String]([])
 metadata/_custom_type_script = "uid://drng3ht5od8gi"
