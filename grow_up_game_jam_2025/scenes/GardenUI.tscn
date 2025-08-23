@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbv1r3rtxaboq"]
+[gd_scene load_steps=4 format=3 uid="uid://bbv1r3rtxaboq"]
 
 [ext_resource type="Script" uid="uid://moxmumwfntxg" path="res://scenes/garden_grid.gd" id="1_rpbvd"]
-[ext_resource type="Texture2D" uid="uid://bgbv4m7veia8" path="res://assets/placeholder_grid.png" id="1_ufcxd"]
+[ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="2_bwvbm"]
+[ext_resource type="PackedScene" uid="uid://bdprlbmnbfp5u" path="res://slot.tscn" id="2_nw0t6"]
 
 [node name="Garden" type="Control"]
 layout_mode = 3
@@ -11,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rpbvd")
+main_theme = ExtResource("2_bwvbm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -51,25 +53,16 @@ layout_mode = 2
 size_flags_vertical = 6
 
 [node name="GridContainer" type="GridContainer" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+theme = ExtResource("2_bwvbm")
 
-[node name="TextureRect2" type="TextureRect" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
-modulate = Color(0.516488, 0.263132, 0.177406, 1)
-custom_minimum_size = Vector2(32, 32)
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("1_ufcxd")
+theme = ExtResource("2_bwvbm")
 
-[node name="ColorRect" type="ColorRect" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/TextureRect2"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
-modulate = Color(0.516488, 0.263132, 0.177406, 1)
-custom_minimum_size = Vector2(200, 200)
+[node name="Slot" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer" instance=ExtResource("2_nw0t6")]
 layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("1_ufcxd")
+size_flags_horizontal = 0
