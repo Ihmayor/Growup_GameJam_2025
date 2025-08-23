@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Plant" load_steps=2 format=3 uid="uid://c4ujxhrs1k5b"]
+
+[ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://test_res.gd" id="1_pm3j7"]
+
+[resource]
+script = ExtResource("1_pm3j7")
+stat = 0
+shape = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
+metadata/_custom_type_script = "uid://drng3ht5od8gi"
