@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbv1r3rtxaboq"]
+[gd_scene load_steps=3 format=3 uid="uid://bbv1r3rtxaboq"]
 
 [ext_resource type="Script" uid="uid://moxmumwfntxg" path="res://scenes/garden_grid.gd" id="1_rpbvd"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="2_bwvbm"]
-[ext_resource type="PackedScene" uid="uid://bdprlbmnbfp5u" path="res://slot.tscn" id="2_nw0t6"]
 
 [node name="Garden" type="Control"]
 layout_mode = 3
@@ -58,11 +57,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 theme = ExtResource("2_bwvbm")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("2_bwvbm")
-
-[node name="Slot" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/HBoxContainer" instance=ExtResource("2_nw0t6")]
-layout_mode = 2
-size_flags_horizontal = 0
