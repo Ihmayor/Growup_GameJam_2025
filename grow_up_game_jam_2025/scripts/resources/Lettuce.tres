@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Plant" load_steps=2 format=3 uid="uid://o54fv0lu1jdf"]
+
+[ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://scripts/resources/Plant.gd" id="1_6sxgd"]
+
+[resource]
+script = ExtResource("1_6sxgd")
+base_stat = 0
+shape = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
+compatible_matchup = Array[ExtResource("1_6sxgd")]([])
+metadata/_custom_type_script = "uid://drng3ht5od8gi"
