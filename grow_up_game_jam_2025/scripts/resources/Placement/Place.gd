@@ -6,8 +6,13 @@ class_name DraggablePlant extends Node2D
 @onready var rotationTween = $RotationTweenTimer
 
 @export var plant_data: Plant
+@export var offset = Vector2 (32/2,32/2)
 @onready var images = $Images
+var lastSlotEntered = null
+var occupyingSlot = null
 
+static var currentlyDragging = null
+static var isSOmethingBeingDragged = false
 
 # 0-3 depending on what direction you wanna feace, 0 being staright up
 var facingDir = 0
@@ -39,25 +44,36 @@ func _ready() -> void:
 	pass
 
 func _on_area_2d_mouse_entered() -> void:
-	#if (is_other_plants_dragged()):
-		#return
 	mouse_over = true
+	
+	if isSOmethingBeingDragged:
+		print("Already dragging something")
+		return
+	currentlyDragging = self
+	
 	timer.start()
 	
 func _on_area_2d_mouse_exited() -> void:
+	currentlyDragging = null
 	mouse_over = false
-
+	
 func _on_timer_timeout() -> void:
-	if isDragging && !isPlanted:
+	if isDragging && !isPlanted && currentlyDragging == self:
+		isSOmethingBeingDragged = true	
 		var rect = shape.shape as RectangleShape2D
 		var sizeVector = rect.extents
 		
 		var newPos = get_viewport().get_mouse_position() - sizeVector/2
-		self.global_position = round (newPos / gridSize) * gridSize
+		self.global_position = round (newPos / gridSize) * gridSize + offset
 	pass # Replace with function body.
 
 func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
+
+	if event.is_action_pressed("Shovel"):
+		print("Attempt shovel")
+		SetShoveled()
+			
 	if event.is_action_pressed("rotate_left"):
 		facingDir -= 1
 		rotationInput = -1
@@ -67,17 +83,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		facingDir += 1
 		rotationInput = 1
 		changed = true
-			
-	if (event.is_action_released("move")):
-		isDragging = false
-		timer.stop()
 		
-		if event.is_action_pressed("Shovel"):
-			SetShoveled()
-			
-	
 	if (event.is_action_pressed("move")):
 		isDragging = true
+		
+	if (event.is_action_released("move")):
+		isSOmethingBeingDragged = false
+		timer.stop()
+
+		if (lastSlotEntered != null && isDragging):
+			position = lastSlotEntered.global_position + offset
+			
+		isDragging = false
+		currentlyDragging = null
 			
 	if changed && isDragging:
 			# clamp the value to avoid broken stuff
@@ -112,6 +130,7 @@ func SetShoveled():
 	
 	for cPlant in childPlants:
 		if (cPlant.isPlanted):
+			print("Unmovable due to planted set")
 			isPlanted = true
 	pass
 	
@@ -132,4 +151,28 @@ func _on_rotation_tween_timer_timeout() -> void:
 		rotationTween.stop()
 		rotation_degrees = desiredRotation
 	
+	pass # Replace with function body.
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	var slot = area.get_parent()
+	print("Entered area ", slot.name)
+	
+	if (slot is Slot && !slot.isTaken):
+		print("setting last slot entered")
+		
+		lastSlotEntered = slot
+		if (occupyingSlot == null):
+			occupyingSlot = lastSlotEntered
+				
+		if (occupyingSlot != lastSlotEntered):
+			occupyingSlot.isTaken = false
+			pass
+			
+		occupyingSlot = lastSlotEntered
+		lastSlotEntered.isTaken = true
+
+			
+		pass
+		
 	pass # Replace with function body.

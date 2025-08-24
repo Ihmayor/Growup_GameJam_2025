@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://v5qkd4m7ly4n"]
 
-[ext_resource type="PackedScene" uid="uid://cnnuahotkldda" path="res://scenes/Tetraminos/-1_.tscn" id="1_a203c"]
+[ext_resource type="PackedScene" uid="uid://cnnuahotkldda" path="res://scenes/Pentominos/ReverseF.tscn" id="1_ug6tt"]
 
-[node name="TextureRect2" instance=ExtResource("1_a203c")]
+[node name="TextureRect2" instance=ExtResource("1_ug6tt")]
+plant_data = null
 
 [node name="Flower4" parent="Images" index="3"]
 position = Vector2(37, -36)

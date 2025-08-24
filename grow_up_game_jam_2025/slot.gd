@@ -7,6 +7,8 @@ var is_valid: bool = false
 var planted_plant:Plant
 var index: Vector2
 
+@export var isTaken = false
+
 @onready var area: Area2D = %SlotArea
 
 func _ready():
