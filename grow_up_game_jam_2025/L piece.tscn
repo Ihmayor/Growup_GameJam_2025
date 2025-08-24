@@ -7,7 +7,7 @@
 size = Vector2(85, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ond0"]
-size = Vector2(28, 72)
+size = Vector2(28, 81)
 
 [node name="TextureRect2" instance=ExtResource("1_2ond0")]
 
@@ -16,7 +16,7 @@ position = Vector2(45.5, 10.5)
 shape = SubResource("RectangleShape2D_rbqym")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="2"]
-position = Vector2(103, -8)
+position = Vector2(103, -12.5)
 shape = SubResource("RectangleShape2D_2ond0")
 
 [node name="Flower2" parent="Images" index="1" instance=ExtResource("2_5q6px")]
@@ -26,4 +26,4 @@ position = Vector2(43, 0)
 position = Vector2(86, 0)
 
 [node name="Flower4" parent="Images" index="3" instance=ExtResource("2_5q6px")]
-position = Vector2(86, -37)
+position = Vector2(86, -46)

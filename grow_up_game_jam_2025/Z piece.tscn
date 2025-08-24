@@ -16,14 +16,14 @@ position = Vector2(38.5, 10.5)
 shape = SubResource("RectangleShape2D_7kt3x")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1"]
-position = Vector2(-4.5, -26.5)
+position = Vector2(-4.5, -32.5)
 shape = SubResource("RectangleShape2D_d3s67")
 
 [node name="Flower3" parent="Images" index="1" instance=ExtResource("2_xcs4x")]
-position = Vector2(0, -37)
+position = Vector2(0, -43)
 
 [node name="Flower4" parent="Images" index="2" instance=ExtResource("2_xcs4x")]
-position = Vector2(-43, -37)
+position = Vector2(-43, -43)
 
 [node name="Flower2" parent="Images" index="3" instance=ExtResource("2_xcs4x")]
 position = Vector2(43, 0)

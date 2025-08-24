@@ -9,7 +9,7 @@ size = Vector2(71, 35)
 [node name="TextureRect2" instance=ExtResource("1_jcnoy")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(-4.5, 47.5)
+position = Vector2(-4.5, 53.5)
 shape = SubResource("RectangleShape2D_hjtov")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" index="1"]
@@ -21,10 +21,10 @@ position = Vector2(-9, 95)
 shape = SubResource("RectangleShape2D_hjtov")
 
 [node name="Flower3" parent="Images" index="1" instance=ExtResource("2_curoq")]
-position = Vector2(0, 37)
+position = Vector2(0, 43)
 
 [node name="Flower4" parent="Images" index="2" instance=ExtResource("2_curoq")]
-position = Vector2(-43, 37)
+position = Vector2(-43, 43)
 
 [node name="Flower2" parent="Images" index="3" instance=ExtResource("2_curoq")]
 position = Vector2(43, 0)
