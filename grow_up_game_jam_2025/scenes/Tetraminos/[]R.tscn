@@ -3,16 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://5cf5v4e6l8jj" path="res://scenes/Tetraminos/[]L.tscn" id="1_0gs3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gs3r"]
-size = Vector2(28, 121)
+size = Vector2(28, 105)
 
 [node name="TextureRect2" instance=ExtResource("1_0gs3r")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(60, 53.5)
+position = Vector2(52, 45.5)
 shape = SubResource("RectangleShape2D_0gs3r")
 
 [node name="CollisionShape2D2" parent="Area2D" index="1"]
-position = Vector2(24, 32)
+position = Vector2(20.5, 28)
 
 [node name="Flower5" parent="Images" index="4"]
-position = Vector2(43, 86)
+position = Vector2(35, 70)
