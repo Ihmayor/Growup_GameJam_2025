@@ -4,26 +4,26 @@
 [ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="2_xcs4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7kt3x"]
-size = Vector2(71, 35)
+size = Vector2(63, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3s67"]
-size = Vector2(71, 35)
+size = Vector2(63, 35)
 
 [node name="TextureRect2" instance=ExtResource("1_cm58f")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(38.5, 10.5)
+position = Vector2(34.5, 10.5)
 shape = SubResource("RectangleShape2D_7kt3x")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1"]
-position = Vector2(-4.5, -32.5)
+position = Vector2(-0.5, -24.5)
 shape = SubResource("RectangleShape2D_d3s67")
 
 [node name="Flower3" parent="Images" index="1" instance=ExtResource("2_xcs4x")]
-position = Vector2(0, -43)
+position = Vector2(0, -35)
 
 [node name="Flower4" parent="Images" index="2" instance=ExtResource("2_xcs4x")]
-position = Vector2(-43, -43)
+position = Vector2(-35, -35)
 
 [node name="Flower2" parent="Images" index="3" instance=ExtResource("2_xcs4x")]
-position = Vector2(43, 0)
+position = Vector2(35, 0)
