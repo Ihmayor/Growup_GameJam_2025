@@ -6,10 +6,29 @@ var is_valid: bool = false
 var planted_plant:Plant
 var index: Vector2
 
+@onready var area: Area2D = %SlotArea
+
 func _ready():
+	if (mouse_entered.get_connections().size() > 0):
+		mouse_entered.connect(_mouse_entered)
+
+	if (mouse_exited.get_connections().size() > 0):
+		mouse_exited.connect(_mouse_exited)
+	area.area_entered.connect(_on_area_entered)
+	area.area_exited.connect(_on_area_exited)
+	
+	
+func _on_area_entered(entered_entity: Area2D):
+	if (entered_entity.get_parent() is DraggablePlant):
+		planted_plant = entered_entity.get_parent().plant_data
+		add_plant_here(planted_plant)
+
+func _on_area_exited(entered_entity: Area2D):
+	if (entered_entity.get_parent() is DraggablePlant):
+		planted_plant = null
+		$PlantTexture.texture = null
+	#(entered_entity.get_parent() is DraggablePlant)
 	pass
-	mouse_entered.connect(_mouse_entered)
-	mouse_exited.connect(_mouse_exited)
 	
 func _process(delta:float):
 	$SoilTexture.texture = soil_unplanted

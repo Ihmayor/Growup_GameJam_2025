@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdprlbmnbfp5u"]
+[gd_scene load_steps=5 format=3 uid="uid://bdprlbmnbfp5u"]
 
 [ext_resource type="Script" uid="uid://g4jhnswos7ve" path="res://slot.gd" id="1_c24ra"]
 [ext_resource type="Texture2D" uid="uid://cpxfic4r63xeh" path="res://Assets/placeholder_outline.png" id="2_khion"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c24ra"]
 size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khion"]
+size = Vector2(28, 26)
 
 [node name="Slot" type="Control" groups=["Slots"]]
 custom_minimum_size = Vector2(32, 32)
@@ -69,3 +72,11 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_khion")
+
+[node name="SlotArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlotArea"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_khion")
+debug_color = Color(0.259774, 0.611195, 0.484146, 0.42)

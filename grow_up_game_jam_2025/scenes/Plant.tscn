@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="3_0app1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftafd"]
-size = Vector2(32, 33)
+size = Vector2(27, 24)
 
 [node name="TextureRect" type="TextureRect" groups=["Plants"]]
 custom_minimum_size = Vector2(32, 32)
@@ -27,9 +27,10 @@ stretch_mode = 5
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(16, 15.5)
+position = Vector2(16.5, 15)
 shape = SubResource("RectangleShape2D_ftafd")
 
 [node name="DragTimer" type="Timer" parent="Area2D"]

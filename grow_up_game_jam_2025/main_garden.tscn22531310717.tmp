@@ -24,18 +24,6 @@ mouse_filter = 1
 script = ExtResource("2_j5ia0")
 player_data = ExtResource("3_7j0uk")
 
-[node name="Temp" type="Label" parent="CanvasLayer/HUD"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -153.0
-offset_right = 156.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "TEMP DEBUG PRESS 'J' to calculate score"
-
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
 layout_mode = 0
 offset_right = 40.0
