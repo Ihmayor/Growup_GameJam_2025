@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://q5xhkxobsv8k"]
 
-[ext_resource type="PackedScene" uid="uid://5cf5v4e6l8jj" path="res://scenes/Tetraminos/[]L.tscn" id="1_0gs3r"]
+[ext_resource type="PackedScene" uid="uid://5cf5v4e6l8jj" path="res://scenes/Pentominos/P.tscn" id="1_0gs3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gs3r"]
 size = Vector2(73, 114)
