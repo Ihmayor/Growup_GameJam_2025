@@ -12,11 +12,12 @@ var index: Vector2
 @onready var area: Area2D = %SlotArea
 
 func _ready():
-	if (mouse_entered.get_connections().size() > 0):
+	if (mouse_entered.get_connections().size() == 0):
 		mouse_entered.connect(_mouse_entered)
 
-	if (mouse_exited.get_connections().size() > 0):
+	if (mouse_exited.get_connections().size() == 0):
 		mouse_exited.connect(_mouse_exited)
+		
 	area.area_entered.connect(_on_area_entered)
 	area.area_exited.connect(_on_area_exited)
 	$SoilTexture.texture = soil_unplanted
@@ -36,6 +37,7 @@ func _on_area_exited(entered_entity: Area2D):
 	pass
 	
 func _mouse_entered():
+	
 	$Outline.visible = true
 	$Outline.modulate = Color.GREEN
 

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://vns2uwiq0hgr"
-path="res://.godot/imported/1Bass.mp3-3da94e5047c921794febed3fb4a363ba.mp3str"
+path="res://.godot/imported/1Bass.mp3-8608dbcd06b1a5b3ad18d7e96884352c.mp3str"
 
 [deps]
 
-source_file="res://Assets/Music/1Bass.mp3"
-dest_files=["res://.godot/imported/1Bass.mp3-3da94e5047c921794febed3fb4a363ba.mp3str"]
+source_file="res://assets/Music/1Bass.mp3"
+dest_files=["res://.godot/imported/1Bass.mp3-8608dbcd06b1a5b3ad18d7e96884352c.mp3str"]
 
 [params]
 

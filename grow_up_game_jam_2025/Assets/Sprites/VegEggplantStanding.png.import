@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkcitguhniaxc"
-path="res://.godot/imported/VegEggplantStanding.png-01c72da6db50d9cceeeb6c1bbfbe2dcf.ctex"
+path="res://.godot/imported/VegEggplantStanding.png-e2891f9f69ccdde6a519c67095e3656e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/VegEggplantStanding.png"
-dest_files=["res://.godot/imported/VegEggplantStanding.png-01c72da6db50d9cceeeb6c1bbfbe2dcf.ctex"]
+source_file="res://assets/Sprites/VegEggplantStanding.png"
+dest_files=["res://.godot/imported/VegEggplantStanding.png-e2891f9f69ccdde6a519c67095e3656e.ctex"]
 
 [params]
 
