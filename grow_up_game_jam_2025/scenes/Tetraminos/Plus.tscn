@@ -4,10 +4,10 @@
 [ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="2_xs40b"]
 [ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="3_xs40b"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xs40b"]
-size = Vector2(115, 125)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftafd"]
+size = Vector2(33, 38)
 
-[node name="TextureRect" groups=["Plants"] instance=ExtResource("1_88frv")]
+[node name="TextureRect" instance=ExtResource("1_88frv")]
 plant_data = ExtResource("2_xs40b")
 
 [node name="PlantTexture" type="TextureRect" parent="." index="0"]
@@ -35,11 +35,29 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, 43)
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" parent="." index="5"]
-position = Vector2(0, -10)
+[node name="pivot" type="Node2D" parent="." index="5"]
+position = Vector2(16, 20)
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(15.5, 11.5)
-shape = SubResource("RectangleShape2D_xs40b")
+[node name="Area2D" type="Area2D" parent="pivot" index="0"]
+unique_name_in_owner = true
+position = Vector2(-16, -12)
 
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/Area2D" index="0"]
+position = Vector2(16.5, 11)
+shape = SubResource("RectangleShape2D_ftafd")
+
+[node name="DragTimer" type="Timer" parent="pivot/Area2D" index="1"]
+wait_time = 0.005
+ignore_time_scale = true
+
+[node name="RotationTweenTimer" type="Timer" parent="pivot" index="1"]
+wait_time = 0.01
+ignore_time_scale = true
+
+[node name="Images" type="Node2D" parent="pivot" index="2"]
+
+[node name="Flower" parent="pivot/Images" index="0" instance=ExtResource("3_xs40b")]
+
+[connection signal="mouse_entered" from="pivot/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="timeout" from="pivot/Area2D/DragTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="pivot/RotationTweenTimer" to="." method="_on_rotation_tween_timer_timeout"]
