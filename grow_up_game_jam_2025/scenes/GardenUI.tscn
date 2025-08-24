@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbv1r3rtxaboq"]
+[gd_scene load_steps=15 format=3 uid="uid://bbv1r3rtxaboq"]
 
 [ext_resource type="Script" uid="uid://moxmumwfntxg" path="res://scenes/garden_grid.gd" id="1_rpbvd"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="2_bwvbm"]
 [ext_resource type="Texture2D" uid="uid://dn30m6j3daakw" path="res://Assets/Sprites/Ground.png" id="3_nw0t6"]
 [ext_resource type="Resource" uid="uid://dq021g682x5hl" path="res://scripts/resources/plant_data/Tomato.tres" id="4_bwvbm"]
-[ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="5_h54yc"]
 [ext_resource type="Resource" uid="uid://bt73q2gq4s313" path="res://scripts/resources/plant_data/Eggplant.tres" id="6_uidg8"]
 [ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/resources/plant_data/Lettuce.tres" id="7_hbwtr"]
 [ext_resource type="Resource" uid="uid://1mdl623pu2h5" path="res://scripts/resources/plant_data/Pepper.tres" id="8_c63eo"]
@@ -56,7 +55,6 @@ columns = 5
 
 [node name="Cucumber" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(16, 21)
-plant_data = ExtResource("5_h54yc")
 
 [node name="Potato" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(314, 121)

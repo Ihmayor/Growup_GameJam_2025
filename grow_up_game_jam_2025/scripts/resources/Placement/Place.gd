@@ -8,6 +8,7 @@ class_name DraggablePlant extends Node2D
 @export var plant_data: Plant
 @onready var images = $Images
 
+static var currentlyDragging = null
 
 # 0-3 depending on what direction you wanna feace, 0 being staright up
 var facingDir = 0
@@ -39,16 +40,20 @@ func _ready() -> void:
 	pass
 
 func _on_area_2d_mouse_entered() -> void:
-	#if (is_other_plants_dragged()):
-		#return
 	mouse_over = true
+	
+	if currentlyDragging != null && currentlyDragging != self:
+		print("Already dragging something")
+		return
+	currentlyDragging = self
+	
 	timer.start()
 	
 func _on_area_2d_mouse_exited() -> void:
 	mouse_over = false
 
 func _on_timer_timeout() -> void:
-	if isDragging && !isPlanted:
+	if isDragging && !isPlanted:		
 		var rect = shape.shape as RectangleShape2D
 		var sizeVector = rect.extents
 		
@@ -70,6 +75,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 	if (event.is_action_released("move")):
 		isDragging = false
+		currentlyDragging = null
 		timer.stop()
 		
 		if event.is_action_pressed("Shovel"):
