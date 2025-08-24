@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://ceel08lkxyv4"
-path="res://.godot/imported/5Percussion.mp3-39a4db47fc741ea795b0c0433b65b774.mp3str"
+path="res://.godot/imported/5Percussion.mp3-54243afdcfe1fbc2019a49943bc5f8c9.mp3str"
 
 [deps]
 
-source_file="res://assets/Music/5Percussion.mp3"
-dest_files=["res://.godot/imported/5Percussion.mp3-39a4db47fc741ea795b0c0433b65b774.mp3str"]
+source_file="res://Assets/Music/5Percussion.mp3"
+dest_files=["res://.godot/imported/5Percussion.mp3-54243afdcfe1fbc2019a49943bc5f8c9.mp3str"]
 
 [params]
 
