@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Plant" load_steps=3 format=3 uid="uid://bt73q2gq4s313"]
 
-[ext_resource type="Texture2D" uid="uid://bkcitguhniaxc" path="res://Assets/Sprites/VegEggplantStanding.png" id="1_6rh25"]
+[ext_resource type="Texture2D" uid="uid://bkcitguhniaxc" path="res://assets/Sprites/VegEggplantStanding.png" id="1_6rh25"]
 [ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://scripts/resources/Plant.gd" id="1_jy1ui"]
 
 [resource]

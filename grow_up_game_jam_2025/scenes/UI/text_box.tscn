@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://14kx06325vrt"]
 
-[ext_resource type="Texture2D" uid="uid://dyvo2rqrhd7be" path="res://Assets/UI/UIBox.png" id="1_40ig8"]
+[ext_resource type="Texture2D" uid="uid://dyvo2rqrhd7be" path="res://assets/UI/UIBox.png" id="1_40ig8"]
 
 [node name="Control" type="NinePatchRect"]
 anchors_preset = 15
