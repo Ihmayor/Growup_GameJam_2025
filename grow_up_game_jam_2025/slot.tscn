@@ -6,7 +6,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c24ra"]
 size = Vector2(32, 32)
 
-[node name="Slot" type="Control"]
+[node name="Slot" type="Control" groups=["Slots"]]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
 anchors_preset = 8

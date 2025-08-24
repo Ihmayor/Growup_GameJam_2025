@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="Plant" load_steps=3 format=3 uid="uid://c4ujxhrs1k5b"]
 
 [ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://scripts/resources/Plant.gd" id="1_1b04m"]
-[ext_resource type="Texture2D" uid="uid://pjxspaayjf0x" path="res://assets/Sprites/VegPotatoStanding.png" id="1_3l1sd"]
+[ext_resource type="Texture2D" uid="uid://pjxspaayjf0x" path="res://Assets/Sprites/VegPotatoStanding.png" id="1_3l1sd"]
 
 [resource]
 script = ExtResource("1_1b04m")
+name = "Potato"
 base_stat = 20
 first_image = ExtResource("1_3l1sd")
 compatible_matchup = ""

@@ -3,6 +3,8 @@ class_name Slot extends Control
 var is_mouse_entered:bool
 var soil_unplanted: Texture2D
 var is_valid: bool = false
+var planted_plant:Plant
+var index: Vector2
 
 func _ready():
 	pass
@@ -22,4 +24,5 @@ func _mouse_exited():
 
 func add_plant_here(plant:Plant):
 	$PlantTexture.texture = plant.first_image
-	#$SoilTexture.modulate = Color.CHOCOLATE
+	planted_plant = plant
+	#$SoilTexture.modulate = Color.CHOCOLATE TODO CHANGE THIS TO NEW PLANTED TEXTURE

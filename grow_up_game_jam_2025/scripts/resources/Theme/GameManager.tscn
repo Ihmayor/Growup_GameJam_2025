@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnbtti7icnei4"]
+[gd_scene load_steps=3 format=3 uid="uid://bnbtti7icnei4"]
 
 [ext_resource type="Script" uid="uid://wihnhlq7pyh2" path="res://Plant_Boost.gd" id="1_u1hpr"]
+[ext_resource type="Script" uid="uid://cwhcstbcw52qv" path="res://scripts/resources/LevelData.gd" id="2_etagi"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_u1hpr")
+level = ExtResource("2_etagi")
 
 [node name="FinalCallTimer" type="Timer" parent="."]

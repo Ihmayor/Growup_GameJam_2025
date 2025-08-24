@@ -28,6 +28,8 @@ func _ready() -> void:
 	pass
 
 func _on_area_2d_mouse_entered() -> void:
+	if (is_other_plants_dragged()):
+		return
 	mouse_over = true
 	timer.start()
 	
@@ -35,7 +37,7 @@ func _on_area_2d_mouse_exited() -> void:
 	mouse_over = false
 
 func _on_timer_timeout() -> void:
-	if isDragging:
+	if isDragging && !is_other_plants_dragged():
 		var newPos = get_global_mouse_position() - self.size/2
 		position = round (newPos / gridSize) * gridSize
 
@@ -55,13 +57,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		isDragging = false
 		timer.stop()
 			
-	var get_other_plants = get_tree().get_nodes_in_group("Plants");
-	var test = get_other_plants.filter(func(plant: DraggablePlant): return plant.isDragging == true && plant.name != self.name)
-	var is_another_plant_being_dragged = get_other_plants.filter(func(plant: DraggablePlant): return plant.isDragging == true && plant.mouse_over).size() > 0
 	
-	if (event.is_action_pressed("move") && !is_another_plant_being_dragged):
+	if (event.is_action_pressed("move") && !is_other_plants_dragged()):
 		isDragging = true
-
 			
 	if changed:
 			# clamp the value to avoid broken stuff
@@ -71,7 +69,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			facingDir = 0
 			
 		_rotate(facingDir)
-	pass
+	
+func is_other_plants_dragged() -> bool:
+	var get_other_plants = get_tree().get_nodes_in_group("Plants");
+	var test = get_other_plants.filter(func(plant: DraggablePlant): return plant.isDragging == true && plant.name != self.name)
+	return get_other_plants.any(func(plant: DraggablePlant): return plant.isDragging == true && plant.mouse_over)
+
+
 
 func _rotate (newRotation) -> void:
 	if !isDragging:

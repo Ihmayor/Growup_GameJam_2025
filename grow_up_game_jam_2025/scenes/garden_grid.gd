@@ -27,7 +27,8 @@ func generate_grid() -> void:
 		#%GridContainer.add_child(row)
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
-			
+			slot_instance.index = Vector2(i,j);
+		
 			if (i==2 && j ==2):
 				slot_instance.add_plant_here(test)
 			
@@ -35,6 +36,7 @@ func generate_grid() -> void:
 				slot_instance.soil_unplanted = light_soil
 			else:
 				slot_instance.soil_unplanted = dark_soil
+				
 			%GridContainer.add_child(slot_instance)
 	
 func create_slot():

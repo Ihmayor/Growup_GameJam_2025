@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_jy1ui")
+name = "Eggplant"
 base_stat = 12
 first_image = ExtResource("1_6rh25")
 compatible_matchup = "Cucumber"
