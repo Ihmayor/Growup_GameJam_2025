@@ -66,6 +66,11 @@ func _on_timer_timeout() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
+
+	if event.is_action_pressed("Shovel"):
+		print("Attempt shovel")
+		SetShoveled()
+			
 	if event.is_action_pressed("rotate_left"):
 		facingDir -= 1
 		rotationInput = -1
@@ -77,17 +82,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		changed = true
 			
 	if (event.is_action_released("move")):
+	
+		if (lastSlotEntered != null && isDragging):
+			position = lastSlotEntered.global_position + offset
+	
 		isDragging = false
 		currentlyDragging = null
 		
-		if (lastSlotEntered != null):
-			position = lastSlotEntered.global_position + offset
 		
 		timer.stop()
-		
-		if event.is_action_pressed("Shovel"):
-			SetShoveled()
-			
 	
 	if (event.is_action_pressed("move")):
 		isDragging = true
@@ -125,6 +128,7 @@ func SetShoveled():
 	
 	for cPlant in childPlants:
 		if (cPlant.isPlanted):
+			print("Unmovable due to planted set")
 			isPlanted = true
 	pass
 	

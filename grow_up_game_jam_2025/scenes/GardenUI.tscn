@@ -51,7 +51,7 @@ theme = ExtResource("2_bwvbm")
 columns = 5
 
 [node name="Cucumber" parent="." instance=ExtResource("10_uidg8")]
-position = Vector2(16, 21)
+position = Vector2(161, 418)
 
 [node name="Potato" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(314, 121)
@@ -62,7 +62,7 @@ position = Vector2(83, 135)
 plant_data = ExtResource("4_bwvbm")
 
 [node name="Eggplant" parent="." instance=ExtResource("10_uidg8")]
-position = Vector2(134, 98)
+position = Vector2(329, 205)
 plant_data = ExtResource("6_uidg8")
 
 [node name="Pepper" parent="." instance=ExtResource("10_uidg8")]
