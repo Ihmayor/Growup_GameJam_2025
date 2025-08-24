@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://65sjym8nhe4y"]
+[gd_scene load_steps=5 format=3 uid="uid://clcpi0nnnycif"]
 
 [ext_resource type="Script" uid="uid://d1yo41m5b6amx" path="res://scripts/resources/Placement/Place.gd" id="1_hjoi0"]
 [ext_resource type="PackedScene" uid="uid://dnieu44y3sd5u" path="res://scenes/Flower.tscn" id="3_0app1"]
@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftafd"]
 size = Vector2(33, 38)
 
-[node name="TextureRect" type="Node2D"]
+[node name="TextureRect2" type="Node2D"]
 script = ExtResource("1_hjoi0")
 imageToUse = ExtResource("3_p2drj")
 

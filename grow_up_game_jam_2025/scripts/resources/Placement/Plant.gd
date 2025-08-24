@@ -35,7 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func Shovel ():
 	print("Shoveled")
 	isPlanted = true
-	position -= Vector2(0, -shoveledRecess)
+	global_position -= Vector2(0, -shoveledRecess)
 	pass
 
 

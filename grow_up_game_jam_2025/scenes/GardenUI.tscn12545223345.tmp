@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbv1r3rtxaboq"]
+[gd_scene load_steps=14 format=3 uid="uid://bbv1r3rtxaboq"]
 
 [ext_resource type="Script" uid="uid://moxmumwfntxg" path="res://scenes/garden_grid.gd" id="1_rpbvd"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="2_bwvbm"]
 [ext_resource type="Texture2D" uid="uid://dn30m6j3daakw" path="res://Assets/Sprites/Ground.png" id="3_nw0t6"]
 [ext_resource type="Resource" uid="uid://dq021g682x5hl" path="res://scripts/resources/plant_data/Tomato.tres" id="4_bwvbm"]
+[ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="5_h54yc"]
 [ext_resource type="Resource" uid="uid://bt73q2gq4s313" path="res://scripts/resources/plant_data/Eggplant.tres" id="6_uidg8"]
 [ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/resources/plant_data/Lettuce.tres" id="7_hbwtr"]
 [ext_resource type="Resource" uid="uid://1mdl623pu2h5" path="res://scripts/resources/plant_data/Pepper.tres" id="8_c63eo"]
 [ext_resource type="Resource" uid="uid://c4ujxhrs1k5b" path="res://scripts/resources/plant_data/Potato.tres" id="9_pum5k"]
-[ext_resource type="PackedScene" uid="uid://clcpi0nnnycif" path="res://scenes/Plant.tscn" id="10_uidg8"]
+[ext_resource type="PackedScene" uid="uid://be2yifih32ox8" path="res://scenes/Plant.tscn" id="10_uidg8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nw0t6"]
 load_path = "res://.godot/imported/Ground.png-c2ba45fabcd9ee4ae3ac4dd0d6f4c6e8.ctex"
@@ -29,33 +30,28 @@ script = ExtResource("1_rpbvd")
 main_theme = ExtResource("2_bwvbm")
 light_soil = SubResource("AtlasTexture_bwvbm")
 dark_soil = SubResource("AtlasTexture_nw0t6")
-test = ExtResource("7_hbwtr")
+test_plant = ExtResource("4_bwvbm")
+test_plant2 = ExtResource("5_h54yc")
+test_plant3 = ExtResource("6_uidg8")
+test_plant4 = ExtResource("7_hbwtr")
+test_plant5 = ExtResource("8_c63eo")
+test_plant6 = ExtResource("9_pum5k")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-offset_left = 525.0
-offset_top = 197.0
-offset_right = 525.0
-offset_bottom = 197.0
+offset_left = 355.0
+offset_top = 201.0
+offset_right = 355.0
+offset_bottom = 201.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("2_bwvbm")
 columns = 5
 
-[node name="Cucumber" parent="." instance=ExtResource("10_uidg8")]
-
-[node name="Potato" parent="." instance=ExtResource("10_uidg8")]
-plant_data = ExtResource("9_pum5k")
-
-[node name="Tomato" parent="." instance=ExtResource("10_uidg8")]
-plant_data = ExtResource("4_bwvbm")
-
-[node name="Eggplant" parent="." instance=ExtResource("10_uidg8")]
-plant_data = ExtResource("6_uidg8")
-
-[node name="Pepper" parent="." instance=ExtResource("10_uidg8")]
-plant_data = ExtResource("8_c63eo")
-
-[node name="Lettuce" parent="." instance=ExtResource("10_uidg8")]
-plant_data = ExtResource("7_hbwtr")
+[node name="TextureRect" parent="." instance=ExtResource("10_uidg8")]
+layout_mode = 1
+offset_left = 191.0
+offset_top = 218.0
+offset_right = 223.0
+offset_bottom = 250.0

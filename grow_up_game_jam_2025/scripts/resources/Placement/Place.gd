@@ -1,9 +1,11 @@
-extends Node2D
+class_name DraggablePlant extends Node2D
 @onready var A2D =  $Area2D
 @onready var timer = $Area2D/DragTimer
 @onready var shape = $Area2D/CollisionShape2D
 
 @onready var rotationTween = $RotationTweenTimer
+
+@export var plant_data: Plant
 @onready var images = $Images
 
 @export var imageToUse : Texture2D
@@ -19,8 +21,9 @@ var rotationInput = 1
 var isDragging = false
 var isPlanted = false
 
-# TODO Refactor this pls
 var gridSize = 32
+
+var mouse_over:bool = false
 
 func UpdateImages():
 	var img = $Images
@@ -31,14 +34,17 @@ func UpdateImages():
 		image.text = imageToUse
 
 func _ready() -> void:
-	position = Vector2(100, 100)
+	if (plant_data != null): 
+		$PlantTexture.texture = plant_data.first_image
 	UpdateImages()
 	pass
 
 func _on_area_2d_mouse_entered() -> void:
+	mouse_over = true
 	timer.start()
-	pass # Replace with function body.
-
+	
+func _on_area_2d_mouse_exited() -> void:
+	mouse_over = false
 
 func _on_timer_timeout() -> void:
 	if isDragging && !isPlanted:
@@ -60,17 +66,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		facingDir += 1
 		rotationInput = 1
 		changed = true
-		
-	if (event.is_action_pressed("move")):
-		isDragging = true
-		
+			
 	if (event.is_action_released("move")):
 		isDragging = false
 		timer.stop()
 		
-	if (event.is_action_pressed("Shovel")):
-		SetShoveled()
-		pass
+		if event.is_action_pressed("Shovel"):
+			SetShoveled()
+			
+	var get_other_plants = get_tree().get_nodes_in_group("Plants");
+	var test = get_other_plants.filter(func(plant: DraggablePlant): return plant.isDragging == true && plant.name != self.name)
+	var is_another_plant_being_dragged = get_other_plants.filter(func(plant: DraggablePlant): return plant.isDragging == true && plant.mouse_over).size() > 0
+	
+	if (event.is_action_pressed("move") && !is_another_plant_being_dragged):
+		isDragging = true
+
 			
 	if changed && isDragging:
 			# clamp the value to avoid broken stuff
