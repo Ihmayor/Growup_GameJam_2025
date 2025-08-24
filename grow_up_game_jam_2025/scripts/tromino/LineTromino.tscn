@@ -13,7 +13,7 @@ position = Vector2(15, 10.5)
 shape = SubResource("RectangleShape2D_ro8ds")
 
 [node name="Flower2" parent="Images" index="1" instance=ExtResource("3_hp2w7")]
-position = Vector2(-35, 0)
+position = Vector2(-37, 0)
 
 [node name="Flower3" parent="Images" index="2" instance=ExtResource("3_hp2w7")]
 position = Vector2(35, 0)

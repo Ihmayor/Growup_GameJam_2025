@@ -1,7 +1,7 @@
 class_name DraggablePlant extends Node2D
 @onready var A2D =  $Area2D
 @onready var timer = $Area2D/DragTimer
-@onready var shape = $Area2D/CollisionShape2D
+@onready var shape = $Images/Flower
 
 @onready var rotationTween = $RotationTweenTimer
 
@@ -62,8 +62,7 @@ func _on_area_2d_mouse_exited() -> void:
 func _on_timer_timeout() -> void:
 	if isDragging && !isPlanted && currentlyDragging == self:
 		isSOmethingBeingDragged = true	
-		var rect = shape.shape as RectangleShape2D
-		var sizeVector = rect.extents
+		var sizeVector = shape.textRect.size
 		
 		var newPos = get_viewport().get_mouse_position() - sizeVector/2
 		
@@ -87,7 +86,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotationInput = 1
 		changed = true
 	if (event.is_action_pressed("move")):
-		isDragging = true
+		if (!isSOmethingBeingDragged):
+			isDragging = true
 		
 		if (currentlyDragging == self):
 			sound.playing = true
