@@ -1,30 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3oek4qays602"]
+[gd_scene load_steps=5 format=3 uid="uid://b3oek4qays602"]
 
 [ext_resource type="PackedScene" uid="uid://clcpi0nnnycif" path="res://scenes/Plant.tscn" id="1_jcnoy"]
 [ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="2_curoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjtov"]
-size = Vector2(71, 35)
+size = Vector2(63, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcnoy"]
+size = Vector2(63, 35)
 
 [node name="TextureRect2" instance=ExtResource("1_jcnoy")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(-4.5, 47.5)
+position = Vector2(-0.5, 45.5)
 shape = SubResource("RectangleShape2D_hjtov")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" index="1"]
-position = Vector2(38.5, 10.5)
-shape = SubResource("RectangleShape2D_hjtov")
+position = Vector2(34.5, 10.5)
+shape = SubResource("RectangleShape2D_jcnoy")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="3"]
 position = Vector2(-9, 95)
 shape = SubResource("RectangleShape2D_hjtov")
 
 [node name="Flower3" parent="Images" index="1" instance=ExtResource("2_curoq")]
-position = Vector2(0, 37)
+position = Vector2(0, 35)
 
 [node name="Flower4" parent="Images" index="2" instance=ExtResource("2_curoq")]
-position = Vector2(-43, 37)
+position = Vector2(-35, 35)
 
 [node name="Flower2" parent="Images" index="3" instance=ExtResource("2_curoq")]
-position = Vector2(43, 0)
+position = Vector2(35, 0)

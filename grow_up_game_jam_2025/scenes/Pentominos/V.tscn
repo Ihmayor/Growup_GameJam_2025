@@ -1,28 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbdsy86126g24"]
+[gd_scene load_steps=5 format=3 uid="uid://dbdsy86126g24"]
 
-[ext_resource type="PackedScene" uid="uid://dbqi327hovrg7" path="res://scenes/Plant.tscn" id="1_5u1h2"]
-[ext_resource type="PackedScene" uid="uid://ck77k1kovy8d0" path="res://scenes/Flower.tscn" id="2_ovgc6"]
+[ext_resource type="PackedScene" uid="uid://clcpi0nnnycif" path="res://scenes/Plant.tscn" id="1_abfa4"]
+[ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="2_k5hyk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5hyk"]
-size = Vector2(112, 115)
+size = Vector2(28, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwair"]
+size = Vector2(70, 35)
 
 [node name="TextureRect2" instance=ExtResource("1_5u1h2")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(58, -28.5)
+position = Vector2(17, -24.5)
 shape = SubResource("RectangleShape2D_k5hyk")
 
-[node name="Flower2" parent="Images" index="1" instance=ExtResource("2_ovgc6")]
-position = Vector2(0, -39)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1"]
+position = Vector2(66, 10.5)
+shape = SubResource("RectangleShape2D_jwair")
 
-[node name="Flower3" parent="Images" index="2" instance=ExtResource("2_ovgc6")]
-position = Vector2(40, 0)
+[node name="Flower2" parent="Images" index="1" instance=ExtResource("2_k5hyk")]
+position = Vector2(0, -35)
 
-[node name="Flower4" parent="Images" index="3" instance=ExtResource("2_ovgc6")]
-position = Vector2(40, 0)
+[node name="Flower4" parent="Images" index="2" instance=ExtResource("2_k5hyk")]
+position = Vector2(35, 0)
 
-[node name="Flower5" parent="Images" index="4" instance=ExtResource("2_ovgc6")]
-position = Vector2(81, 0)
+[node name="Flower5" parent="Images" index="3" instance=ExtResource("2_k5hyk")]
+position = Vector2(70, 0)
 
-[node name="Flower6" parent="Images" index="5" instance=ExtResource("2_ovgc6")]
-position = Vector2(0, -78)
+[node name="Flower6" parent="Images" index="4" instance=ExtResource("2_k5hyk")]
+position = Vector2(0, -70)
