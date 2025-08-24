@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://dv7xf5s2h7rl4"]
 
-[ext_resource type="PackedScene" uid="uid://65sjym8nhe4y" path="res://scenes/Plant.tscn" id="1_88frv"]
+[ext_resource type="PackedScene" uid="uid://be2yifih32ox8" path="res://scenes/Plant.tscn" id="1_88frv"]
 
 [node name="TextureRect" instance=ExtResource("1_88frv")]
