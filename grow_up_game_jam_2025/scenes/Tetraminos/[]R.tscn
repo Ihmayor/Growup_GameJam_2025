@@ -6,6 +6,7 @@
 size = Vector2(73, 114)
 
 [node name="TextureRect2" instance=ExtResource("1_0gs3r")]
+plant_data = null
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(37.5, 48)

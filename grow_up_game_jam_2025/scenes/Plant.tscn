@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://clcpi0nnnycif"]
+[gd_scene load_steps=5 format=3 uid="uid://clcpi0nnnycif"]
 
 [ext_resource type="Script" uid="uid://d1yo41m5b6amx" path="res://scripts/resources/Placement/Place.gd" id="1_hjoi0"]
+[ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="2_0app1"]
 [ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="3_0app1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftafd"]
@@ -8,6 +9,7 @@ size = Vector2(33, 38)
 
 [node name="TextureRect2" type="Node2D" groups=["Plants"]]
 script = ExtResource("1_hjoi0")
+plant_data = ExtResource("2_0app1")
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
