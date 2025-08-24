@@ -27,7 +27,7 @@ func generate_grid() -> void:
 		#%GridContainer.add_child(row)
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
-			slot_instance.index = Vector2(i,j);
+			slot_instance.index = Vector2(j, i);
 		
 			if (i==2 && j ==2):
 				slot_instance.add_plant_here(test)

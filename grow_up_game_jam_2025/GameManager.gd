@@ -17,45 +17,44 @@ func calculate_plant_total():
 	for planted_slot: Slot in array_of_slots:
 		var found_neighbour 
 		var neighbour_score
+		var base_stat = planted_slot.planted_plant.base_stat
 		#check left
 		if planted_slot.index.x > 0:
 			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x - 1, planted_slot.index.y)))
-			print(found_neighbour)
-			neighbour_score = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0))
-			score += neighbour_score
-							
+			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0),base_stat)
 		#check right	
 		if planted_slot.index.x < level.grid_width:
 			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x + 1, planted_slot.index.y)))
-			neighbour_score = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0))
-			score += neighbour_score
+			print(planted_slot.index.x + 1)
+			print(found_neighbour)
+			print("============")
+			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0),base_stat)
 		#check top
 		if planted_slot.index.y < level.grid_height:
 			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x , planted_slot.index.y + 1)))
-			neighbour_score = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0))
-			score += neighbour_score
+			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0),base_stat)
 		#check bottom
 		if planted_slot.index.y > 0:
 			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x , planted_slot.index.y - 1)))
-			neighbour_score = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0))
-			score += neighbour_score
-		
-	print(score)
+			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0),base_stat)
+		score += base_stat
 	player_data.running_total_score = score;
 	
 func is_neighbour(neighbour:Slot, location: Vector2):
+	print(neighbour.index)
 	return neighbour.index == location	
 
-func calculate_neighbour(origin: Plant, neighbour: Slot) -> int:
+func calculate_neighbour(origin: Plant, neighbour: Slot, running_score:int) -> int:
 	if neighbour == null:
-		return 0;
-	print("here"+origin.name + " "+neighbour.name)
+		return running_score;
 	var neighbour_plant = neighbour.planted_plant
 	if origin.compatible_matchup == neighbour_plant.name:
-		return origin.base_stat * 2
+		print("boost")
+		return running_score * 2
 	if origin.incompatible_matchup.size() > 0 && origin.incompatible_matchup.has(neighbour_plant.name):
-		return origin.base_stat/ 2
-	return 0
+		print("debuff")
+		return running_score / 2
+	return running_score
 
 func compare_to_limit_for_level():
 	#subtract value from data score then add back
