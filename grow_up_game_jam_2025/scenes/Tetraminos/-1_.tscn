@@ -1,25 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnnuahotkldda"]
+[gd_scene load_steps=5 format=3 uid="uid://cnnuahotkldda"]
 
 [ext_resource type="PackedScene" uid="uid://clcpi0nnnycif" path="res://scenes/Plant.tscn" id="1_e2pjf"]
-[ext_resource type="PackedScene" uid="uid://dnieu44y3sd5u" path="res://scenes/Flower.tscn" id="2_nr6ki"]
+[ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="2_nr6ki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr6ki"]
-size = Vector2(110, 111)
+size = Vector2(28, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei21k"]
+size = Vector2(42, 35)
 
 [node name="TextureRect2" instance=ExtResource("1_e2pjf")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(18, 10.5)
+position = Vector2(17, 10.5)
 shape = SubResource("RectangleShape2D_nr6ki")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1"]
+position = Vector2(53, 10.5)
+shape = SubResource("RectangleShape2D_ei21k")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" index="2"]
+position = Vector2(-19, -32.5)
+shape = SubResource("RectangleShape2D_ei21k")
+
 [node name="Flower2" parent="Images" index="1" instance=ExtResource("2_nr6ki")]
-position = Vector2(0, -36)
+position = Vector2(0, -43)
 
 [node name="Flower3" parent="Images" index="2" instance=ExtResource("2_nr6ki")]
-position = Vector2(0, 36)
+position = Vector2(0, 43)
 
 [node name="Flower4" parent="Images" index="3" instance=ExtResource("2_nr6ki")]
-position = Vector2(-38, -36)
+position = Vector2(-43, -43)
 
 [node name="Flower5" parent="Images" index="4" instance=ExtResource("2_nr6ki")]
-position = Vector2(39, 0)
+position = Vector2(43, 0)
