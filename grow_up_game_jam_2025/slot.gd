@@ -2,6 +2,7 @@ class_name Slot extends Control
 
 var is_mouse_entered:bool
 var soil_unplanted: Texture2D
+var soil_planted: Texture2D
 var is_valid: bool = false
 var planted_plant:Plant
 var index: Vector2
@@ -16,6 +17,7 @@ func _ready():
 		mouse_exited.connect(_mouse_exited)
 	area.area_entered.connect(_on_area_entered)
 	area.area_exited.connect(_on_area_exited)
+	$SoilTexture.texture = soil_unplanted
 	
 	
 func _on_area_entered(entered_entity: Area2D):
@@ -27,11 +29,9 @@ func _on_area_exited(entered_entity: Area2D):
 	if (entered_entity.get_parent() is DraggablePlant):
 		planted_plant = null
 		$PlantTexture.texture = null
+		$SoilTexture.texture = soil_unplanted
 	#(entered_entity.get_parent() is DraggablePlant)
 	pass
-	
-func _process(delta:float):
-	$SoilTexture.texture = soil_unplanted
 	
 func _mouse_entered():
 	$Outline.visible = true
@@ -44,4 +44,4 @@ func _mouse_exited():
 func add_plant_here(plant:Plant):
 	$PlantTexture.texture = plant.first_image
 	planted_plant = plant
-	#$SoilTexture.modulate = Color.CHOCOLATE TODO CHANGE THIS TO NEW PLANTED TEXTURE
+	$SoilTexture.texture = soil_planted

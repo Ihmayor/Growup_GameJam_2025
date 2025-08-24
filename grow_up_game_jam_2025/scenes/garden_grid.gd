@@ -8,6 +8,10 @@ class_name GardenUI extends Control
 @export var light_soil:AtlasTexture
 @export var dark_soil:AtlasTexture
 
+@export var light_planted_soil:AtlasTexture
+@export var dark_planted_soil:AtlasTexture
+
+
 @export var test: Plant
 
 var grid_size: int = 32
@@ -22,9 +26,6 @@ func _process(delta: float):
 
 func generate_grid() -> void: 
 	for i in grid_height:
-		#var row = HBoxContainer.new()
-		#row.theme = main_theme
-		#%GridContainer.add_child(row)
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
 			slot_instance.index = Vector2(j, i);
@@ -34,8 +35,10 @@ func generate_grid() -> void:
 			
 			if (i + j) % 2 :
 				slot_instance.soil_unplanted = light_soil
+				slot_instance.soil_planted = light_planted_soil
 			else:
 				slot_instance.soil_unplanted = dark_soil
+				slot_instance.soil_planted = dark_planted_soil
 				
 			%GridContainer.add_child(slot_instance)
 	

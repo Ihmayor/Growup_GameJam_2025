@@ -39,7 +39,6 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(16, 20)
 
 [node name="Area2D" type="Area2D" parent="pivot" index="0"]
-unique_name_in_owner = true
 position = Vector2(-16, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/Area2D" index="0"]
