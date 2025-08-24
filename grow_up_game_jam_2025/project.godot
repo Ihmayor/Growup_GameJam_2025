@@ -27,6 +27,7 @@ project/assembly_name="grow_up_game_jam_2025"
 
 Plants="part of plants"
 Slots=""
+manager=""
 
 [input]
 

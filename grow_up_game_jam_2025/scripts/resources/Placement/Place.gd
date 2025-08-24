@@ -95,8 +95,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			#position = lastSlotEntered.global_position + offset
 			var rect = shape.shape as RectangleShape2D
 			var sizeVector = rect.extents
-			var po = get_viewport().get_mouse_position() - sizeVector/2
-			self.global_position = round (po / gridSize) * gridSize + offset
+#			var po = get_viewport().get_mouse_position() - sizeVector/2
+#			self.global_position = round (po / gridSize) * gridSize + offset
 			
 		isDragging = false
 		currentlyDragging = null
