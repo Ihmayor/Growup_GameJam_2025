@@ -1,5 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://dv7xf5s2h7rl4"]
+[gd_scene load_steps=5 format=3 uid="uid://dv7xf5s2h7rl4"]
 
-[ext_resource type="PackedScene" uid="uid://be2yifih32ox8" path="res://scenes/Plant.tscn" id="1_88frv"]
+[ext_resource type="PackedScene" uid="uid://clcpi0nnnycif" path="res://scenes/Plant.tscn" id="1_88frv"]
+[ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="2_xs40b"]
+[ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="3_xs40b"]
 
-[node name="TextureRect" instance=ExtResource("1_88frv")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xs40b"]
+size = Vector2(115, 125)
+
+[node name="TextureRect" groups=["Plants"] instance=ExtResource("1_88frv")]
+plant_data = ExtResource("2_xs40b")
+
+[node name="PlantTexture" type="TextureRect" parent="." index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+
+[node name="Images#Flower2" parent="." index="1" instance=ExtResource("3_xs40b")]
+position = Vector2(-42, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="Images#Flower3" parent="." index="2" instance=ExtResource("3_xs40b")]
+position = Vector2(41, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="Images#Flower4" parent="." index="3" instance=ExtResource("3_xs40b")]
+position = Vector2(0, -42)
+metadata/_edit_use_anchors_ = true
+
+[node name="Images#Flower5" parent="." index="4" instance=ExtResource("3_xs40b")]
+position = Vector2(0, 43)
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" parent="." index="5"]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(15.5, 11.5)
+shape = SubResource("RectangleShape2D_xs40b")
+
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

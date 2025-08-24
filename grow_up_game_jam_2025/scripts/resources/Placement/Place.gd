@@ -1,4 +1,4 @@
-class_name DraggablePlant extends TextureRect
+class_name DraggablePlant extends Node2D
 @onready var A2D =  $Area2D
 @onready var timer = $Area2D/DragTimer
 @onready var shape = $Area2D/CollisionShape2D
@@ -6,6 +6,8 @@ class_name DraggablePlant extends TextureRect
 @onready var rotationTween = $RotationTweenTimer
 
 @export var plant_data: Plant
+@onready var images = $Images
+
 
 # 0-3 depending on what direction you wanna feace, 0 being staright up
 var facingDir = 0
@@ -16,20 +18,29 @@ var rotateIncrement = 10
 var rotationInput = 1
 
 var isDragging = false
+var isPlanted = false
 
 var gridSize = 32
 
 var mouse_over:bool = false
 
+func UpdateImages():
+	var img = $Images
+	var node = $Images
+	
+	var imagesToChange = images.get_children()
+	for image in imagesToChange:
+		image.text = plant_data.first_image
+
 func _ready() -> void:
 	if (plant_data != null): 
-		$PlantTexture.texture = plant_data.first_image
-	#rotationTween.wait_time = rotateIncrement
+		$Images/Flower.text = plant_data.first_image
+	UpdateImages()
 	pass
 
 func _on_area_2d_mouse_entered() -> void:
-	if (is_other_plants_dragged()):
-		return
+	#if (is_other_plants_dragged()):
+		#return
 	mouse_over = true
 	timer.start()
 	
@@ -37,9 +48,13 @@ func _on_area_2d_mouse_exited() -> void:
 	mouse_over = false
 
 func _on_timer_timeout() -> void:
-	if isDragging && !is_other_plants_dragged():
-		var newPos = get_global_mouse_position() - self.size/2
-		position = round (newPos / gridSize) * gridSize
+	if isDragging && !isPlanted:
+		var rect = shape.shape as RectangleShape2D
+		var sizeVector = rect.extents
+		
+		var newPos = get_viewport().get_mouse_position() - sizeVector/2
+		self.global_position = round (newPos / gridSize) * gridSize
+	pass # Replace with function body.
 
 func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
@@ -56,12 +71,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_released("move")):
 		isDragging = false
 		timer.stop()
+		
+		if event.is_action_pressed("Shovel"):
+			SetShoveled()
 			
 	
-	if (event.is_action_pressed("move") && !is_other_plants_dragged()):
+	if (event.is_action_pressed("move")):
 		isDragging = true
 			
-	if changed:
+	if changed && isDragging:
 			# clamp the value to avoid broken stuff
 		if (facingDir < 0):
 			facingDir = 3
@@ -78,9 +96,6 @@ func is_other_plants_dragged() -> bool:
 
 
 func _rotate (newRotation) -> void:
-	if !isDragging:
-		pass
-		
 	# clamp the value to avoid broken stuff
 	if (newRotation < 0):
 		newRotation = 0
@@ -92,7 +107,14 @@ func _rotate (newRotation) -> void:
 	rotationTween.start()
 	pass 
 
-
+func SetShoveled():
+	var childPlants = images.get_children()
+	
+	for cPlant in childPlants:
+		if (cPlant.isPlanted):
+			isPlanted = true
+	pass
+	
 func _on_rotation_tween_timer_timeout() -> void:	
 	# Fix issue with rotationd degrees over to values over 90000
 	if abs(rotation_degrees) > 360:

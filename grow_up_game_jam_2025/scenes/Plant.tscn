@@ -1,36 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://be2yifih32ox8"]
+[gd_scene load_steps=4 format=3 uid="uid://clcpi0nnnycif"]
 
 [ext_resource type="Script" uid="uid://d1yo41m5b6amx" path="res://scripts/resources/Placement/Place.gd" id="1_hjoi0"]
-[ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="3_0app1"]
+[ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="3_0app1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftafd"]
-size = Vector2(27, 24)
+size = Vector2(33, 38)
 
-[node name="TextureRect" type="TextureRect" groups=["Plants"]]
-custom_minimum_size = Vector2(32, 32)
-offset_right = 32.0
-offset_bottom = 32.0
-pivot_offset = Vector2(16, 16)
-expand_mode = 1
+[node name="TextureRect2" type="Node2D" groups=["Plants"]]
 script = ExtResource("1_hjoi0")
-plant_data = ExtResource("3_0app1")
-
-[node name="PlantTexture" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -30.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch_mode = 5
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -10)
+position = Vector2(-16, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(16.5, 15)
+position = Vector2(16.5, 11)
 shape = SubResource("RectangleShape2D_ftafd")
 
 [node name="DragTimer" type="Timer" parent="Area2D"]
@@ -41,7 +25,10 @@ ignore_time_scale = true
 wait_time = 0.01
 ignore_time_scale = true
 
+[node name="Images" type="Node2D" parent="."]
+
+[node name="Flower" parent="Images" instance=ExtResource("3_0app1")]
+
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="timeout" from="Area2D/DragTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="RotationTweenTimer" to="." method="_on_rotation_tween_timer_timeout"]
