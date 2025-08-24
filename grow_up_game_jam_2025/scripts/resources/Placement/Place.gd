@@ -17,6 +17,7 @@ var rotateIncrement = 10
 var rotationInput = 1
 
 var isDragging = false
+var isPlanted = false
 
 # TODO Refactor this pls
 var gridSize = 32
@@ -30,6 +31,7 @@ func UpdateImages():
 		image.text = imageToUse
 
 func _ready() -> void:
+	position = Vector2(100, 100)
 	UpdateImages()
 	pass
 
@@ -39,7 +41,7 @@ func _on_area_2d_mouse_entered() -> void:
 
 
 func _on_timer_timeout() -> void:
-	if isDragging:
+	if isDragging && !isPlanted:
 		var rect = shape.shape as RectangleShape2D
 		var sizeVector = rect.extents
 		
@@ -65,6 +67,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_released("move")):
 		isDragging = false
 		timer.stop()
+		
+	if (event.is_action_pressed("Shovel")):
+		SetShoveled()
+		pass
 			
 	if changed && isDragging:
 			# clamp the value to avoid broken stuff
@@ -88,7 +94,14 @@ func _rotate (newRotation) -> void:
 	rotationTween.start()
 	pass 
 
-
+func SetShoveled():
+	var childPlants = images.get_children()
+	
+	for cPlant in childPlants:
+		if (cPlant.isPlanted):
+			isPlanted = true
+	pass
+	
 func _on_rotation_tween_timer_timeout() -> void:	
 	# Fix issue with rotationd degrees over to values over 90000
 	if abs(rotation_degrees) > 360:

@@ -2,6 +2,9 @@ extends Node2D
 @export var text : Texture2D
 @onready var timer = $Timer
 @onready var textRect = $TextureRect
+@export var isPlanted = false
+@export var shoveledRecess = 10 # how far to inset when shoveled
+var isShovelable = false
 
 var timeRan = 0
 var maxTimeRan = 1.5
@@ -22,7 +25,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		timer.start()
 		pass
 		
-	pass	
+	if (event.is_action_pressed("Shovel") && isShovelable && !isPlanted):
+		Shovel()
+		pass
+		
+	pass
+	
+	
+func Shovel ():
+	print("Shoveled")
+	isPlanted = true
+	position -= Vector2(0, -shoveledRecess)
+	pass
 
 
 func _on_timer_timeout() -> void:
@@ -31,4 +45,14 @@ func _on_timer_timeout() -> void:
 	timeRan += 0.01
 	if (timeRan >= maxTimeRan):
 		timer.stop()
+	pass # Replace with function body.
+
+
+func _on_area_2d_mouse_entered() -> void:
+	isShovelable = true
+	pass # Replace with function body.
+
+
+func _on_area_2d_mouse_exited() -> void:
+	isShovelable = false
 	pass # Replace with function body.

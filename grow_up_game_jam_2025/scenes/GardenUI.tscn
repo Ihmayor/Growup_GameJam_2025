@@ -1,25 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbv1r3rtxaboq"]
+[gd_scene load_steps=3 format=3 uid="uid://bbv1r3rtxaboq"]
 
 [ext_resource type="Script" uid="uid://moxmumwfntxg" path="res://scenes/garden_grid.gd" id="1_rpbvd"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="2_bwvbm"]
-[ext_resource type="Texture2D" uid="uid://dn30m6j3daakw" path="res://Assets/Sprites/Ground.png" id="3_nw0t6"]
-[ext_resource type="Resource" uid="uid://dq021g682x5hl" path="res://scripts/resources/plant_data/Tomato.tres" id="4_bwvbm"]
-[ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="5_h54yc"]
-[ext_resource type="Resource" uid="uid://bt73q2gq4s313" path="res://scripts/resources/plant_data/Eggplant.tres" id="6_uidg8"]
-[ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/resources/plant_data/Lettuce.tres" id="7_hbwtr"]
-[ext_resource type="Resource" uid="uid://1mdl623pu2h5" path="res://scripts/resources/plant_data/Pepper.tres" id="8_c63eo"]
-[ext_resource type="Resource" uid="uid://c4ujxhrs1k5b" path="res://scripts/resources/plant_data/Potato.tres" id="9_pum5k"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nw0t6"]
-load_path = "res://.godot/imported/Ground.png-c2ba45fabcd9ee4ae3ac4dd0d6f4c6e8.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwvbm"]
-atlas = SubResource("CompressedTexture2D_nw0t6")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nw0t6"]
-atlas = ExtResource("3_nw0t6")
-region = Rect2(64, 0, 32, 32)
 
 [node name="Garden" type="Control"]
 layout_mode = 3
@@ -30,14 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rpbvd")
 main_theme = ExtResource("2_bwvbm")
-light_soil = SubResource("AtlasTexture_bwvbm")
-dark_soil = SubResource("AtlasTexture_nw0t6")
-test_plant = ExtResource("4_bwvbm")
-test_plant2 = ExtResource("5_h54yc")
-test_plant3 = ExtResource("6_uidg8")
-test_plant4 = ExtResource("7_hbwtr")
-test_plant5 = ExtResource("8_c63eo")
-test_plant6 = ExtResource("9_pum5k")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

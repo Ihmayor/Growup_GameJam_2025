@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnieu44y3sd5u"]
+[gd_scene load_steps=4 format=3 uid="uid://dnieu44y3sd5u"]
 
 [ext_resource type="Texture2D" uid="uid://cxgb3x1a713lc" path="res://Assets/Sprites/VegLettuceStanding.png" id="2_pk8at"]
 [ext_resource type="Script" uid="uid://cmoj0c8ducou0" path="res://scripts/resources/Placement/Plant.gd" id="2_sae6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sae6b"]
+size = Vector2(28, 35)
 
 [node name="Flower" type="Node2D"]
 script = ExtResource("2_sae6b")
@@ -19,4 +22,12 @@ offset_bottom = 19.0
 texture = ExtResource("2_pk8at")
 stretch_mode = 2
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -1.5)
+shape = SubResource("RectangleShape2D_sae6b")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
