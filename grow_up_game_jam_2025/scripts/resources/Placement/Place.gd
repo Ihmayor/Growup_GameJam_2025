@@ -28,7 +28,7 @@ func _ready() -> void:
 	
 	var imagesToChange = images.get_children()
 	for image in imagesToChange:
-		image.texture = imageToUse
+		image.text = imageToUse
 		pass
 	
 	#rotationTween.wait_time = rotateIncrement
@@ -67,7 +67,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		isDragging = false
 		timer.stop()
 			
-	if changed:
+	if changed && isDragging:
 			# clamp the value to avoid broken stuff
 		if (facingDir < 0):
 			facingDir = 3
@@ -78,9 +78,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	pass
 
 func _rotate (newRotation) -> void:
-	if !isDragging:
-		pass
-		
 	# clamp the value to avoid broken stuff
 	if (newRotation < 0):
 		newRotation = 0
