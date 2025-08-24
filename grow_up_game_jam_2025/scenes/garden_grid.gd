@@ -16,15 +16,15 @@ class_name GardenUI extends Control
 @export var test_plant6:Plant
 
 
-
-func _ready() -> void:
-	generate_grid()
+func _unhandled_input(event: InputEvent) -> void:
+	if (event.is_action_pressed("rotate_clockwise")):
+		generate_grid()
 	
 func generate_grid() -> void: 
 	for i in grid_height:
-		var row = HBoxContainer.new()
-		row.theme = main_theme
-		%GridContainer.add_child(row)
+		#var row = HBoxContainer.new()
+		#row.theme = main_theme
+		#%GridContainer.add_child(row)
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
 			if (i == 1 && j ==3):
@@ -53,7 +53,7 @@ func generate_grid() -> void:
 			else:
 				print(dark_soil)
 				slot_instance.soil_unplanted = dark_soil
-			row.add_child(slot_instance)
+			%GridContainer.add_child(slot_instance)
 	
 func create_slot():
 	pass
