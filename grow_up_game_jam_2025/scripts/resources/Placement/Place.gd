@@ -60,6 +60,7 @@ func _on_timer_timeout() -> void:
 		var sizeVector = rect.extents
 		
 		var newPos = get_viewport().get_mouse_position() - sizeVector/2
+		
 		self.global_position = round (newPos / gridSize) * gridSize + offset
 	pass # Replace with function body.
 

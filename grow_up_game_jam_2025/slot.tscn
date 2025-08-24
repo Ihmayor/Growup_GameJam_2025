@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdprlbmnbfp5u"]
 
-[ext_resource type="Script" path="res://slot.gd" id="1_c24ra"]
+[ext_resource type="Script" uid="uid://g4jhnswos7ve" path="res://slot.gd" id="1_c24ra"]
 [ext_resource type="Texture2D" uid="uid://cpxfic4r63xeh" path="res://Assets/placeholder_outline.png" id="2_khion"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c24ra"]
@@ -61,6 +61,7 @@ grow_vertical = 2
 texture = ExtResource("2_khion")
 
 [node name="PlantTexture" type="TextureRect" parent="."]
+visible = false
 z_index = 5
 z_as_relative = false
 layout_mode = 1
