@@ -10,7 +10,7 @@ var timeRan = 0
 var maxTimeRan = 1.5
 
 
-func _ready() -> void:
+func _process(delta: float) -> void:
 	textRect.texture = text
 	
 func _unhandled_input(event: InputEvent) -> void:
