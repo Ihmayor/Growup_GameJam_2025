@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://n21p34r4kt4j"
-path="res://.godot/imported/VegPepperStanding.png-4e5227c8154659508f75e13e49007417.ctex"
+path="res://.godot/imported/VegPepperStanding.png-e1e800239f2634356043db53fd5e0195.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/VegPepperStanding.png"
-dest_files=["res://.godot/imported/VegPepperStanding.png-4e5227c8154659508f75e13e49007417.ctex"]
+source_file="res://assets/Sprites/VegPepperStanding.png"
+dest_files=["res://.godot/imported/VegPepperStanding.png-e1e800239f2634356043db53fd5e0195.ctex"]
 
 [params]
 
