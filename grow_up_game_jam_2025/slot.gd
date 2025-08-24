@@ -1,13 +1,23 @@
-class_name Slot extends TextureButton
+class_name Slot extends Control
 
 var is_mouse_entered:bool
+var soil_unplanted: Texture2D
+var is_valid: bool = false
 
-func _process(delta:float)-> void:
+func _ready():
 	pass
+	mouse_entered.connect(_mouse_entered)
+	mouse_exited.connect(_mouse_exited)
+	
+func _process(delta:float):
+	$SoilTexture.texture = soil_unplanted
+	
+func _mouse_entered():
+	modulate = Color.GREEN;
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouse:
-		
-		print(event)
-	if event is InputEventMouseMotion:	
-		pass 
+func _mouse_exited():
+	modulate = Color.WHITE;
+
+func add_plant_here(plant:Plant):
+	$PlantTexture.texture = plant.first_image
+	$SoilTexture.modulate = Color.CHOCOLATE

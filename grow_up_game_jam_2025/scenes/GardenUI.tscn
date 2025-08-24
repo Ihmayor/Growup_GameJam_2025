@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbv1r3rtxaboq"]
+[gd_scene load_steps=8 format=3 uid="uid://bbv1r3rtxaboq"]
 
 [ext_resource type="Script" uid="uid://moxmumwfntxg" path="res://scenes/garden_grid.gd" id="1_rpbvd"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="2_bwvbm"]
+[ext_resource type="Texture2D" uid="uid://dn30m6j3daakw" path="res://Assets/Sprites/Ground.png" id="3_nw0t6"]
+[ext_resource type="Resource" uid="uid://dq021g682x5hl" path="res://scripts/resources/plant_data/Tomato.tres" id="4_bwvbm"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nw0t6"]
+load_path = "res://.godot/imported/Ground.png-c2ba45fabcd9ee4ae3ac4dd0d6f4c6e8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwvbm"]
+atlas = SubResource("CompressedTexture2D_nw0t6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw0t6"]
+atlas = ExtResource("3_nw0t6")
+region = Rect2(64, 0, 32, 32)
 
 [node name="Garden" type="Control"]
 layout_mode = 3
@@ -12,6 +25,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rpbvd")
 main_theme = ExtResource("2_bwvbm")
+light_soil = SubResource("AtlasTexture_bwvbm")
+dark_soil = SubResource("AtlasTexture_nw0t6")
+test_plant = ExtResource("4_bwvbm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -24,9 +40,15 @@ grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -17.5
+offset_right = 150.0
+offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -46,12 +68,7 @@ layout_mode = 2
 text = "SPAWN
 "
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
-clip_contents = false
-layout_mode = 2
-size_flags_vertical = 6
-
-[node name="GridContainer" type="GridContainer" parent="GridContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
