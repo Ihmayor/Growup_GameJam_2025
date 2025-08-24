@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgbv4m7veia8"
-path="res://.godot/imported/placeholder_grid.png-a6170df8af31d25d090ce2790828eee4.ctex"
+uid="uid://fsu8do5n5xci"
+path="res://.godot/imported/VegTomato_Idle.png-e855b3ad71f40f7d0c568738ade65d2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholder_grid.png"
-dest_files=["res://.godot/imported/placeholder_grid.png-a6170df8af31d25d090ce2790828eee4.ctex"]
+source_file="res://Assets/Sprites/VegTomato_Idle.png"
+dest_files=["res://.godot/imported/VegTomato_Idle.png-e855b3ad71f40f7d0c568738ade65d2e.ctex"]
 
 [params]
 

@@ -8,9 +8,9 @@ class_name DraggablePlant extends Node2D
 @export var plant_data: Plant
 @export var offset = Vector2 (32/2,32/2)
 @onready var images = $Images
+@onready var sound = $AudioStreamPlayer2D
 var lastSlotEntered = null
 var occupyingSlot = null
-
 static var currentlyDragging = null
 static var isSOmethingBeingDragged = false
 
@@ -24,6 +24,7 @@ var rotationInput = 1
 
 var isDragging = false
 var isPlanted = false
+var isSelected = false
 
 var gridSize = 32
 
@@ -45,7 +46,7 @@ func _ready() -> void:
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
-	
+	isSelected = true
 	if isSOmethingBeingDragged:
 		print("Already dragging something")
 		return
@@ -55,6 +56,7 @@ func _on_area_2d_mouse_entered() -> void:
 	
 func _on_area_2d_mouse_exited() -> void:
 	currentlyDragging = null
+	isSelected = false
 	mouse_over = false
 	
 func _on_timer_timeout() -> void:
@@ -87,11 +89,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("move")):
 		isDragging = true
 		
+		if (currentlyDragging == self):
+			sound.playing = true
+		
 	if (event.is_action_released("move")):
 		isSOmethingBeingDragged = false
 		timer.stop()
 
-		if (lastSlotEntered != null && isDragging):
+		if (lastSlotEntered != null && isDragging && isSelected):
+			sound.playing = true
 			position = lastSlotEntered.global_position + offset
 			
 		isDragging = false
@@ -131,6 +137,7 @@ func SetShoveled():
 	for cPlant in childPlants:
 		if (cPlant.isPlanted):
 			print("Unmovable due to planted set")
+			sound.playing = true
 			isPlanted = true
 	pass
 	

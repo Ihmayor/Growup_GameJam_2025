@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgbv4m7veia8"
-path="res://.godot/imported/placeholder_grid.png-a6170df8af31d25d090ce2790828eee4.ctex"
+uid="uid://6koi20pd8dl5"
+path="res://.godot/imported/VegEggplant_Idle.png-4a0573d601c2d60ebdca01ea47f796b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholder_grid.png"
-dest_files=["res://.godot/imported/placeholder_grid.png-a6170df8af31d25d090ce2790828eee4.ctex"]
+source_file="res://Assets/Sprites/VegEggplant_Idle.png"
+dest_files=["res://.godot/imported/VegEggplant_Idle.png-4a0573d601c2d60ebdca01ea47f796b1.ctex"]
 
 [params]
 

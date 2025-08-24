@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgbv4m7veia8"
-path="res://.godot/imported/placeholder_grid.png-a6170df8af31d25d090ce2790828eee4.ctex"
+uid="uid://cvevstr67c3ng"
+path="res://.godot/imported/VegCuke_Idle.png-bfe2fa81fce168f244a061741c8eb5f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholder_grid.png"
-dest_files=["res://.godot/imported/placeholder_grid.png-a6170df8af31d25d090ce2790828eee4.ctex"]
+source_file="res://Assets/Sprites/VegCuke_Idle.png"
+dest_files=["res://.godot/imported/VegCuke_Idle.png-bfe2fa81fce168f244a061741c8eb5f1.ctex"]
 
 [params]
 

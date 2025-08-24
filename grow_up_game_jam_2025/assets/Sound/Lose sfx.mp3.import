@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cu06dbkxax5yy"
+path="res://.godot/imported/Lose sfx.mp3-61d9a4b2796deb96e5633694deb66b17.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/Lose sfx.mp3"
+dest_files=["res://.godot/imported/Lose sfx.mp3-61d9a4b2796deb96e5633694deb66b17.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgbv4m7veia8"
-path="res://.godot/imported/placeholder_grid.png-a6170df8af31d25d090ce2790828eee4.ctex"
+uid="uid://i222almp7fld"
+path="res://.godot/imported/VegPepper_Idle.png-6f97422c5d52f1fbe23476c0f3d8cbc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholder_grid.png"
-dest_files=["res://.godot/imported/placeholder_grid.png-a6170df8af31d25d090ce2790828eee4.ctex"]
+source_file="res://Assets/Sprites/VegPepper_Idle.png"
+dest_files=["res://.godot/imported/VegPepper_Idle.png-6f97422c5d52f1fbe23476c0f3d8cbc4.ctex"]
 
 [params]
 
