@@ -55,29 +55,29 @@ columns = 5
 
 [node name="Cucumber" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(16, 21)
-offset = null
+offset = Vector2(16, 16)
 
 [node name="Potato" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(314, 121)
 plant_data = ExtResource("9_pum5k")
-offset = null
+offset = Vector2(16, 16)
 
 [node name="Tomato" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(83, 135)
 plant_data = ExtResource("4_bwvbm")
-offset = null
+offset = Vector2(16, 16)
 
 [node name="Eggplant" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(134, 98)
 plant_data = ExtResource("6_uidg8")
-offset = null
+offset = Vector2(16, 16)
 
 [node name="Pepper" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(85, 235)
 plant_data = ExtResource("8_c63eo")
-offset = null
+offset = Vector2(16, 16)
 
 [node name="Lettuce" parent="." instance=ExtResource("10_uidg8")]
 position = Vector2(173, 259)
 plant_data = ExtResource("7_hbwtr")
-offset = null
+offset = Vector2(16, 16)
