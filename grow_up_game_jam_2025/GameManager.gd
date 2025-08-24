@@ -22,17 +22,17 @@ func calculate_plant_total():
 		if planted_slot.index.x > 0:
 			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x - 1, planted_slot.index.y)))
 			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0),base_stat)
+		
 		#check right	
 		if planted_slot.index.x < level.grid_width:
 			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x + 1, planted_slot.index.y)))
-			print(planted_slot.index.x + 1)
-			print(found_neighbour)
-			print("============")
 			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0),base_stat)
+		
 		#check top
 		if planted_slot.index.y < level.grid_height:
 			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x , planted_slot.index.y + 1)))
 			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour.get(0),base_stat)
+		
 		#check bottom
 		if planted_slot.index.y > 0:
 			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x , planted_slot.index.y - 1)))
@@ -47,13 +47,16 @@ func is_neighbour(neighbour:Slot, location: Vector2):
 func calculate_neighbour(origin: Plant, neighbour: Slot, running_score:int) -> int:
 	if neighbour == null:
 		return running_score;
+	
 	var neighbour_plant = neighbour.planted_plant
+	print("found neighbour")
+	print(origin.name + "is next to" +  neighbour.planted_plant.name)
 	if origin.compatible_matchup == neighbour_plant.name:
 		print("boost")
-		return running_score * 2
+		return running_score + (origin.base_stat * 1.5)
 	if origin.incompatible_matchup.size() > 0 && origin.incompatible_matchup.has(neighbour_plant.name):
 		print("debuff")
-		return running_score / 2
+		return running_score - (origin.base_stat / 2)
 	return running_score
 
 func compare_to_limit_for_level():

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmhe7nvh3gme7"]
 
 [ext_resource type="Script" uid="uid://bbiutuh86xxrh" path="res://scenes/UI/timer_progress_bar.gd" id="1_61a54"]
-[ext_resource type="Texture2D" uid="uid://bxhbjxiflfk7y" path="res://assets/UI/ProgressBar.png" id="1_uughn"]
-[ext_resource type="Texture2D" uid="uid://mdtwkvs1dj8p" path="res://assets/UI/ProgressBarComplete.png" id="2_61a54"]
+[ext_resource type="Texture2D" uid="uid://bxhbjxiflfk7y" path="res://Assets/UI/ProgressBar.png" id="1_uughn"]
+[ext_resource type="Texture2D" uid="uid://mdtwkvs1dj8p" path="res://Assets/UI/ProgressBarComplete.png" id="2_61a54"]
 
 [node name="TimerProgressBar" type="Control"]
 layout_mode = 3

@@ -35,7 +35,7 @@ func UpdateImages():
 	var node = $Images
 	
 	var imagesToChange = images.get_children()
-	for image in imagesToChange:
+	for image  in imagesToChange:
 		image.text = plant_data.first_image
 
 func _ready() -> void:
@@ -66,6 +66,7 @@ func _on_timer_timeout() -> void:
 		var sizeVector = rect.extents
 		
 		var newPos = get_viewport().get_mouse_position() - sizeVector/2
+		
 		self.global_position = round (newPos / gridSize) * gridSize + offset
 	pass # Replace with function body.
 
@@ -73,7 +74,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
 
 	if event.is_action_pressed("Shovel"):
-		print("Attempt shovel")
+		#print("Attempt shovel")
 		SetShoveled()
 			
 	if event.is_action_pressed("rotate_left"):
@@ -85,7 +86,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		facingDir += 1
 		rotationInput = 1
 		changed = true
-		
 	if (event.is_action_pressed("move")):
 		isDragging = true
 		
@@ -120,6 +120,8 @@ func is_other_plants_dragged() -> bool:
 
 
 func _rotate (newRotation) -> void:
+	if (currentlyDragging != self):
+		return
 	# clamp the value to avoid broken stuff
 	if (newRotation < 0):
 		newRotation = 0

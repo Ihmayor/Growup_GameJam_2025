@@ -2,8 +2,8 @@ class_name GardenUI extends Control
 
 @onready var slot_scene = preload("res://slot.tscn");
 @export var main_theme : Theme
-@export var grid_width = 30;
-@export var grid_height = 10;
+@export var grid_width = 5;
+@export var grid_height = 5;
 
 @export var light_soil:AtlasTexture
 @export var dark_soil:AtlasTexture
@@ -13,16 +13,34 @@ class_name GardenUI extends Control
 
 
 @export var test: Plant
+@export var test2: Plant
+
+var tromino = preload("res://scripts/tromino/CurveTromino.tscn")
+var tromino2 = preload("res://scripts/tromino/LineTromino.tscn")
+
+
+@export var all_plants: Array[Plant]
 
 var grid_size: int = 32
 func _ready():
 	%GridContainer.columns = grid_width
+	var size_window : Vector2 = get_window().size
+
+	var trominos = [tromino, tromino2]
+	print("check")
+	for i in range(8):
+		var object:DraggablePlant = trominos.pick_random().instantiate()
+		add_child(object)
+		object.global_position = Vector2(randf_range(0, size_window.x), randf_range(0, size_window.y))
+		var test = all_plants.pick_random()
+		object.plant_data = test
+		object.UpdateImages()
+		
 	generate_grid()
 
 func _process(delta: float):
 	%GridContainer.global_position = ((get_window().size - Vector2i(grid_width * grid_size,grid_height * grid_size))/2)
 	%GridContainer.global_position = round (%GridContainer.global_position / grid_size) * grid_size
-	
 
 func generate_grid() -> void: 
 	var alt: bool = false
@@ -31,8 +49,16 @@ func generate_grid() -> void:
 			var slot_instance:Slot = slot_scene.instantiate()
 			slot_instance.index = Vector2(j, i);
 		
-			if (i==2 && j ==2):
-				slot_instance.add_plant_here(test)
+			#if (i==2 && j ==2):
+				#slot_instance.add_plant_here(test)
+			#
+			#if (i==2 && j ==3):
+				#slot_instance.add_plant_here(test2)
+			#
+			#
+			#if (i==0 && j == 3):
+				#slot_instance.add_plant_here(test)
+			
 			
 			if alt:
 				slot_instance.soil_unplanted = light_soil
@@ -43,6 +69,5 @@ func generate_grid() -> void:
 			print (slot_instance.name)
 			%GridContainer.add_child(slot_instance)
 			alt = !alt
-		alt = !alt
 func create_slot():
 	pass

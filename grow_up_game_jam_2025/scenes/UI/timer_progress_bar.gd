@@ -5,7 +5,6 @@ class_name TimerProgressBar extends Control
 signal on_complete
 
 func _ready() -> void:
-	
 	$TextureProgressBar.value = $TextureProgressBar.max_value
 	start_timer()
 
