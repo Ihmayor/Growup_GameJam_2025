@@ -21,17 +21,16 @@ var isDragging = false
 # TODO Refactor this pls
 var gridSize = 32
 
-func _ready() -> void:
-	position = Vector2(300, 300)
+func UpdateImages():
 	var img = $Images
 	var node = $Images
 	
 	var imagesToChange = images.get_children()
 	for image in imagesToChange:
 		image.text = imageToUse
-		pass
-	
-	#rotationTween.wait_time = rotateIncrement
+
+func _ready() -> void:
+	UpdateImages()
 	pass
 
 func _on_area_2d_mouse_entered() -> void:
