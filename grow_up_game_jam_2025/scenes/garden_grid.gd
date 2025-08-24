@@ -33,15 +33,15 @@ func generate_grid() -> void:
 			var slot_instance:Slot = slot_scene.instantiate()
 			slot_instance.index = Vector2(j, i);
 		
-			if (i==2 && j ==2):
-				slot_instance.add_plant_here(test)
-			
-			if (i==2 && j ==3):
-				slot_instance.add_plant_here(test2)
-			
-			
-			if (i==0 && j == 3):
-				slot_instance.add_plant_here(test)
+			#if (i==2 && j ==2):
+				#slot_instance.add_plant_here(test)
+			#
+			#if (i==2 && j ==3):
+				#slot_instance.add_plant_here(test2)
+			#
+			#
+			#if (i==0 && j == 3):
+				#slot_instance.add_plant_here(test)
 			
 			
 			if alt:
