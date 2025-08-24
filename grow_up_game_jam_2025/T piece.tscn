@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj10vrgfa13i5"]
+
+[ext_resource type="PackedScene" uid="uid://clcpi0nnnycif" path="res://scenes/Plant.tscn" id="1_hb3ge"]
+[ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="2_3sfmm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1hfy"]
+size = Vector2(114, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb3ge"]
+size = Vector2(28, 36)
+
+[node name="TextureRect2" instance=ExtResource("1_hb3ge")]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(17, 10.5)
+shape = SubResource("RectangleShape2D_c1hfy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1"]
+position = Vector2(17, 47)
+shape = SubResource("RectangleShape2D_hb3ge")
+
+[node name="Flower4" parent="Images" index="1" instance=ExtResource("2_3sfmm")]
+position = Vector2(0, 37)
+
+[node name="Flower3" parent="Images" index="2" instance=ExtResource("2_3sfmm")]
+position = Vector2(-43, 0)
+
+[node name="Flower2" parent="Images" index="3" instance=ExtResource("2_3sfmm")]
+position = Vector2(43, 0)
