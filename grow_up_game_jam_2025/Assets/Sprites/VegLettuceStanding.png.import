@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxgb3x1a713lc"
-path="res://.godot/imported/VegLettuceStanding.png-1f74bd688930278d0909d28f5c214e4b.ctex"
+path="res://.godot/imported/VegLettuceStanding.png-a9bd42596c5a988fd12e24eda3b50e38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/VegLettuceStanding.png"
-dest_files=["res://.godot/imported/VegLettuceStanding.png-1f74bd688930278d0909d28f5c214e4b.ctex"]
+source_file="res://Assets/Sprites/VegLettuceStanding.png"
+dest_files=["res://.godot/imported/VegLettuceStanding.png-a9bd42596c5a988fd12e24eda3b50e38.ctex"]
 
 [params]
 
