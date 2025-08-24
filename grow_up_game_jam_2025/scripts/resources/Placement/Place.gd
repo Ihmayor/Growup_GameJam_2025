@@ -6,7 +6,9 @@ class_name DraggablePlant extends Node2D
 @onready var rotationTween = $RotationTweenTimer
 
 @export var plant_data: Plant
+@export var offset = Vector2 (32/2,32/2)
 @onready var images = $Images
+var lastSlotEntered = null
 
 static var currentlyDragging = null
 
@@ -58,7 +60,7 @@ func _on_timer_timeout() -> void:
 		var sizeVector = rect.extents
 		
 		var newPos = get_viewport().get_mouse_position() - sizeVector/2
-		self.global_position = round (newPos / gridSize) * gridSize
+		self.global_position = round (newPos / gridSize) * gridSize + offset
 	pass # Replace with function body.
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -76,6 +78,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_released("move")):
 		isDragging = false
 		currentlyDragging = null
+		
+		if (lastSlotEntered != null):
+			position = lastSlotEntered.global_position + offset
+		
 		timer.stop()
 		
 		if event.is_action_pressed("Shovel"):
@@ -138,4 +144,14 @@ func _on_rotation_tween_timer_timeout() -> void:
 		rotationTween.stop()
 		rotation_degrees = desiredRotation
 	
+	pass # Replace with function body.
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	var slot = area.get_parent()
+	print("Entered area ", slot.name)
+	if (slot is Slot ):
+		print("setting last slot entered")
+		lastSlotEntered = slot
+		pass
 	pass # Replace with function body.
