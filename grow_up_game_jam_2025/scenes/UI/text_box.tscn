@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://14kx06325vrt"]
+
+[ext_resource type="Texture2D" uid="uid://dyvo2rqrhd7be" path="res://Assets/UI/UIBox.png" id="1_40ig8"]
+
+[node name="Control" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_40ig8")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
