@@ -13,11 +13,13 @@ func _process(delta:float):
 	$SoilTexture.texture = soil_unplanted
 	
 func _mouse_entered():
-	modulate = Color.GREEN;
+	$Outline.visible = true
+	$Outline.modulate = Color.GREEN
 
 func _mouse_exited():
-	modulate = Color.WHITE;
+	$Outline.visible = false
+	$Outline.modulate = Color.GREEN
 
 func add_plant_here(plant:Plant):
 	$PlantTexture.texture = plant.first_image
-	$SoilTexture.modulate = Color.CHOCOLATE
+	#$SoilTexture.modulate = Color.CHOCOLATE
