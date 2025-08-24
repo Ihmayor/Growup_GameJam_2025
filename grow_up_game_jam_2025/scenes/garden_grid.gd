@@ -15,10 +15,8 @@ class_name GardenUI extends Control
 @export var test_plant5:Plant
 @export var test_plant6:Plant
 
-
-func _unhandled_input(event: InputEvent) -> void:
-	if (event.is_action_pressed("rotate_clockwise")):
-		generate_grid()
+func _ready():
+	generate_grid()
 	
 func generate_grid() -> void: 
 	for i in grid_height:
@@ -44,8 +42,6 @@ func generate_grid() -> void:
 
 			if (i == 1 && j ==1):
 				slot_instance.add_plant_here(test_plant6)
-
-
 			
 			if (i + j) % 2 :
 				print(light_soil)

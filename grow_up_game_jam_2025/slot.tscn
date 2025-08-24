@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdprlbmnbfp5u"]
+[gd_scene load_steps=4 format=3 uid="uid://bdprlbmnbfp5u"]
 
 [ext_resource type="Script" uid="uid://g4jhnswos7ve" path="res://slot.gd" id="1_c24ra"]
-[ext_resource type="Texture2D" uid="uid://pjxspaayjf0x" path="res://Assets/Sprites/VegPotatoStanding.png" id="2_hiqfk"]
 [ext_resource type="Texture2D" uid="uid://cpxfic4r63xeh" path="res://Assets/placeholder_outline.png" id="2_khion"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c24ra"]
@@ -24,28 +23,49 @@ grow_vertical = 2
 script = ExtResource("1_c24ra")
 
 [node name="SoilTexture" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("PlaceholderTexture2D_c24ra")
 
 [node name="PlantTexture" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.25
-anchor_bottom = 1.25
-offset_top = -8.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(258, -979)
-texture = ExtResource("2_hiqfk")
 stretch_mode = 3
 
 [node name="Outline" type="TextureRect" parent="."]
 visible = false
 z_index = 10
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.25
-anchor_bottom = 1.25
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_khion")
