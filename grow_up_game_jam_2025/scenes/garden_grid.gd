@@ -2,8 +2,8 @@ class_name GardenUI extends Control
 
 @onready var slot_scene = preload("res://slot.tscn");
 @export var main_theme : Theme
-@export var grid_width = 5;
-@export var grid_height = 5;
+@export var grid_width = 30;
+@export var grid_height = 10;
 
 @export var light_soil:AtlasTexture
 @export var dark_soil:AtlasTexture
@@ -17,6 +17,7 @@ class_name GardenUI extends Control
 var grid_size: int = 32
 
 func _ready():
+	%GridContainer.columns = grid_width
 	generate_grid()
 
 func _process(delta: float):
@@ -25,6 +26,7 @@ func _process(delta: float):
 	
 
 func generate_grid() -> void: 
+	var alt: bool = false
 	for i in grid_height:
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
@@ -33,7 +35,7 @@ func generate_grid() -> void:
 			if (i==2 && j ==2):
 				slot_instance.add_plant_here(test)
 			
-			if (i + j) % 2 :
+			if alt:
 				slot_instance.soil_unplanted = light_soil
 				slot_instance.soil_planted = light_planted_soil
 			else:
@@ -41,6 +43,7 @@ func generate_grid() -> void:
 				slot_instance.soil_planted = dark_planted_soil
 				
 			%GridContainer.add_child(slot_instance)
-	
+			alt = !alt
+		alt = !alt
 func create_slot():
 	pass
