@@ -13,6 +13,8 @@ class_name GardenUI extends Control
 
 
 @export var test: Plant
+@export var test2: Plant
+
 
 var grid_size: int = 32
 func _ready():
@@ -33,6 +35,14 @@ func generate_grid() -> void:
 		
 			if (i==2 && j ==2):
 				slot_instance.add_plant_here(test)
+			
+			if (i==2 && j ==3):
+				slot_instance.add_plant_here(test2)
+			
+			
+			if (i==0 && j == 3):
+				slot_instance.add_plant_here(test)
+			
 			
 			if alt:
 				slot_instance.soil_unplanted = light_soil

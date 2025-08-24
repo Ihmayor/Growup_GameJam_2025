@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdtar7qde7l3"
+path="res://.godot/imported/plant place sfx.mp3-91696ba9dab4a09722c417db12ccfef5.mp3str"
+
+[deps]
+
+source_file="res://Assets/sfx/plant place sfx.mp3"
+dest_files=["res://.godot/imported/plant place sfx.mp3-91696ba9dab4a09722c417db12ccfef5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

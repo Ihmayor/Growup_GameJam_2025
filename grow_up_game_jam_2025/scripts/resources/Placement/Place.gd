@@ -45,7 +45,7 @@ func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
 	
 	if currentlyDragging != null && currentlyDragging != self:
-		print("Already dragging something")
+		#print("Already dragging something")
 		return
 	currentlyDragging = self
 	
@@ -68,7 +68,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
 
 	if event.is_action_pressed("Shovel"):
-		print("Attempt shovel")
+		#print("Attempt shovel")
 		SetShoveled()
 			
 	if event.is_action_pressed("rotate_left"):
@@ -128,7 +128,7 @@ func SetShoveled():
 	
 	for cPlant in childPlants:
 		if (cPlant.isPlanted):
-			print("Unmovable due to planted set")
+			#print("Unmovable due to planted set")
 			isPlanted = true
 	pass
 	
@@ -154,9 +154,9 @@ func _on_rotation_tween_timer_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var slot = area.get_parent()
-	print("Entered area ", slot.name)
+	#print("Entered area ", slot.name)
 	if (slot is Slot ):
-		print("setting last slot entered")
+		#print("setting last slot entered")
 		lastSlotEntered = slot
 		pass
 	pass # Replace with function body.

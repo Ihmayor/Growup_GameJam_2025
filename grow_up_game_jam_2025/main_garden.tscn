@@ -26,6 +26,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("2_j5ia0")
 player_data = ExtResource("3_7j0uk")
+level_data = ExtResource("2_56tkj")
 
 [node name="Temp" type="Label" parent="CanvasLayer/HUD"]
 unique_name_in_owner = true

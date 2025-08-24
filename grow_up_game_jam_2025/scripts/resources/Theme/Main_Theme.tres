@@ -6,4 +6,5 @@
 GridContainer/constants/h_separation = 0
 GridContainer/constants/v_separation = 0
 HBoxContainer/constants/separation = 0
+Label/font_sizes/font_size = 40
 Label/fonts/font = ExtResource("1_q45ni")
