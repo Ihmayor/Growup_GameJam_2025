@@ -2,8 +2,8 @@ class_name GardenUI extends Control
 
 @onready var slot_scene = preload("res://slot.tscn");
 @export var main_theme : Theme
-@export var grid_width = 30;
-@export var grid_height = 10;
+@export var grid_width = 5;
+@export var grid_height = 5;
 
 @export var light_soil:AtlasTexture
 @export var dark_soil:AtlasTexture
@@ -43,6 +43,5 @@ func generate_grid() -> void:
 			print (slot_instance.name)
 			%GridContainer.add_child(slot_instance)
 			alt = !alt
-		alt = !alt
 func create_slot():
 	pass

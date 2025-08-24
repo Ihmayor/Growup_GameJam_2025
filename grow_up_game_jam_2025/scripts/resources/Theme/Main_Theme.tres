@@ -1,6 +1,9 @@
-[gd_resource type="Theme" format=3 uid="uid://be0cfe1malgy4"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://be0cfe1malgy4"]
+
+[ext_resource type="FontFile" uid="uid://dil8opri6ljvv" path="res://Assets/UI/GameFont.otf" id="1_q45ni"]
 
 [resource]
 GridContainer/constants/h_separation = 0
 GridContainer/constants/v_separation = 0
 HBoxContainer/constants/separation = 0
+Label/fonts/font = ExtResource("1_q45ni")
