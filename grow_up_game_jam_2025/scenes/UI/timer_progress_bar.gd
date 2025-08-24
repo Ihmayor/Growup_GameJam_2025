@@ -1,6 +1,6 @@
 class_name TimerProgressBar extends Control
 
-@export var increment: int = 1.5
+@export var increment: int
 
 signal on_complete
 

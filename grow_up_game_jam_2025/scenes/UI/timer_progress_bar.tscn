@@ -6,11 +6,15 @@
 
 [node name="TimerProgressBar" type="Control"]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.254
+offset_left = 461.0
+offset_top = 32.0
+offset_right = -691.0
+offset_bottom = -132.592
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(117, 7)
 script = ExtResource("1_61a54")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
