@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://wihnhlq7pyh2" path="res://GameManager.gd" id="1_63p7w"]
 [ext_resource type="PackedScene" uid="uid://bbv1r3rtxaboq" path="res://scenes/GardenUI.tscn" id="1_ie1wt"]
-[ext_resource type="Resource" uid="uid://dknowm460oe3b" path="res://scripts/resources/Level.tres" id="2_56tkj"]
+[ext_resource type="Resource" uid="uid://dknowm460oe3b" path="res://scripts/Resources/Level.tres" id="2_56tkj"]
 [ext_resource type="Script" uid="uid://blqsq45frkw4" path="res://hud.gd" id="2_j5ia0"]
-[ext_resource type="Resource" uid="uid://cyji6a6nuw4ro" path="res://scripts/resources/player_data.tres" id="3_7j0uk"]
-[ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="5_0xhk5"]
+[ext_resource type="Resource" uid="uid://cyji6a6nuw4ro" path="res://scripts/Resources/player_data.tres" id="3_7j0uk"]
+[ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/Resources/Theme/Main_Theme.tres" id="5_0xhk5"]
 [ext_resource type="PackedScene" uid="uid://dmhe7nvh3gme7" path="res://scenes/UI/timer_progress_bar.tscn" id="6_0xhk5"]
-[ext_resource type="TileSet" uid="uid://d1g51ptji4qmm" path="res://scripts/resources/main_tile_set.tres" id="7_vqwtp"]
+[ext_resource type="TileSet" uid="uid://d1g51ptji4qmm" path="res://scripts/Resources/main_tile_set.tres" id="7_vqwtp"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_63p7w")

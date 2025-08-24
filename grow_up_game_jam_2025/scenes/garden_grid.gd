@@ -15,16 +15,32 @@ class_name GardenUI extends Control
 @export var test: Plant
 @export var test2: Plant
 
+var tromino = preload("res://scripts/tromino/CurveTromino.tscn")
+var tromino2 = preload("res://scripts/tromino/LineTromino.tscn")
+
+
+@export var all_plants: Array[Plant]
 
 var grid_size: int = 32
 func _ready():
 	%GridContainer.columns = grid_width
+	var size_window : Vector2 = get_window().size
+
+	var trominos = [tromino, tromino2]
+	print("check")
+	for i in range(8):
+		var object:DraggablePlant = trominos.pick_random().instantiate()
+		add_child(object)
+		object.global_position = Vector2(randf_range(0, size_window.x), randf_range(0, size_window.y))
+		var test = all_plants.pick_random()
+		object.plant_data = test
+		object.UpdateImages()
+		
 	generate_grid()
 
 func _process(delta: float):
 	%GridContainer.global_position = ((get_window().size - Vector2i(grid_width * grid_size,grid_height * grid_size))/2)
 	%GridContainer.global_position = round (%GridContainer.global_position / grid_size) * grid_size
-	
 
 func generate_grid() -> void: 
 	var alt: bool = false

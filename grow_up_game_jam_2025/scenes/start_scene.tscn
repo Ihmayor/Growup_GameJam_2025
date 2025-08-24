@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3kxwube2sd38"]
 
 [ext_resource type="PackedScene" uid="uid://14kx06325vrt" path="res://scenes/UI/text_box.tscn" id="1_cokmr"]
-[ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="2_3tgnh"]
+[ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/Resources/Theme/Main_Theme.tres" id="2_3tgnh"]
 
 [node name="StartScene" type="Node2D"]
 
@@ -32,9 +32,10 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_3tgnh")
 theme_override_font_sizes/font_size = 80
-text = "NOT NEXT TO MY TOMATOES!"
+text = "Plant Pals"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_3tgnh")
 text = "PLAY
 "
