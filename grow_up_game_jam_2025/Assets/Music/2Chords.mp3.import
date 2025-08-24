@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bpk1n6p4wpnyk"
-path="res://.godot/imported/2Chords.mp3-c13762a03f4bd24561d4f9e67110603a.mp3str"
+path="res://.godot/imported/2Chords.mp3-a9b7eafc2d26731b77d8fba56dd4b430.mp3str"
 
 [deps]
 
-source_file="res://assets/Music/2Chords.mp3"
-dest_files=["res://.godot/imported/2Chords.mp3-c13762a03f4bd24561d4f9e67110603a.mp3str"]
+source_file="res://Assets/Music/2Chords.mp3"
+dest_files=["res://.godot/imported/2Chords.mp3-a9b7eafc2d26731b77d8fba56dd4b430.mp3str"]
 
 [params]
 

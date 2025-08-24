@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgfd7rxlxmvbl"
-path="res://.godot/imported/VegTomatoStanding.png-aa3027ee97b2e577c30a5a1fd8d8bf5c.ctex"
+path="res://.godot/imported/VegTomatoStanding.png-2916b0f13cde35213aad85581b629b80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/VegTomatoStanding.png"
-dest_files=["res://.godot/imported/VegTomatoStanding.png-aa3027ee97b2e577c30a5a1fd8d8bf5c.ctex"]
+source_file="res://Assets/Sprites/VegTomatoStanding.png"
+dest_files=["res://.godot/imported/VegTomatoStanding.png-2916b0f13cde35213aad85581b629b80.ctex"]
 
 [params]
 

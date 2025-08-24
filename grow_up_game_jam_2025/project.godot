@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 mouse_cursor/custom_image="uid://cu84u58g10bjc"
 
+[dotnet]
+
+project/assembly_name="grow_up_game_jam_2025"
+
 [global_group]
 
 Plants="part of plants"
