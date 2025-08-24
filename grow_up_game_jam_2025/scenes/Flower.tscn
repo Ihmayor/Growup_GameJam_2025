@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnieu44y3sd5u"]
+
+[ext_resource type="Texture2D" uid="uid://bkcitguhniaxc" path="res://Assets/Sprites/VegEggplantStanding.png" id="1_n3sah"]
+[ext_resource type="Script" uid="uid://cmoj0c8ducou0" path="res://scripts/resources/Placement/Plant.gd" id="2_sae6b"]
+
+[node name="Flower" type="TextureRect"]
+texture = ExtResource("1_n3sah")
+script = ExtResource("2_sae6b")

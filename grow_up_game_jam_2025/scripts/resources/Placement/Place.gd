@@ -1,9 +1,12 @@
-extends TextureRect
+extends Node2D
 @onready var A2D =  $Area2D
 @onready var timer = $Area2D/DragTimer
 @onready var shape = $Area2D/CollisionShape2D
 
 @onready var rotationTween = $RotationTweenTimer
+@onready var images = $Images
+
+@export var imageToUse : Texture2D
 
 # 0-3 depending on what direction you wanna feace, 0 being staright up
 var facingDir = 0
@@ -19,6 +22,15 @@ var isDragging = false
 var gridSize = 32
 
 func _ready() -> void:
+	position = Vector2(300, 300)
+	var img = $Images
+	var node = $Images
+	
+	var imagesToChange = images.get_children()
+	for image in imagesToChange:
+		image.texture = imageToUse
+		pass
+	
 	#rotationTween.wait_time = rotateIncrement
 	pass
 
@@ -29,8 +41,11 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_timer_timeout() -> void:
 	if isDragging:
-		var newPos = get_viewport().get_mouse_position()  - self.size/2
-		position = round (newPos / gridSize) * gridSize
+		var rect = shape.shape as RectangleShape2D
+		var sizeVector = rect.extents
+		
+		var newPos = get_viewport().get_mouse_position() - sizeVector/2
+		self.position = round (newPos / gridSize) * gridSize
 	pass # Replace with function body.
 
 func _unhandled_input(event: InputEvent) -> void:
