@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbv1r3rtxaboq"]
+[gd_scene load_steps=17 format=3 uid="uid://ctu1wcr7slwi8"]
 
 [ext_resource type="Script" uid="uid://moxmumwfntxg" path="res://scenes/garden_grid.gd" id="1_rpbvd"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/Resources/Theme/Main_Theme.tres" id="2_bwvbm"]
@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/Resources/plant_data/Lettuce.tres" id="7_hbwtr"]
 [ext_resource type="Resource" uid="uid://1mdl623pu2h5" path="res://scripts/Resources/plant_data/Pepper.tres" id="8_c63eo"]
 [ext_resource type="Resource" uid="uid://c4ujxhrs1k5b" path="res://scripts/Resources/plant_data/Potato.tres" id="9_pum5k"]
+[ext_resource type="AudioStream" uid="uid://dntyu0oq52wr3" path="res://Assets/sfx/Plant Pickup sfx.mp3" id="11_hbwtr"]
+[ext_resource type="AudioStream" uid="uid://bdtar7qde7l3" path="res://Assets/sfx/plant place sfx.mp3" id="12_c63eo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwvbm"]
 atlas = ExtResource("3_nw0t6")
@@ -52,3 +54,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("2_bwvbm")
 columns = 5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_hbwtr")
+
+[node name="Plant" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_c63eo")

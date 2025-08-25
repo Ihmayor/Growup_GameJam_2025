@@ -32,11 +32,20 @@ func _ready():
 		var object:DraggablePlant = trominos.pick_random().instantiate()
 		add_child(object)
 		object.global_position = Vector2(randf_range(0, size_window.x), randf_range(0, size_window.y))
-		var test = all_plants.pick_random()
-		object.plant_data = test
+		var new_plant = all_plants.pick_random()
+		object.plant_data = new_plant
 		object.UpdateImages()
-		
+		object.on_shovel.connect(_on_shovel_event);
+		object.on_plant.connect(_on_plant_event);
 	generate_grid()
+
+func _on_shovel_event():
+	$AudioStreamPlayer2D.play()
+
+func _on_plant_event():
+	$AudioStreamPlayer2D.stop()
+	$Plant.play()
+
 
 func _process(delta: float):
 	%GridContainer.global_position = ((get_window().size - Vector2i(grid_width * grid_size,grid_height * grid_size))/2)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3kxwube2sd38"]
+[gd_scene load_steps=6 format=3 uid="uid://c3kxwube2sd38"]
 
 [ext_resource type="PackedScene" uid="uid://14kx06325vrt" path="res://scenes/UI/text_box.tscn" id="1_cokmr"]
 [ext_resource type="Script" uid="uid://d2dtv6sq0ykp8" path="res://scenes/start_scene.gd" id="1_u7rsi"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/Resources/Theme/Main_Theme.tres" id="2_3tgnh"]
 [ext_resource type="Texture2D" uid="uid://bnpmtmu8r682d" path="res://Assets/uglyMenuArt.png" id="2_i331m"]
+[ext_resource type="AudioStream" uid="uid://bply4pxig2nc5" path="res://Assets/Sound/Select sfx.mp3" id="4_0kdh5"]
 
 [node name="StartScene" type="Node2D"]
 script = ExtResource("1_u7rsi")
@@ -12,47 +13,48 @@ script = ExtResource("1_u7rsi")
 
 [node name="Control2" parent="CanvasLayer" instance=ExtResource("1_cokmr")]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+[node name="Control" type="Control" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/Control"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 421.0
 offset_top = 437.0
-offset_right = 736.0
-offset_bottom = 552.0
+offset_right = -416.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_3tgnh")
 theme_override_font_sizes/font_size = 80
 text = "Plant Pals"
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/CenterContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_3tgnh")
 text = "PLAY
 "
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -201.0
-offset_top = -267.0
-offset_right = 16.0
-offset_bottom = -97.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-texture = ExtResource("2_i331m")
+[node name="Audio" type="AudioStreamPlayer2D" parent="CanvasLayer/CenterContainer/Control/VBoxContainer/Button"]
+unique_name_in_owner = true
+stream = ExtResource("4_0kdh5")
 
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button" to="." method="start_game"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("2_i331m")
+stretch_mode = 5
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/Control/VBoxContainer/Button" to="." method="start_game"]

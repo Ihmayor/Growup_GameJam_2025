@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b1krpukevs1mm"]
+[gd_scene load_steps=0 format=3 uid="uid://b1krpukevs1mm"]
 
 [node name="Control" type="NinePatchRect"]
 anchors_preset = 15

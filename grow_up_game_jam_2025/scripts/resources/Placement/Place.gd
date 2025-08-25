@@ -1,7 +1,7 @@
 class_name DraggablePlant extends Node2D
 @onready var A2D =  $Area2D
 @onready var timer = $Area2D/DragTimer
-@onready var shape = $Area2D/CollisionShape2D
+@onready var shape = $Images/Flower
 
 @onready var rotationTween = $RotationTweenTimer
 
@@ -10,7 +10,6 @@ class_name DraggablePlant extends Node2D
 @onready var images = $Images
 var lastSlotEntered = null
 var occupyingSlot = null
-
 static var currentlyDragging = null
 static var isSOmethingBeingDragged = false
 
@@ -24,17 +23,22 @@ var rotationInput = 1
 
 var isDragging = false
 var isPlanted = false
+var isSelected = false
 
 var gridSize = 32
 
 var mouse_over:bool = false
+
+signal on_shovel
+signal on_plant
+
 
 func UpdateImages():
 	var img = $Images
 	var node = $Images
 	
 	var imagesToChange = images.get_children()
-	for image in imagesToChange:
+	for image  in imagesToChange:
 		image.text = plant_data.first_image
 
 func _ready() -> void:
@@ -45,7 +49,7 @@ func _ready() -> void:
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
-	
+	isSelected = true
 	if isSOmethingBeingDragged:
 		print("Already dragging something")
 		return
@@ -55,13 +59,13 @@ func _on_area_2d_mouse_entered() -> void:
 	
 func _on_area_2d_mouse_exited() -> void:
 	currentlyDragging = null
+	isSelected = false
 	mouse_over = false
 	
 func _on_timer_timeout() -> void:
 	if isDragging && !isPlanted && currentlyDragging == self:
 		isSOmethingBeingDragged = true	
-		var rect = shape.shape as RectangleShape2D
-		var sizeVector = rect.extents
+		var sizeVector = shape.textRect.size
 		
 		var newPos = get_viewport().get_mouse_position() - sizeVector/2
 		
@@ -72,7 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
 
 	if event.is_action_pressed("Shovel"):
-		#print("Attempt shovel")
+		on_plant.emit()
 		SetShoveled()
 			
 	if event.is_action_pressed("rotate_left"):
@@ -85,18 +89,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotationInput = 1
 		changed = true
 	if (event.is_action_pressed("move")):
-		isDragging = true
+		if (!isSOmethingBeingDragged):
+			isDragging = true
+		
+		if (currentlyDragging == self):
+			on_shovel.emit()
 		
 	if (event.is_action_released("move")):
 		isSOmethingBeingDragged = false
 		timer.stop()
 
-		if (lastSlotEntered != null && isDragging):
-			#position = lastSlotEntered.global_position + offset
-			var rect = shape.shape as RectangleShape2D
-			var sizeVector = rect.extents
-#			var po = get_viewport().get_mouse_position() - sizeVector/2
-#			self.global_position = round (po / gridSize) * gridSize + offset
+		if (lastSlotEntered != null && isDragging && isSelected):
+			on_shovel.emit()
+				#position = lastSlotEntered.global_position + offset
 			
 		isDragging = false
 		currentlyDragging = null
@@ -118,6 +123,8 @@ func is_other_plants_dragged() -> bool:
 
 
 func _rotate (newRotation) -> void:
+	if (currentlyDragging != self):
+		return
 	# clamp the value to avoid broken stuff
 	if (newRotation < 0):
 		newRotation = 0
@@ -134,7 +141,7 @@ func SetShoveled():
 	
 	for cPlant in childPlants:
 		if (cPlant.isPlanted):
-			#print("Unmovable due to planted set")
+			on_shovel.emit()
 			isPlanted = true
 	pass
 	

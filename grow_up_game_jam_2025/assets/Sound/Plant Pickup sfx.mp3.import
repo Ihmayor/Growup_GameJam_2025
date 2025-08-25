@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2vgw8v4ghuci"
+path="res://.godot/imported/Plant Pickup sfx.mp3-5c0cd54cf1f1ff3f00e44060a4714434.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Plant Pickup sfx.mp3"
+dest_files=["res://.godot/imported/Plant Pickup sfx.mp3-5c0cd54cf1f1ff3f00e44060a4714434.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
