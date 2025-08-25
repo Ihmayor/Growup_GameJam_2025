@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctu1wcr7slwi8"]
+[gd_scene load_steps=15 format=3 uid="uid://bbv1r3rtxaboq"]
 
 [ext_resource type="Script" uid="uid://moxmumwfntxg" path="res://scenes/garden_grid.gd" id="1_rpbvd"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="2_bwvbm"]

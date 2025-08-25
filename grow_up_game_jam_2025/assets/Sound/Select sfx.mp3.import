@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bply4pxig2nc5"
-path="res://.godot/imported/Select sfx.mp3-c2be464fcdaced617e68ac07433b7596.mp3str"
+path="res://.godot/imported/Select sfx.mp3-712f8f53d5dcd60fbc51e5eb2d2b6ded.mp3str"
 
 [deps]
 
-source_file="res://assets/Sound/Select sfx.mp3"
-dest_files=["res://.godot/imported/Select sfx.mp3-c2be464fcdaced617e68ac07433b7596.mp3str"]
+source_file="res://Assets/Sound/Select sfx.mp3"
+dest_files=["res://.godot/imported/Select sfx.mp3-712f8f53d5dcd60fbc51e5eb2d2b6ded.mp3str"]
 
 [params]
 

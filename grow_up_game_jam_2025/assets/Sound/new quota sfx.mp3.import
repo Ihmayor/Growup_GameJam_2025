@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dph5l5ylimx5"
-path="res://.godot/imported/new quota sfx.mp3-746f932b56f2cab412b506dd69ce3e4f.mp3str"
+path="res://.godot/imported/new quota sfx.mp3-fe544b6cb40db4dc459449ed0517fe00.mp3str"
 
 [deps]
 
-source_file="res://assets/Sound/new quota sfx.mp3"
-dest_files=["res://.godot/imported/new quota sfx.mp3-746f932b56f2cab412b506dd69ce3e4f.mp3str"]
+source_file="res://Assets/Sound/new quota sfx.mp3"
+dest_files=["res://.godot/imported/new quota sfx.mp3-fe544b6cb40db4dc459449ed0517fe00.mp3str"]
 
 [params]
 

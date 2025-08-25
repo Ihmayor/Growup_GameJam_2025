@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bwlmaf7il8mdd"
-path="res://.godot/imported/plant_Pickup_Place_Lockin sfx.mp3-92501e7daa2f5598f05dc20efe0e56e3.mp3str"
+path="res://.godot/imported/plant_Pickup_Place_Lockin sfx.mp3-d55c78004b634c4d4c2421c6bbba3436.mp3str"
 
 [deps]
 
-source_file="res://assets/Sound/plant_Pickup_Place_Lockin sfx.mp3"
-dest_files=["res://.godot/imported/plant_Pickup_Place_Lockin sfx.mp3-92501e7daa2f5598f05dc20efe0e56e3.mp3str"]
+source_file="res://Assets/Sound/plant_Pickup_Place_Lockin sfx.mp3"
+dest_files=["res://.godot/imported/plant_Pickup_Place_Lockin sfx.mp3-d55c78004b634c4d4c2421c6bbba3436.mp3str"]
 
 [params]
 
