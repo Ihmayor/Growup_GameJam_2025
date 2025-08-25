@@ -1,7 +1,7 @@
 class_name DraggablePlant extends Node2D
 @onready var A2D =  $Area2D
 @onready var timer = $Area2D/DragTimer
-@onready var shape = $Images/Flower
+@onready var shape = $Area2D/CollisionShape2D
 
 @onready var rotationTween = $RotationTweenTimer
 
@@ -9,7 +9,8 @@ class_name DraggablePlant extends Node2D
 @export var offset = Vector2 (32/2,32/2)
 @onready var images = $Images
 var lastSlotEntered = null
-var occupyingSlot = null
+var lastSlotPosition = Vector2(0,0)
+
 static var currentlyDragging = null
 static var isSOmethingBeingDragged = false
 
@@ -23,7 +24,7 @@ var rotationInput = 1
 
 var isDragging = false
 var isPlanted = false
-var isSelected = false
+
 var gridSize = 32
 
 var mouse_over:bool = false
@@ -37,7 +38,7 @@ func UpdateImages():
 	var node = $Images
 	
 	var imagesToChange = images.get_children()
-	for image  in imagesToChange:
+	for image in imagesToChange:
 		image.text = plant_data.first_image
 		image.anim_name = plant_data.name.to_lower()
 
@@ -50,7 +51,7 @@ func _ready() -> void:
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
-	isSelected = true
+	
 	if isSOmethingBeingDragged:
 		print("Already dragging something")
 		return
@@ -59,18 +60,19 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	currentlyDragging = null
-	isSelected = false
 	mouse_over = false
 	
 func _on_timer_timeout() -> void:
 	if isDragging && !isPlanted && currentlyDragging == self:
 		isSOmethingBeingDragged = true	
-		var sizeVector = shape.textRect.size
+		var rect = shape.shape as RectangleShape2D
+		var sizeVector = rect.extents
 		
 		var newPos = get_viewport().get_mouse_position() - sizeVector/2
 		
 		self.global_position = round (newPos / gridSize) * gridSize + offset
 	pass # Replace with function body.
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
@@ -99,14 +101,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		isSOmethingBeingDragged = false
 		timer.stop()
 
-		if (lastSlotEntered != null && isDragging && isSelected):
+		if (lastSlotEntered != null && isDragging):
 			on_shovel.emit()
 				#position = lastSlotEntered.global_position + offset
 			
+		ClampToGrid()
 		isDragging = false
 		currentlyDragging = null
 			
-	if changed && isDragging:
+	if changed && isDragging && currentlyDragging == self:
 			# clamp the value to avoid broken stuff
 		if (facingDir < 0):
 			facingDir = 3
@@ -114,25 +117,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			facingDir = 0
 			
 		_rotate(facingDir)
-	
-func is_other_plants_dragged() -> bool:
-	var get_other_plants = get_tree().get_nodes_in_group("Plants");
-	var test = get_other_plants.filter(func(plant: DraggablePlant): return plant.isDragging == true && plant.name != self.name)
-	return get_other_plants.any(func(plant: DraggablePlant): return plant.isDragging == true && plant.mouse_over)
+
 
 func _rotate (newRotation) -> void:
-	if (currentlyDragging != self):
-		return
 	# clamp the value to avoid broken stuff
 	if (newRotation < 0):
 		newRotation = 0
 	if (newRotation > 3):
 		newRotation = 3
 		
-	#rotation_degrees = 90 * newRotation
 	desiredRotation = 90 * newRotation
 	rotationTween.start()
 	pass 
+
 
 func SetShoveled():
 	var childPlants = images.get_children()
@@ -140,8 +137,20 @@ func SetShoveled():
 	for cPlant in childPlants:
 		if (cPlant.isPlanted):
 			on_shovel.emit()
+			#print("Unmovable due to planted set")
 			isPlanted = true
 	pass
+	
+
+# Clamps the tile to the specific grid
+func ClampToGrid ():
+	if (lastSlotEntered != null && isDragging):
+		print("CLAMPING TO ", lastSlotEntered.global_position + offset, "CURRENT POSITION IS: ", position)
+		var desiredPos = lastSlotPosition + offset
+		global_position = desiredPos
+		
+	pass
+
 	
 func _on_rotation_tween_timer_timeout() -> void:	
 	# Fix issue with rotationd degrees over to values over 90000
@@ -162,25 +171,29 @@ func _on_rotation_tween_timer_timeout() -> void:
 	
 	pass # Replace with function body.
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+
+
+func _on_area_2d_2_area_entered(area: Area2D) -> void:
 	var slot = area.get_parent()
 	print("Entered area ", slot.name)
 	
-	if (slot is Slot && !slot.isTaken):
-		print("setting last slot entered")
-		
+	await get_tree().create_timer(0.01).timeout
+	var canBePlantedHere = true
+	var flowers = images.get_children()
+	
+	for flower in flowers:
+		if (flower.occupyingSlot == null || flower.occupyingSlot.takenBy != self):
+			canBePlantedHere = false
+			print("Can't be planted")
+			break
+	
+	# Why does making this only trigger sometimes
+	# cause snapping to just stop working?
+	if (slot is Slot ):
 		lastSlotEntered = slot
-		if (occupyingSlot == null):
-			occupyingSlot = lastSlotEntered
-				
-		if (occupyingSlot != lastSlotEntered):
-			occupyingSlot.isTaken = false
-			pass
-			
-		occupyingSlot = lastSlotEntered
-		lastSlotEntered.isTaken = true
+		lastSlotPosition = lastSlotEntered.global_position
+		print("setting last slot entered ", lastSlotEntered.global_position)
 
-			
+		lastSlotEntered.isTaken = true
 		pass
-		
 	pass # Replace with function body.

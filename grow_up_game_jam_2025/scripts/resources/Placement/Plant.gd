@@ -5,8 +5,12 @@ extends Node2D
 @onready var textRect = $TextureRect
 @onready var anim_sprite = $AnimatedSprite2D
 @export var isPlanted = false
+@export var ReboundOffset = Vector2(0,0)
 @export var shoveledRecess = 10 # how far to inset when shoveled
 var isShovelable = false
+
+var occupyingSlot = null
+var lastSlotEntered = null
 
 var timeRan = 0
 var maxTimeRan = 1.5
@@ -68,3 +72,23 @@ func _on_area_2d_mouse_entered() -> void:
 func _on_area_2d_mouse_exited() -> void:
 	isShovelable = false
 	Input.set_custom_mouse_cursor(null)
+	pass # Replace with function body.
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	var slot = area.get_parent()
+	
+	# exit of slot is unoccupiable
+	if !(slot is Slot && (slot.takenBy != null || slot.takenBy != get_parent())):
+		occupyingSlot = null
+		return
+		
+	# reset old slot when leaving a slot
+	if (occupyingSlot):
+		occupyingSlot.isTaken = false
+		occupyingSlot.takenBy = null
+		
+	occupyingSlot = slot
+	occupyingSlot.takenBy = get_parent()
+	
+	print("Claiming slot")

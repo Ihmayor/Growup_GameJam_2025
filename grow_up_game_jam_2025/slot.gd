@@ -8,6 +8,9 @@ var planted_plant:Plant
 var index: Vector2
 
 @export var isTaken = false
+
+var takenBy = null
+
 @onready var area: Area2D = %SlotArea
 
 var trowel_icon = load("res://Assets/UI/TrowelCursor.png")

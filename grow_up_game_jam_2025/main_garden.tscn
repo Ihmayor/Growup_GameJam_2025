@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://crcpgigdfgcgt"]
 
 [ext_resource type="Script" uid="uid://wihnhlq7pyh2" path="res://GameManager.gd" id="1_63p7w"]
-[ext_resource type="PackedScene" uid="uid://ctu1wcr7slwi8" path="res://scenes/GardenUI.tscn" id="1_ie1wt"]
+[ext_resource type="PackedScene" path="res://scenes/GardenUI.tscn" id="1_ie1wt"]
 [ext_resource type="Resource" uid="uid://dknowm460oe3b" path="res://scripts/resources/Level.tres" id="2_56tkj"]
 [ext_resource type="Script" uid="uid://blqsq45frkw4" path="res://hud.gd" id="2_j5ia0"]
 [ext_resource type="Resource" uid="uid://cyji6a6nuw4ro" path="res://scripts/resources/player_data.tres" id="3_7j0uk"]
