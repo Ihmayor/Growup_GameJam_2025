@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Plant" load_steps=3 format=3 uid="uid://dq021g682x5hl"]
 
 [ext_resource type="Texture2D" uid="uid://bgfd7rxlxmvbl" path="res://Assets/Sprites/VegTomatoStanding.png" id="1_nf6pb"]
-[ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://scripts/Resources/Plant.gd" id="1_smgcc"]
+[ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://scripts/resources/Plant.gd" id="1_smgcc"]
 
 [resource]
 script = ExtResource("1_smgcc")

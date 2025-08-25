@@ -1,23 +1,26 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://d1g51ptji4qmm"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://ii6xac1mcch1"]
 
 [ext_resource type="Texture2D" uid="uid://dn30m6j3daakw" path="res://Assets/Sprites/Ground.png" id="1_dcppu"]
 [ext_resource type="Texture2D" uid="uid://df3xvcjneo5b4" path="res://Assets/Sprites/NonPlayerPlants.png" id="2_bb3e1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ilwsc"]
+resource_name = "Ground"
 texture = ExtResource("1_dcppu")
 texture_region_size = Vector2i(32, 32)
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
+use_texture_padding = false
 8:0/0 = 0
+7:0/0 = 0
+6:0/0 = 0
+5:0/0 = 0
+4:0/0 = 0
+3:0/0 = 0
+2:0/0 = 0
 1:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1w8bw"]
 texture = ExtResource("2_bb3e1")
 texture_region_size = Vector2i(32, 32)
+use_texture_padding = false
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -25,30 +28,6 @@ texture_region_size = Vector2i(32, 32)
 6:0/0 = 0
 7:0/0 = 0
 8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-14:0/0 = 0
-15:0/0 = 0
-16:0/0 = 0
-17:0/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-14:1/0 = 0
-15:1/0 = 0
-16:1/0 = 0
-17:1/0 = 0
 1:0/0 = 0
 
 [resource]

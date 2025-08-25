@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbqi327hovrg7"]
 
-[ext_resource type="Script" uid="uid://d1yo41m5b6amx" path="res://scripts/Resources/Placement/Place.gd" id="1_hjoi0"]
-[ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/Resources/plant_data/Cucumber.tres" id="2_0app1"]
+[ext_resource type="Script" uid="uid://d1yo41m5b6amx" path="res://scripts/resources/Placement/Place.gd" id="1_hjoi0"]
+[ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="2_0app1"]
 [ext_resource type="PackedScene" uid="uid://ck77k1kovy8d0" path="res://scenes/Flower.tscn" id="3_0app1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftafd"]
@@ -30,6 +30,7 @@ ignore_time_scale = true
 [node name="Images" type="Node2D" parent="."]
 
 [node name="Flower" parent="Images" instance=ExtResource("3_0app1")]
+shoveledRecess = 10
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

@@ -27,7 +27,6 @@ func _ready():
 	var size_window : Vector2 = get_window().size
 
 	var trominos = [tromino, tromino2]
-	print("check")
 	for i in range(8):
 		var object:DraggablePlant = trominos.pick_random().instantiate()
 		add_child(object)
@@ -40,11 +39,11 @@ func _ready():
 	generate_grid()
 
 func _on_shovel_event():
-	$AudioStreamPlayer2D.play()
+	%PickupSFX.play()
 
 func _on_plant_event():
-	$AudioStreamPlayer2D.stop()
-	$Plant.play()
+	%PickupSFX.stop()
+	%PlantSFX.play()
 
 
 func _process(delta: float):
