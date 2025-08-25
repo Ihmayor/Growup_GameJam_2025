@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Plant" load_steps=3 format=3 uid="uid://o54fv0lu1jdf"]
+[gd_resource type="Resource" script_class="Plant" load_steps=4 format=3 uid="uid://o54fv0lu1jdf"]
 
-[ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://scripts/resources/Plant.gd" id="1_6sxgd"]
+[ext_resource type="SpriteFrames" uid="uid://bdgd8urlwdugx" path="res://Assets/Sprites/animations/all_plants.tres" id="1_d1545"]
 [ext_resource type="Texture2D" uid="uid://cxgb3x1a713lc" path="res://Assets/Sprites/VegLettuceStanding.png" id="1_pug1w"]
+[ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://scripts/resources/PlantData.gd" id="3_w5tmi"]
 
 [resource]
-script = ExtResource("1_6sxgd")
+script = ExtResource("3_w5tmi")
 name = "Lettuce"
 base_stat = 10
 first_image = ExtResource("1_pug1w")
 compatible_matchup = ""
 incompatible_matchup = Array[String]([])
+animated_sprite = ExtResource("1_d1545")
 metadata/_custom_type_script = "uid://drng3ht5od8gi"

@@ -39,10 +39,12 @@ func UpdateImages():
 	var imagesToChange = images.get_children()
 	for image  in imagesToChange:
 		image.text = plant_data.first_image
+		image.anim_name = plant_data.name.to_lower()
 
 func _ready() -> void:
 	if (plant_data != null): 
 		$Images/Flower.text = plant_data.first_image
+		$Images/Flower.anim_name = plant_data.name.to_lower()
 	UpdateImages()
 	pass
 

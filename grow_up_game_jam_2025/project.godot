@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="grow_up_game_jam_2025"
-run/main_scene="uid://crcpgigdfgcgt"
+run/main_scene="uid://c3kxwube2sd38"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/resizable=false
 
 [dotnet]
 

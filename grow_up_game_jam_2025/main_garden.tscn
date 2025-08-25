@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://crcpgigdfgcgt"]
+[gd_scene load_steps=13 format=4 uid="uid://crcpgigdfgcgt"]
 
 [ext_resource type="Script" uid="uid://wihnhlq7pyh2" path="res://GameManager.gd" id="1_63p7w"]
 [ext_resource type="PackedScene" uid="uid://ctu1wcr7slwi8" path="res://scenes/GardenUI.tscn" id="1_ie1wt"]
@@ -9,6 +9,7 @@
 [ext_resource type="TileSet" uid="uid://ii6xac1mcch1" path="res://scripts/resources/main_tile_set.tres" id="7_vqwtp"]
 [ext_resource type="AudioStream" uid="uid://d2vgw8v4ghuci" path="res://Assets/Sound/Plant Pickup sfx.mp3" id="8_0xhk5"]
 [ext_resource type="AudioStream" uid="uid://bwlmaf7il8mdd" path="res://Assets/Sound/plant_Pickup_Place_Lockin sfx.mp3" id="9_kumjq"]
+[ext_resource type="AudioStream" uid="uid://deyl7qmqt0bb8" path="res://scenes/music.mp3" id="10_ncvn6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vqwtp"]
 
@@ -95,3 +96,7 @@ stream = ExtResource("8_0xhk5")
 [node name="PlantSFX" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("9_kumjq")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ncvn6")
+autoplay = true

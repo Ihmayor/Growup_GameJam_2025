@@ -1,7 +1,9 @@
 extends Node2D
 @export var text : Texture2D
+@export var anim_name : String
 @onready var timer = $Timer
 @onready var textRect = $TextureRect
+@onready var anim_sprite = $AnimatedSprite2D
 @export var isPlanted = false
 @export var shoveledRecess = 10 # how far to inset when shoveled
 var isShovelable = false
@@ -11,8 +13,13 @@ var maxTimeRan = 1.5
 
 var trowel = load("res://Assets/UI/TrowelCursor.png")
 
+func _ready() -> void:
+	anim_sprite.play()
+
 func _process(delta: float) -> void:
 	textRect.texture = text
+	if (anim_name != null):
+		$AnimatedSprite2D.animation = anim_name
 	set_cursor()
 
 func set_cursor():
