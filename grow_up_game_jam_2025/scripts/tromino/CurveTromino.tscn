@@ -19,6 +19,12 @@ shape = SubResource("RectangleShape2D_qodtd")
 position = Vector2(50, 8)
 shape = SubResource("RectangleShape2D_87f1h")
 
+[node name="Sizebox" type="TextureRect" parent="." index="3"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1
+
 [node name="Flower" parent="Images" index="0"]
 shoveledRecess = 2
 
@@ -27,9 +33,3 @@ position = Vector2(35, 0)
 
 [node name="Flower3" parent="Images" index="2" instance=ExtResource("2_tfn57")]
 position = Vector2(0, -35)
-
-[node name="Sizebox" type="TextureRect" parent="." index="3"]
-custom_minimum_size = Vector2(16, 16)
-offset_right = 40.0
-offset_bottom = 40.0
-expand_mode = 1

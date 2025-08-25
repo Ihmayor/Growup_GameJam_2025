@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://dknowm460oe3b"]
 
-[ext_resource type="Script" uid="uid://cwhcstbcw52qv" path="res://scripts/Resources/LevelData.gd" id="1_le6bl"]
+[ext_resource type="Script" uid="uid://cwhcstbcw52qv" path="res://scripts/resources/LevelData.gd" id="1_le6bl"]
 
 [resource]
 script = ExtResource("1_le6bl")
 grid_width = 5
 grid_height = 5
+quota = 500
 metadata/_custom_type_script = "uid://cwhcstbcw52qv"
