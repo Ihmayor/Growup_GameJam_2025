@@ -35,6 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func Shovel ():
 	print("Shoveled")
 	isPlanted = true
+	(get_tree().get_first_node_in_group("manager") as GameManager).calculate_plant_total()
 	global_position -= Vector2(0, -shoveledRecess)
 	pass
 
