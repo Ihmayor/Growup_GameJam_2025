@@ -15,10 +15,6 @@ run/main_scene="uid://crcpgigdfgcgt"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[display]
-
-mouse_cursor/custom_image="uid://cu84u58g10bjc"
-
 [dotnet]
 
 project/assembly_name="grow_up_game_jam_2025"

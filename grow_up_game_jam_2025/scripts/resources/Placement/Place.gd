@@ -24,7 +24,6 @@ var rotationInput = 1
 var isDragging = false
 var isPlanted = false
 var isSelected = false
-
 var gridSize = 32
 
 var mouse_over:bool = false
@@ -54,9 +53,8 @@ func _on_area_2d_mouse_entered() -> void:
 		print("Already dragging something")
 		return
 	currentlyDragging = self
-	
 	timer.start()
-	
+
 func _on_area_2d_mouse_exited() -> void:
 	currentlyDragging = null
 	isSelected = false
@@ -75,7 +73,7 @@ func _on_timer_timeout() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
 
-	if event.is_action_pressed("Shovel"):
+	if event.is_action_pressed("Shovel") && lastSlotEntered != null:
 		on_plant.emit()
 		SetShoveled()
 			
@@ -120,8 +118,6 @@ func is_other_plants_dragged() -> bool:
 	var test = get_other_plants.filter(func(plant: DraggablePlant): return plant.isDragging == true && plant.name != self.name)
 	return get_other_plants.any(func(plant: DraggablePlant): return plant.isDragging == true && plant.mouse_over)
 
-
-
 func _rotate (newRotation) -> void:
 	if (currentlyDragging != self):
 		return
@@ -163,7 +159,6 @@ func _on_rotation_tween_timer_timeout() -> void:
 		rotation_degrees = desiredRotation
 	
 	pass # Replace with function body.
-
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var slot = area.get_parent()

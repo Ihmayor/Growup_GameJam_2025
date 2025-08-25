@@ -8,8 +8,9 @@ var planted_plant:Plant
 var index: Vector2
 
 @export var isTaken = false
-
 @onready var area: Area2D = %SlotArea
+
+var trowel_icon = load("res://Assets/UI/TrowelCursor.png")
 
 func _ready():
 	if (mouse_entered.get_connections().size() == 0):
@@ -37,7 +38,6 @@ func _on_area_exited(entered_entity: Area2D):
 	pass
 	
 func _mouse_entered():
-	
 	$Outline.visible = true
 	$Outline.modulate = Color.GREEN
 

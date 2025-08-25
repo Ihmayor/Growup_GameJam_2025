@@ -9,9 +9,15 @@ var isShovelable = false
 var timeRan = 0
 var maxTimeRan = 1.5
 
+var trowel = load("res://Assets/UI/TrowelCursor.png")
 
 func _process(delta: float) -> void:
 	textRect.texture = text
+	set_cursor()
+
+func set_cursor():
+	if (self.isShovelable && !self.isPlanted):
+		Input.set_custom_mouse_cursor(trowel)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	var changed = false
@@ -33,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	
 func Shovel ():
-	print("Shoveled")
+	Input.set_custom_mouse_cursor(null)
 	isPlanted = true
 	(get_tree().get_first_node_in_group("manager") as GameManager).calculate_plant_total()
 	global_position -= Vector2(0, -shoveledRecess)
@@ -50,10 +56,8 @@ func _on_timer_timeout() -> void:
 
 
 func _on_area_2d_mouse_entered() -> void:
-	isShovelable = true
-	pass # Replace with function body.
-
+	isShovelable = (get_parent().get_parent() as DraggablePlant).lastSlotEntered != null
 
 func _on_area_2d_mouse_exited() -> void:
 	isShovelable = false
-	pass # Replace with function body.
+	Input.set_custom_mouse_cursor(null)

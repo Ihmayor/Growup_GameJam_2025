@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ck77k1kovy8d0"]
 
 [ext_resource type="Texture2D" uid="uid://cxgb3x1a713lc" path="res://Assets/Sprites/VegLettuceStanding.png" id="2_pk8at"]
-[ext_resource type="Script" uid="uid://cmoj0c8ducou0" path="res://scripts/Resources/Placement/Plant.gd" id="2_sae6b"]
+[ext_resource type="Script" uid="uid://cmoj0c8ducou0" path="res://scripts/resources/Placement/Plant.gd" id="2_sae6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sae6b"]
 size = Vector2(26, 22)

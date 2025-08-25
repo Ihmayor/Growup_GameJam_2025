@@ -45,7 +45,6 @@ func calculate_plant_total():
 	player_data.running_total_score = score;
 	
 func is_neighbour(neighbour:Slot, location: Vector2):
-	print(neighbour.index)
 	return neighbour.index == location	
 
 func calculate_neighbour(origin: Plant, neighbour: Array[Node], running_score:int) -> int:
