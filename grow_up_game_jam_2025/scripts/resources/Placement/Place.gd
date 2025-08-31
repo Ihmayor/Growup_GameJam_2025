@@ -9,6 +9,7 @@ class_name DraggablePlant extends Node2D
 @export var offset = Vector2 (32/2,32/2)
 @onready var images = $Images
 var lastSlotEntered = null
+var lastSlotRotation = 0
 var lastSlotPosition = Vector2(0,0)
 
 static var currentlyDragging = null
@@ -133,7 +134,9 @@ func ClampToGrid ():
 	if (lastSlotEntered != null && isDragging):
 		print("CLAMPING TO ", lastSlotEntered.global_position + offset, "CURRENT POSITION IS: ", position)
 		var desiredPos = lastSlotPosition + offset
+		
 		global_position = desiredPos
+		global_rotation = 90 * lastSlotRotation
 		
 	pass
 
@@ -167,15 +170,17 @@ func _on_area_2d_2_area_entered(area: Area2D) -> void:
 	var flowers = images.get_children()
 	
 	for flower in flowers:
-		if (flower.occupyingSlot == null || flower.occupyingSlot.takenBy != self):
+		if (flower.occupyingSlot == null ):
 			canBePlantedHere = false
-			print("Can't be planted")
+			
+			print("Can't be planted ", flower.occupyingSlot)
 			break
 	
 	# Why does making this only trigger sometimes
 	# cause snapping to just stop working?
-	if (slot is Slot ):
+	if (slot is Slot && canBePlantedHere ):
 		lastSlotEntered = slot
+		lastSlotRotation = facingDir
 		lastSlotPosition = lastSlotEntered.global_position
 		print("setting last slot entered ", lastSlotEntered.global_position)
 
