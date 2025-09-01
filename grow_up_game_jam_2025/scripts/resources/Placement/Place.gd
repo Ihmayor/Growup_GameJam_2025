@@ -136,8 +136,9 @@ func ClampToGrid ():
 		var desiredPos = lastSlotPosition + offset
 		
 		global_position = desiredPos
-		global_rotation = 90 * lastSlotRotation
+		rotation_degrees = 90 * lastSlotRotation
 		
+		print("Clamp rotation is: ", 90 * lastSlotRotation)
 	pass
 
 	
@@ -157,15 +158,13 @@ func _on_rotation_tween_timer_timeout() -> void:
 	if abs (distFromDesired) <= rotateIncrement * 1.15:
 		rotationTween.stop()
 		rotation_degrees = desiredRotation
+		_test_for_collision()
 	
 	pass # Replace with function body.
 
 
-func _on_area_2d_2_area_entered(area: Area2D) -> void:
-	var slot = area.get_parent()
-	print("Entered area ", slot.name)
-	
-	await get_tree().create_timer(0.01).timeout
+func _test_for_collision():
+
 	var canBePlantedHere = true
 	var flowers = images.get_children()
 	
@@ -175,6 +174,19 @@ func _on_area_2d_2_area_entered(area: Area2D) -> void:
 			
 			print("Can't be planted ", flower.occupyingSlot)
 			break
+			
+	if (canBePlantedHere ):
+		lastSlotRotation = facingDir
+		pass
+	return canBePlantedHere
+	
+
+
+func _on_area_2d_2_area_entered(area: Area2D) -> void:
+	await get_tree().create_timer(0.01).timeout
+	var slot = area.get_parent()
+	print("Entered area ", slot.name)
+	var canBePlantedHere = _test_for_collision()
 	
 	# Why does making this only trigger sometimes
 	# cause snapping to just stop working?
@@ -182,7 +194,7 @@ func _on_area_2d_2_area_entered(area: Area2D) -> void:
 		lastSlotEntered = slot
 		lastSlotRotation = facingDir
 		lastSlotPosition = lastSlotEntered.global_position
-		print("setting last slot entered ", lastSlotEntered.global_position)
+		print("setting last slot entered ", lastSlotEntered.global_position, " With rotation ", lastSlotRotation)
 
 		lastSlotEntered.isTaken = true
 		pass
