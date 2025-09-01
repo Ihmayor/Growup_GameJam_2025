@@ -9,6 +9,7 @@ class_name DraggablePlant extends Node2D
 @export var offset = Vector2 (32/2,32/2)
 @onready var images = $Images
 var lastSlotEntered = null
+var lastSlotRotation = 0
 var lastSlotPosition = Vector2(0,0)
 
 static var currentlyDragging = null
@@ -147,8 +148,11 @@ func ClampToGrid ():
 	if (lastSlotEntered != null && isDragging):
 		print("CLAMPING TO ", lastSlotEntered.global_position + offset, "CURRENT POSITION IS: ", position)
 		var desiredPos = lastSlotPosition + offset
-		global_position = desiredPos
 		
+		global_position = desiredPos
+		rotation_degrees = 90 * lastSlotRotation
+		
+		print("Clamp rotation is: ", 90 * lastSlotRotation)
 	pass
 
 	
@@ -168,31 +172,44 @@ func _on_rotation_tween_timer_timeout() -> void:
 	if abs (distFromDesired) <= rotateIncrement * 1.15:
 		rotationTween.stop()
 		rotation_degrees = desiredRotation
+		_test_for_collision()
 	
 	pass # Replace with function body.
 
 
 
-func _on_area_2d_2_area_entered(area: Area2D) -> void:
-	var slot = area.get_parent()
-	print("Entered area ", slot.name)
-	
-	await get_tree().create_timer(0.01).timeout
+func _test_for_collision():
+
 	var canBePlantedHere = true
 	var flowers = images.get_children()
 	
 	for flower in flowers:
-		if (flower.occupyingSlot == null || flower.occupyingSlot.takenBy != self):
+		if (flower.occupyingSlot == null ):
 			canBePlantedHere = false
-			print("Can't be planted")
+			
+			print("Can't be planted ", flower.occupyingSlot)
 			break
+			
+	if (canBePlantedHere ):
+		lastSlotRotation = facingDir
+		pass
+	return canBePlantedHere
+	
+
+
+func _on_area_2d_2_area_entered(area: Area2D) -> void:
+	await get_tree().create_timer(0.01).timeout
+	var slot = area.get_parent()
+	print("Entered area ", slot.name)
+	var canBePlantedHere = _test_for_collision()
 	
 	# Why does making this only trigger sometimes
 	# cause snapping to just stop working?
-	if (slot is Slot ):
+	if (slot is Slot && canBePlantedHere ):
 		lastSlotEntered = slot
+		lastSlotRotation = facingDir
 		lastSlotPosition = lastSlotEntered.global_position
-		print("setting last slot entered ", lastSlotEntered.global_position)
+		print("setting last slot entered ", lastSlotEntered.global_position, " With rotation ", lastSlotRotation)
 
 		lastSlotEntered.isTaken = true
 		pass

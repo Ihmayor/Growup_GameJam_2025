@@ -79,8 +79,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	var slot = area.get_parent()
 	
 	# exit of slot is unoccupiable
-	if !(slot is Slot && (slot.takenBy != null || slot.takenBy != get_parent())):
+	if !(slot is Slot && (slot.takenBy == null || slot.takenBy == get_parent())):
+		if occupyingSlot:
+			occupyingSlot.isTaken = false
+			occupyingSlot.takenBy = null
 		occupyingSlot = null
+		print("NULL SLOT")
 		return
 		
 	# reset old slot when leaving a slot
