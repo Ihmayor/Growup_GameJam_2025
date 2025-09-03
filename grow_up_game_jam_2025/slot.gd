@@ -22,23 +22,18 @@ func _ready():
 	if (mouse_exited.get_connections().size() == 0):
 		mouse_exited.connect(_mouse_exited)
 		
-	area.area_entered.connect(_on_area_entered)
-	area.area_exited.connect(_on_area_exited)
 	$SoilTexture.texture = soil_unplanted
 	
-	
-func _on_area_entered(entered_entity: Area2D):
-	if (entered_entity.get_parent() is DraggablePlant):
-		planted_plant = entered_entity.get_parent().plant_data
-		add_plant_here(planted_plant)
 
-func _on_area_exited(entered_entity: Area2D):
-	if (entered_entity.get_parent() is DraggablePlant):
-		planted_plant = null
-		$PlantTexture.texture = null
+func _physics_process(delta: float):
+	var collisions = %SlotArea.get_overlapping_areas()
+	var found_plant:bool = false
+	for collision in collisions:
+		if collision.get_parent() is DraggablePlant:
+			found_plant = true
+			$SoilTexture.texture = soil_planted
+	if !found_plant:
 		$SoilTexture.texture = soil_unplanted
-	#(entered_entity.get_parent() is DraggablePlant)
-	pass
 	
 func _mouse_entered():
 	$Outline.visible = true

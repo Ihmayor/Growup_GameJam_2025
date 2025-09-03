@@ -81,7 +81,8 @@ stretch_mode = 3
 
 [node name="SlotArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-visible = false
+collision_layer = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlotArea"]
 position = Vector2(16, 16)

@@ -56,26 +56,11 @@ func generate_grid() -> void:
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
 			slot_instance.index = Vector2(j, i);
-		
-			#if (i==2 && j ==2):
-				#slot_instance.add_plant_here(test)
-			#
-			#if (i==2 && j ==3):
-				#slot_instance.add_plant_here(test2)
-			#
-			#
-			#if (i==0 && j == 3):
-				#slot_instance.add_plant_here(test)
-			
-			
 			if alt:
 				slot_instance.soil_unplanted = light_soil
 				slot_instance.soil_planted = light_planted_soil
 			else:
 				slot_instance.soil_unplanted = dark_soil
 				slot_instance.soil_planted = dark_planted_soil
-			print (slot_instance.name)
 			%GridContainer.add_child(slot_instance)
 			alt = !alt
-func create_slot():
-	pass

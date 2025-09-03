@@ -1,4 +1,4 @@
-extends Node2D
+class_name PlantScript extends Node2D
 @export var text : Texture2D
 @export var anim_name : String
 @onready var timer = $Timer

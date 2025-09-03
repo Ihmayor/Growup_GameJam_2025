@@ -24,9 +24,9 @@ offset_bottom = 19.0
 texture = ExtResource("2_pk8at")
 stretch_mode = 2
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="FlowerArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlowerArea"]
 position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_sae6b")
 
@@ -40,6 +40,6 @@ animation = &"cucumber"
 frame_progress = 0.535354
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="area_entered" from="FlowerArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="mouse_entered" from="FlowerArea" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="FlowerArea" to="." method="_on_area_2d_mouse_exited"]

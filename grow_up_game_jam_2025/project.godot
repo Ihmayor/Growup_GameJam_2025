@@ -11,13 +11,12 @@ config_version=5
 [application]
 
 config/name="grow_up_game_jam_2025"
-run/main_scene="uid://c3kxwube2sd38"
+run/main_scene="uid://crcpgigdfgcgt"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/mode=4
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

@@ -8,6 +8,9 @@ size = Vector2(84, 13)
 
 [node name="TextureRect2" instance=ExtResource("1_n7a2i")]
 
+[node name="Area2D" parent="." index="0"]
+collision_layer = 3
+
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(15, 10.5)
 shape = SubResource("RectangleShape2D_ro8ds")

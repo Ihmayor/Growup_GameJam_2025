@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0sg3jl6jon61"]
+[gd_scene load_steps=5 format=3 uid="uid://di1nmhdjds0y6"]
 
-[ext_resource type="PackedScene" uid="uid://clcpi0nnnycif" path="res://scenes/Plant.tscn" id="1_n5148"]
-[ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="2_04xb1"]
+[ext_resource type="PackedScene" uid="uid://dbqi327hovrg7" path="res://scenes/Plant.tscn" id="1_n5148"]
+[ext_resource type="PackedScene" uid="uid://ck77k1kovy8d0" path="res://scenes/Flower.tscn" id="2_04xb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5148"]
 size = Vector2(98, 35)
