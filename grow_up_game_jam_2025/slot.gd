@@ -29,8 +29,10 @@ func _physics_process(delta: float):
 	var collisions = %SlotArea.get_overlapping_areas()
 	var found_plant:bool = false
 	for collision in collisions:
-		if collision.get_parent() is DraggablePlant:
+		var plant = collision.get_parent() as DraggablePlant
+		if plant:
 			found_plant = true
+			add_plant_here(plant.plant_data)
 			$SoilTexture.texture = soil_planted
 	if !found_plant:
 		$SoilTexture.texture = soil_unplanted

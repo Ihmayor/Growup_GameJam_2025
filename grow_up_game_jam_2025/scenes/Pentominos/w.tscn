@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://3cntd6aavsvk"]
 
-[ext_resource type="PackedScene" uid="uid://clcpi0nnnycif" path="res://scenes/Plant.tscn" id="1_5pquv"]
-[ext_resource type="PackedScene" uid="uid://b7ohs74b7dwdn" path="res://scenes/Flower.tscn" id="2_ae0ld"]
+[ext_resource type="PackedScene" uid="uid://dbqi327hovrg7" path="res://scenes/Plant.tscn" id="1_5pquv"]
+[ext_resource type="PackedScene" uid="uid://ck77k1kovy8d0" path="res://scenes/Flower.tscn" id="2_ae0ld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ae0ld"]
 size = Vector2(63, 35)
@@ -12,7 +12,7 @@ size = Vector2(63, 35)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2in2k"]
 size = Vector2(28, 35)
 
-[node name="TextureRect2" instance=ExtResource("1_4pl0b")]
+[node name="TextureRect2" instance=ExtResource("1_5pquv")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-0.5, 45.5)

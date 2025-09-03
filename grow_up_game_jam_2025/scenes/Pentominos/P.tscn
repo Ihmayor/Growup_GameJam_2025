@@ -10,7 +10,7 @@ size = Vector2(28, 105)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7oef"]
 size = Vector2(35, 70)
 
-[node name="TextureRect2" instance=ExtResource("1_i2pvp")]
+[node name="TextureRect2" instance=ExtResource("1_rld57")]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(17, 45.5)
