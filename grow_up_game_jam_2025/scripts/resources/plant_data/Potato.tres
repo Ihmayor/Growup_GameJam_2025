@@ -8,6 +8,6 @@ script = ExtResource("1_1b04m")
 name = "Potato"
 base_stat = 20
 first_image = ExtResource("1_3l1sd")
-compatible_matchup = ""
+compatible_matchup = "Eggplant"
 incompatible_matchup = Array[String](["Tomato", "Cucumber"])
 metadata/_custom_type_script = "uid://drng3ht5od8gi"
