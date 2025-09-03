@@ -27,7 +27,7 @@ func _ready():
 	var size_window : Vector2 = get_window().size
 
 	var trominos = [tromino, tromino2]
-	for i in range(8):
+	for i in range(2):
 		var object:DraggablePlant = trominos.pick_random().instantiate()
 		add_child(object)
 		object.global_position = Vector2(randf_range(0, size_window.x), randf_range(0, size_window.y))
@@ -52,10 +52,11 @@ func _process(delta: float):
 
 func generate_grid() -> void: 
 	var alt: bool = false
+	
 	for i in grid_height:
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
-			slot_instance.index = Vector2(j, i);
+			slot_instance.location = Vector2(j, i);
 			if alt:
 				slot_instance.soil_unplanted = light_soil
 				slot_instance.soil_planted = light_planted_soil

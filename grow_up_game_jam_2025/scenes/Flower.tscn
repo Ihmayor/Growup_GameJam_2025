@@ -25,6 +25,9 @@ texture = ExtResource("2_pk8at")
 stretch_mode = 2
 
 [node name="FlowerArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlowerArea"]
 position = Vector2(-1, -2)

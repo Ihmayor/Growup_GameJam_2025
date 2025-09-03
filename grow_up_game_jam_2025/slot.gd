@@ -5,7 +5,8 @@ var soil_unplanted: Texture2D
 var soil_planted: Texture2D
 var is_valid: bool = false
 var planted_plant:Plant
-var index: Vector2
+var plant_node: DraggablePlant
+var location: Vector2
 
 @export var isTaken = false
 
@@ -32,9 +33,12 @@ func _physics_process(delta: float):
 		var plant = collision.get_parent() as DraggablePlant
 		if plant:
 			found_plant = true
+			plant_node = plant
 			add_plant_here(plant.plant_data)
 			$SoilTexture.texture = soil_planted
 	if !found_plant:
+		planted_plant = null
+		plant_node = null
 		$SoilTexture.texture = soil_unplanted
 	
 func _mouse_entered():

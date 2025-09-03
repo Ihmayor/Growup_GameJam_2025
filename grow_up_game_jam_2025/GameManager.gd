@@ -13,54 +13,53 @@ func calculate_plant_total():
 	#get data score 
 	#for each plant 
 	var score = 0
-	var array_of_slots:Array[Node] = get_tree().get_nodes_in_group("Slots").filter(func(slot:Slot): return slot.planted_plant != null)
-	if array_of_slots.size() == 0:
+	var array_of_slots_taken:Array[Node] = get_tree().get_nodes_in_group("Slots").filter(func(slot:Slot): return slot.planted_plant != null)
+	var total_slots = get_tree().get_nodes_in_group("Slots")
+	#If there are no plants, return nothing
+	if array_of_slots_taken.size() == 0:
 		return
 	
-	for planted_slot: Slot in array_of_slots:
-		var found_neighbour 
-		var neighbour_score
-		var base_stat = planted_slot.planted_plant.base_stat
-		
-		#check left
-		if planted_slot.index.x > 0:
-			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x - 1, planted_slot.index.y)))
-			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour,base_stat)
-		
-		#check right	
-		if planted_slot.index.x < level.grid_width:
-			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x + 1, planted_slot.index.y)))
-			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour,base_stat)
-		
-		#check top
-		if planted_slot.index.y < level.grid_height:
-			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x , planted_slot.index.y + 1)))
-			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour,base_stat)
-		
-		#check bottom
-		if planted_slot.index.y > 0:
-			found_neighbour = array_of_slots.filter(func(neighbour:Slot): return is_neighbour(neighbour, Vector2(planted_slot.index.x , planted_slot.index.y - 1)))
-			base_stat = calculate_neighbour(planted_slot.planted_plant, found_neighbour,base_stat)
-		score += base_stat
-	player_data.running_total_score = score;
+	var plant_neighbour_dictionary = {}
 	
-func is_neighbour(neighbour:Slot, location: Vector2):
-	return neighbour.index == location	
+	var total_score = 0
+	for planted_slot: Slot in array_of_slots_taken:
+		var plant_id = planted_slot.plant_node.get_instance_id()
+		if !plant_neighbour_dictionary.find_key(plant_id):
+			plant_neighbour_dictionary[plant_id]["plant_ids"] = []
+			plant_neighbour_dictionary[plant_id]["plant_data"] = []
+		var slot_index = planted_slot.get_index()
+		var left_slot:Slot
+		var right_slot:Slot
+		if slot_index > 0:
+			var found_slot:Slot = total_slots.get(slot_index -1)
+			if array_of_slots_taken.has(found_slot):
+				left_slot = found_slot
+				
+		if slot_index < total_slots.size():
+			var found_slot:Slot = total_slots.get(slot_index + 1)
+			if array_of_slots_taken.has(found_slot):
+				right_slot = found_slot
+		
+		if left_slot && !plant_neighbour_dictionary[plant_id].has(left_slot.plant_node.get_instance_id()):
+			plant_neighbour_dictionary[plant_id]["plant_data"].append(left_slot.planted_plant)
+			plant_neighbour_dictionary[plant_id]["plant_ids"].append(left_slot.plant_node.get_instance_id())
+		
+		if right_slot && !plant_neighbour_dictionary[plant_id].has(right_slot.plant_node.get_instance_id()):
+			plant_neighbour_dictionary[plant_id]["plant_data"].append(right_slot.planted_plant)
+			plant_neighbour_dictionary[plant_id]["plant_ids"].append(right_slot.plant_node.get_instance_id())
+		
+		total_score += calculate_neighbour(plant_neighbour_dictionary, plant_id, planted_slot.planted_plant)
 
-func calculate_neighbour(origin: Plant, neighbour: Array[Node], running_score:int) -> int:
-	if neighbour == null || neighbour.size() == 0:
-		return running_score;
+func calculate_neighbour(plant_neighbour_dictionary, plant_id, main_plant_data:Plant) -> int:
+	var comp_plants:Array = plant_neighbour_dictionary[plant_id]["plant_data"].filter(func(plant:Plant): return main_plant_data.compatible_matchup.contains(plant.name))
+	var incomp_plants:Array = plant_neighbour_dictionary[plant_id]["plant_data"].filter(func(plant:Plant): return main_plant_data.incompatible_matchup.has(plant.name))
+
+	var effect_amount = main_plant_data.base_stat /2
 	
-	var neighbour_plant = neighbour.get(0).planted_plant
-	print("found neighbour")
-	print(origin.name + "is next to" +  neighbour.get(0).planted_plant.name)
-	if origin.compatible_matchup == neighbour_plant.name:
-		print("boost")
-		return running_score + (origin.base_stat * 1.5)
-	if origin.incompatible_matchup.size() > 0 && origin.incompatible_matchup.has(neighbour_plant.name):
-		print("debuff")
-		return running_score - (origin.base_stat / 2)
-	return running_score
+	var buff_amount = comp_plants.size() * effect_amount
+	var debuff_amount = incomp_plants.size() * effect_amount
+	
+	return main_plant_data.base_stat + buff_amount - debuff_amount
 
 func compare_to_limit_for_level():
 	#subtract value from data score then add back

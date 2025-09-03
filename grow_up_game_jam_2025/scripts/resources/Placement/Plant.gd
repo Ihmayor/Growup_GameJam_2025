@@ -74,25 +74,28 @@ func _on_area_2d_mouse_exited() -> void:
 	Input.set_custom_mouse_cursor(null)
 	pass # Replace with function body.
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	var slot = area.get_parent()
-	
-	# exit of slot is unoccupiable
-	if !(slot is Slot && (slot.takenBy == null || slot.takenBy == get_parent())):
-		if occupyingSlot:
-			occupyingSlot.isTaken = false
-			occupyingSlot.takenBy = null
-		occupyingSlot = null
-		print("NULL SLOT")
-		return
-		
-	# reset old slot when leaving a slot
-	if (occupyingSlot):
+func undo_occupation():
+	if occupyingSlot:
 		occupyingSlot.isTaken = false
 		occupyingSlot.takenBy = null
-		
-	occupyingSlot = slot
-	occupyingSlot.takenBy = get_parent()
+
+#On enter has been unrealiable, using physics process tick instead
+func _physics_process(delta: float) -> void:
+	var areas_overlapping = %FlowerArea.get_overlapping_areas()
+	var slot
+	if areas_overlapping.size() > 1:
+		slot = areas_overlapping[1].get_parent()
 	
-	print("Claiming slot")
+	if (occupyingSlot && occupyingSlot == slot) || slot == null:
+		return
+		
+	print(areas_overlapping)
+	if areas_overlapping.filter(func(n): return !n.name.contains("Slot")).size() > 2:
+		print("slot is occupied")
+		undo_occupation()
+		occupyingSlot = null #Reset the spot 
+	elif slot is Slot:
+		undo_occupation()
+		occupyingSlot = slot
+		occupyingSlot.takenBy = get_parent()
+		print("Claiming slot")

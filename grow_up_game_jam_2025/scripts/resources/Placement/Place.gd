@@ -172,31 +172,41 @@ func _on_rotation_tween_timer_timeout() -> void:
 	if abs (distFromDesired) <= rotateIncrement * 1.15:
 		rotationTween.stop()
 		rotation_degrees = desiredRotation
-		_test_for_collision()
+		var canBePlantedHere = _test_for_collision()
+			
+		if (canBePlantedHere):
+			lastSlotRotation = facingDir
 	
 	pass # Replace with function body.
 
 
 
 func _test_for_collision():
-
 	var canBePlantedHere = true
 	var flowers = images.get_children()
-	
 	for flower in flowers:
 		if (flower.occupyingSlot == null ):
 			canBePlantedHere = false
-			
 			print("Can't be planted ", flower.occupyingSlot)
 			break
-			
-	if (canBePlantedHere ):
-		lastSlotRotation = facingDir
-		pass
+
 	return canBePlantedHere
 	
+func _physics_process(delta: float) -> void:
+	var areas:Array = $Area2D2.get_overlapping_areas()
+	var slot_area = areas.filter(func(n): return n.name.contains("Slot"))
+	if (slot_area.size() > 0):
+		var slot:Slot = slot_area[0].get_parent()
+		var canBePlantedHere = _test_for_collision() && areas.size() < 4
+		if (canBePlantedHere && lastSlotEntered != slot):
+			lastSlotEntered = slot
+			lastSlotRotation = facingDir
+			lastSlotPosition = lastSlotEntered.global_position
+			print("setting last slot entered ", lastSlotEntered.global_position, " With rotation ", lastSlotRotation)
 
-
+			lastSlotEntered.isTaken = true
+			pass
+		
 func _on_area_2d_2_area_entered(area: Area2D) -> void:
 	await get_tree().create_timer(0.01).timeout
 	var slot = area.get_parent()
