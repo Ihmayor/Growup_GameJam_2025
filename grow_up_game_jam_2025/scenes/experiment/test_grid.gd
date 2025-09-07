@@ -27,6 +27,7 @@ func generate_grid() -> void:
 	for i in grid_height:
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
+			slot_instance.name = "Slot"+str(i)+"_"+str(j)
 			slot_instance.location = Vector2(j, i);
 			if alt:
 				slot_instance.soil_unplanted = light_soil

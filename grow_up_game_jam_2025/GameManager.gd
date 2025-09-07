@@ -124,6 +124,7 @@ func compare_to_limit_for_level():
 		player_data.overflow = 0
 		player_data.running_total_score = 0
 		level.quota = 100
+		level.phase = 0
 		$GameMusic.stop_music()
 		on_final_plant_placed.emit(false)
 

@@ -38,6 +38,7 @@ offset_left = 225.0
 offset_top = 357.0
 offset_right = 225.0
 offset_bottom = 357.0
+mouse_filter = 1
 script = ExtResource("9_e3052")
 
 [node name="Plant" type="TextureRect" parent="Draggable"]
@@ -63,6 +64,14 @@ offset_right = 36.0
 offset_bottom = 76.0
 texture = ExtResource("8_ir7cu")
 stretch_mode = 5
+
+[node name="PlantCollisionArea" type="Area2D" parent="Draggable"]
+position = Vector2(31, 40)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Draggable/PlantCollisionArea"]
+polygon = PackedVector2Array(-24, 10, -18, -9, 14, -14, 24, -9, 21, -3, -2, -5, -12, 2, -10, 14, -12, 25, -23, 22)
 
 [node name="Draggable2" type="Control" parent="."]
 layout_mode = 3
@@ -96,3 +105,11 @@ offset_right = 36.0
 offset_bottom = 76.0
 texture = ExtResource("10_dc1x2")
 stretch_mode = 5
+
+[node name="PlantCollisionArea" type="Area2D" parent="Draggable2"]
+position = Vector2(31, 40)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Draggable2/PlantCollisionArea"]
+polygon = PackedVector2Array(-24, 10, -18, -9, 14, -14, 24, -9, 21, -3, -2, -5, -12, 2, -10, 14, -12, 25, -23, 22)
