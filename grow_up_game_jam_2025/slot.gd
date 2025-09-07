@@ -10,7 +10,8 @@ var location: Vector2
 
 @export var isTaken = false
 
-var takenBy = null
+@onready var takenBy = null
+@onready var isDebugging:bool = false
 
 @onready var area: Area2D = %SlotArea
 
@@ -38,6 +39,7 @@ func _physics_process(delta: float):
 		if plant:
 			found_plant = true
 			plant_node = plant
+			isTaken = true
 			add_plant_here(plant.plant_data)
 			$SoilTexture.texture = soil_planted
 		else:
@@ -46,17 +48,38 @@ func _physics_process(delta: float):
 	if !found_plant:
 		planted_plant = null
 		plant_node = null
+		#isTaken = false
 		$SoilTexture.texture = soil_unplanted
 	
 func _mouse_entered():
 	$Outline.visible = true
-	$Outline.modulate = Color.GREEN
+	if !isTaken:
+		$Outline.modulate = Color.GREEN
+	else:
+		$Outline.modulate = Color.RED
+		
 
 func _mouse_exited():
 	$Outline.visible = false
 	$Outline.modulate = Color.GREEN
 
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	if data is Draggable:
+		data.snap_to_place(global_position + Vector2(0,-10))
+
+func _can_drop_data(at_position, data):
+	
+	
+	return !self.isTaken && data is Draggable
+
 func add_plant_here(plant:Plant):
 	$PlantTexture.texture = plant.first_image
 	planted_plant = plant
+	$SoilTexture.texture = soil_planted
+
+func debug_active():
+	print("set once?")
+	self.isTaken = true
+	self.isDebugging = true
+	print(self.isTaken)
 	$SoilTexture.texture = soil_planted

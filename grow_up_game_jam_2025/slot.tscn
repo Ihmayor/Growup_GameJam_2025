@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdprlbmnbfp5u"]
+[gd_scene load_steps=6 format=3 uid="uid://bdprlbmnbfp5u"]
 
 [ext_resource type="Script" uid="uid://g4jhnswos7ve" path="res://slot.gd" id="1_c24ra"]
 [ext_resource type="Texture2D" uid="uid://cpxfic4r63xeh" path="res://Assets/placeholder_outline.png" id="2_khion"]
+[ext_resource type="Texture2D" uid="uid://cxgb3x1a713lc" path="res://Assets/Sprites/VegLettuceStanding.png" id="3_hiqfk"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c24ra"]
 size = Vector2(32, 32)
@@ -77,7 +78,8 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(258, -979)
-stretch_mode = 3
+texture = ExtResource("3_hiqfk")
+stretch_mode = 5
 
 [node name="SlotArea" type="Area2D" parent="."]
 unique_name_in_owner = true
