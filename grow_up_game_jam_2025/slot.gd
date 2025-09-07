@@ -31,11 +31,18 @@ func _physics_process(delta: float):
 	var found_plant:bool = false
 	for collision in collisions:
 		var plant = collision.get_parent() as DraggablePlant
+		
+		if !plant && collision.get_parent() is PlantScript:
+			plant = collision.get_parent().get_parent().get_parent() as DraggablePlant			
+		
 		if plant:
 			found_plant = true
 			plant_node = plant
 			add_plant_here(plant.plant_data)
 			$SoilTexture.texture = soil_planted
+		else:
+			print("not a plant but colliding???")
+			print(collision.name)
 	if !found_plant:
 		planted_plant = null
 		plant_node = null

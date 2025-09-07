@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://crcpgigdfgcgt"]
+[gd_scene load_steps=20 format=4 uid="uid://crcpgigdfgcgt"]
 
 [ext_resource type="Script" uid="uid://wihnhlq7pyh2" path="res://GameManager.gd" id="1_63p7w"]
 [ext_resource type="PackedScene" uid="uid://bbv1r3rtxaboq" path="res://scenes/GardenUI.tscn" id="1_ie1wt"]
@@ -7,12 +7,25 @@
 [ext_resource type="Resource" uid="uid://cyji6a6nuw4ro" path="res://scripts/resources/player_data.tres" id="3_7j0uk"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="5_0xhk5"]
 [ext_resource type="Script" uid="uid://drng3ht5od8gi" path="res://scripts/resources/PlantData.gd" id="7_6a33d"]
+[ext_resource type="Texture2D" uid="uid://dn30m6j3daakw" path="res://Assets/Sprites/Ground.png" id="7_dctw2"]
 [ext_resource type="TileSet" uid="uid://ii6xac1mcch1" path="res://scripts/resources/main_tile_set.tres" id="7_vqwtp"]
 [ext_resource type="AudioStream" uid="uid://d2vgw8v4ghuci" path="res://Assets/Sound/Plant Pickup sfx.mp3" id="8_0xhk5"]
 [ext_resource type="Resource" uid="uid://b7kpi1wb3pw1o" path="res://scripts/resources/plant_data/Cucumber.tres" id="8_dctw2"]
 [ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/resources/plant_data/Lettuce.tres" id="9_dmqpl"]
 [ext_resource type="AudioStream" uid="uid://bwlmaf7il8mdd" path="res://Assets/Sound/plant_Pickup_Place_Lockin sfx.mp3" id="9_kumjq"]
 [ext_resource type="AudioStream" uid="uid://deyl7qmqt0bb8" path="res://scenes/music.mp3" id="10_ncvn6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmqpl"]
+atlas = ExtResource("7_dctw2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dctw2"]
+atlas = ExtResource("7_dctw2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_157jn"]
+atlas = ExtResource("7_dctw2")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vqwtp"]
 
@@ -63,6 +76,9 @@ offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+light_soil = SubResource("AtlasTexture_dmqpl")
+dark_soil = SubResource("AtlasTexture_dctw2")
+light_planted_soil = SubResource("AtlasTexture_157jn")
 all_plants = Array[ExtResource("7_6a33d")]([ExtResource("8_dctw2"), ExtResource("9_dmqpl")])
 
 [node name="Concrete" type="TileMapLayer" parent="."]

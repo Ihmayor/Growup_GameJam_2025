@@ -90,11 +90,10 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	if areas_overlapping.filter(func(n): return !n.name.contains("Slot")).size() > 2:
-		print("slot is occupied")
 		undo_occupation()
 		occupyingSlot = null #Reset the spot 
+	
 	elif slot is Slot:
 		undo_occupation()
 		occupyingSlot = slot
 		occupyingSlot.takenBy = get_parent()
-		print("Claiming slot")

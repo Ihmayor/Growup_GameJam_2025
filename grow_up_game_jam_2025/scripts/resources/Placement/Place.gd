@@ -187,7 +187,6 @@ func _test_for_collision():
 	for flower in flowers:
 		if (flower.occupyingSlot == null ):
 			canBePlantedHere = false
-			print("Can't be planted ", flower.occupyingSlot)
 			break
 
 	return canBePlantedHere

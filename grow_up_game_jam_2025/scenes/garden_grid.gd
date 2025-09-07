@@ -30,7 +30,8 @@ func _ready():
 	for i in range(2):
 		var object:DraggablePlant = trominos.pick_random().instantiate()
 		add_child(object)
-		object.global_position = Vector2(randf_range(0, size_window.x), randf_range(0, size_window.y))
+		var margin:int = 100
+		object.global_position = Vector2(randf_range(margin, size_window.x-margin), randf_range(margin, size_window.y - margin))
 		var new_plant = all_plants.pick_random()
 		object.plant_data = new_plant
 		object.UpdateImages()

@@ -13,11 +13,11 @@
 [ext_resource type="AudioStream" uid="uid://dntyu0oq52wr3" path="res://Assets/sfx/Plant Pickup sfx.mp3" id="11_hbwtr"]
 [ext_resource type="AudioStream" uid="uid://bdtar7qde7l3" path="res://Assets/sfx/plant place sfx.mp3" id="12_c63eo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwvbm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c63eo"]
 atlas = ExtResource("3_nw0t6")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nw0t6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pum5k"]
 atlas = ExtResource("3_nw0t6")
 region = Rect2(64, 0, 32, 32)
 
@@ -35,8 +35,8 @@ anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_rpbvd")
 main_theme = ExtResource("2_bwvbm")
-light_soil = SubResource("AtlasTexture_bwvbm")
-dark_soil = SubResource("AtlasTexture_nw0t6")
+light_soil = SubResource("AtlasTexture_c63eo")
+dark_soil = SubResource("AtlasTexture_pum5k")
 light_planted_soil = SubResource("AtlasTexture_uidg8")
 dark_planted_soil = SubResource("AtlasTexture_hbwtr")
 test = ExtResource("7_hbwtr")
