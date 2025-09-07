@@ -22,12 +22,15 @@ var tromino2 = preload("res://scripts/tromino/LineTromino.tscn")
 @export var all_plants: Array[Plant]
 
 var grid_size: int = 32
-func _ready():
-	%GridContainer.columns = grid_width
-	var size_window : Vector2 = get_window().size
 
+func _ready():
+	generate_plants()
+	generate_grid()
+
+func generate_plants():
+	var size_window : Vector2 = get_window().size
 	var trominos = [tromino, tromino2]
-	for i in range(2):
+	for i in range(8):
 		var object:DraggablePlant = trominos.pick_random().instantiate()
 		add_child(object)
 		var margin:int = 100
@@ -37,7 +40,8 @@ func _ready():
 		object.UpdateImages()
 		object.on_shovel.connect(_on_shovel_event);
 		object.on_plant.connect(_on_plant_event);
-	generate_grid()
+
+
 
 func _on_shovel_event():
 	%PickupSFX.play()
@@ -46,12 +50,12 @@ func _on_plant_event():
 	%PickupSFX.stop()
 	%PlantSFX.play()
 
-
 func _process(delta: float):
 	%GridContainer.global_position = ((get_window().size - Vector2i(grid_width * grid_size,grid_height * grid_size))/2)
 	%GridContainer.global_position = round (%GridContainer.global_position / grid_size) * grid_size
 
 func generate_grid() -> void: 
+	%GridContainer.columns = grid_width
 	var alt: bool = false
 	
 	for i in grid_height:
@@ -66,3 +70,17 @@ func generate_grid() -> void:
 				slot_instance.soil_planted = dark_planted_soil
 			%GridContainer.add_child(slot_instance)
 			alt = !alt
+
+
+func _on_node_2d_on_final_plant_placed(success: bool) -> void:
+	if (success):
+		#Clear old grid
+		for slot in %GridContainer.get_children():
+			%GridContainer.remove_child(slot)
+			slot.queue_free()
+		#Clear old plants
+		for plant in get_tree().get_nodes_in_group("Plants"):
+			plant.queue_free()
+		
+		generate_plants()
+		generate_grid()

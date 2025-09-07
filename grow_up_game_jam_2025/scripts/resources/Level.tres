@@ -6,5 +6,5 @@
 script = ExtResource("1_le6bl")
 grid_width = 5
 grid_height = 5
-quota = 500
+quota = 100
 metadata/_custom_type_script = "uid://cwhcstbcw52qv"

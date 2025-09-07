@@ -3,4 +3,6 @@ class_name LevelData extends Resource
 @export var grid_width = 5;
 @export var grid_height = 5;
 
-@export var quota:int = 500
+@export var quota:int = 100
+
+var phase = 0

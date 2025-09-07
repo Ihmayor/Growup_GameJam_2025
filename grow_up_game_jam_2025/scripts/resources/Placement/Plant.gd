@@ -52,9 +52,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func Shovel ():
 	Input.set_custom_mouse_cursor(null)
 	isPlanted = true
-	(get_tree().get_first_node_in_group("manager") as GameManager).calculate_plant_total()
+	var manager = (get_tree().get_first_node_in_group("manager") as GameManager)
+	manager.calculate_plant_total()
 	global_position -= Vector2(0, -shoveledRecess)
-	pass
 
 
 func _on_timer_timeout() -> void:

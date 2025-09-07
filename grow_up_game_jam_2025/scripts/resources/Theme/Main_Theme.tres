@@ -3,6 +3,8 @@
 [ext_resource type="FontFile" uid="uid://diutktenf3qcv" path="res://Assets/UI/GameFont.otf" id="1_t33p7"]
 
 [resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_t33p7")
 GridContainer/constants/h_separation = 0
 GridContainer/constants/v_separation = 0
 HBoxContainer/constants/separation = 0

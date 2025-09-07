@@ -2,12 +2,33 @@ class_name GameManager extends Node
 
 @export var level: LevelData 
 @export var player_data: PlayerData
-signal on_final_plant_placed
+var triggered_next_level:bool = false
+signal on_final_plant_placed(success:bool)
 
+@onready var music: GameMusicManager = $GameMusic
 
+func _init() -> void:
+	triggered_next_level = false
+
+func _ready() -> void:
+	music.play_music()
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("test_calculate")):
 		calculate_plant_total()
+
+func _physics_process(delta: float) -> void:
+	if (triggered_next_level):
+		print("already triggered")
+		return
+	var all_plants = get_tree().get_nodes_in_group("Plants")
+	if all_plants.all(func(p:DraggablePlant): return p.isPlanted):
+		compare_to_limit_for_level()
+	var array_of_slots_taken:Array[Node] = get_tree().get_nodes_in_group("Slots").filter(func(slot:Slot): return slot.planted_plant != null)
+	if (array_of_slots_taken.size() > (level.grid_height * level.grid_width)/2) && array_of_slots_taken.all(func(s:Slot): return s.plant_node.isPlanted):
+		compare_to_limit_for_level()
+		
+
 
 func calculate_plant_total():
 	#get data score 
@@ -15,8 +36,6 @@ func calculate_plant_total():
 	var score = 0
 	var array_of_slots_taken:Array[Node] = get_tree().get_nodes_in_group("Slots").filter(func(slot:Slot): return slot.planted_plant != null)
 	var total_slots = get_tree().get_nodes_in_group("Slots")
-	print("array of plants")
-	print(array_of_slots_taken.size())
 
 	#If there are no plants, return nothing
 	if array_of_slots_taken.size() == 0:
@@ -29,6 +48,7 @@ func calculate_plant_total():
 	for planted_slot: Slot in array_of_slots_taken:
 		var self_plant_node = planted_slot.plant_node
 		var plant_id = self_plant_node.get_instance_id()
+
 		if !plant_neighbour_dictionary.has(plant_id):
 			plant_neighbour_dictionary[plant_id]= {"stat_data": planted_slot.planted_plant, "plant_ids": [], "plant_data":[] }
 
@@ -63,9 +83,9 @@ func calculate_plant_total():
 		add_slot_if_planted(down_slot, plant_neighbour_dictionary, plant_id)
 
 	for plant_id in plant_neighbour_dictionary.keys():
-		print(plant_neighbour_dictionary[plant_id]["plant_ids"])
 		total_score += calculate_neighbour(plant_neighbour_dictionary, plant_id, plant_neighbour_dictionary[plant_id]["stat_data"])
-	player_data.running_total_score = total_score
+
+	player_data.running_total_score = total_score + player_data.overflow
 
 func add_slot_if_planted(new_slot:Slot, plant_neighbour_dictionary, plant_id ):
 	if new_slot && !plant_neighbour_dictionary[plant_id]["plant_ids"].has(new_slot.plant_node.get_instance_id()):
@@ -82,25 +102,31 @@ func find_taken_slot_by_location(total_slots:Array[Node], array_of_slots_taken:A
 
 func calculate_neighbour(plant_neighbour_dictionary, plant_id, main_plant_data:Plant) -> int:
 	var neighbouring_plants = plant_neighbour_dictionary[plant_id]["plant_data"]
-	print("neighbours")
-	print(neighbouring_plants)
 	var comp_plants:Array = neighbouring_plants.filter(func(plant:Plant): return main_plant_data.compatible_matchup.contains(plant.name))
-	print("compatible")
-	print(comp_plants)
 	
 	var incomp_plants:Array =neighbouring_plants.filter(func(plant:Plant): return main_plant_data.incompatible_matchup.has(plant.name))
-	print("incomp")
-	print(incomp_plants)
 	var effect_amount = main_plant_data.base_stat /2
-	print("effect")
-	print(effect_amount)
 	var buff_amount = comp_plants.size() * effect_amount
 	var debuff_amount = incomp_plants.size() * effect_amount
-	print("to add")
-	print(main_plant_data.base_stat + buff_amount - debuff_amount)
 	return main_plant_data.base_stat + buff_amount - debuff_amount
 
 func compare_to_limit_for_level():
-	#subtract value from data score then add back
-	#for next level
-	pass
+	triggered_next_level = true
+	if player_data.running_total_score >= level.quota:
+		player_data.overflow = player_data.running_total_score - level.quota
+		player_data.running_total_score = player_data.overflow
+		on_final_plant_placed.emit(true)
+		level.quota += 30
+		level.phase += 1
+		music.play_music()
+		triggered_next_level = false
+	else:
+		player_data.overflow = 0
+		player_data.running_total_score = 0
+		level.quota = 100
+		$GameMusic.stop_music()
+		on_final_plant_placed.emit(false)
+
+
+func _on_replay_pressed() -> void:
+	get_tree().change_scene_to_file("res://main_garden.tscn")
