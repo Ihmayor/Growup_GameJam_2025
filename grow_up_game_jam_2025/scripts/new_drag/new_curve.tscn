@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrb64"]
 radius = 2.0
 
-[node name="Curve" type="Control"]
+[node name="Curve" type="Control" groups=["Plants"]]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

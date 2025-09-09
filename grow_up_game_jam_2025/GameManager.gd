@@ -19,13 +19,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if (triggered_next_level):
-		print("already triggered")
 		return
 	var all_plants = get_tree().get_nodes_in_group("Plants")
-	if all_plants.all(func(p:DraggablePlant): return p.isPlanted):
+	#Check if we won based on whether the player planted (locked-in) all the plants
+	if all_plants.all(func(p:Draggable): return p.is_planted):
 		compare_to_limit_for_level()
+	
+	#Check if all the slots are taken 	
 	var array_of_slots_taken:Array[Node] = get_tree().get_nodes_in_group("Slots").filter(func(slot:Slot): return slot.planted_plant != null)
-	if (array_of_slots_taken.size() > (level.grid_height * level.grid_width)/2) && array_of_slots_taken.all(func(s:Slot): return s.plant_node.isPlanted):
+	if (array_of_slots_taken.size() > (level.grid_height * level.grid_width)/2) && array_of_slots_taken.all(func(s:Slot): return s.draggable_node.is_planted):
 		compare_to_limit_for_level()
 		
 
@@ -46,7 +48,7 @@ func calculate_plant_total():
 	var total_score = 0
 
 	for planted_slot: Slot in array_of_slots_taken:
-		var self_plant_node = planted_slot.plant_node
+		var self_plant_node = planted_slot.draggable_node
 		var plant_id = self_plant_node.get_instance_id()
 
 		if !plant_neighbour_dictionary.has(plant_id):
@@ -88,14 +90,14 @@ func calculate_plant_total():
 	player_data.running_total_score = total_score + player_data.overflow
 
 func add_slot_if_planted(new_slot:Slot, plant_neighbour_dictionary, plant_id ):
-	if new_slot && !plant_neighbour_dictionary[plant_id]["plant_ids"].has(new_slot.plant_node.get_instance_id()):
+	if new_slot && !plant_neighbour_dictionary[plant_id]["plant_ids"].has(new_slot.draggable_node.get_instance_id()):
 		plant_neighbour_dictionary[plant_id]["plant_data"].append(new_slot.planted_plant)
-		plant_neighbour_dictionary[plant_id]["plant_ids"].append(new_slot.plant_node.get_instance_id())
+		plant_neighbour_dictionary[plant_id]["plant_ids"].append(new_slot.draggable_node.get_instance_id())
 
 
 func find_taken_slot_by_location(total_slots:Array[Node], array_of_slots_taken:Array[Node], location_vector:Vector2, self_node: Node):
 	var found_slot = total_slots.filter(func(n): return n.location == location_vector).get(0)
-	if array_of_slots_taken.has(found_slot) && found_slot.plant_node != self_node:
+	if array_of_slots_taken.has(found_slot) && found_slot.draggable_node != self_node:
 		return found_slot
 	else:
 		return null

@@ -34,6 +34,7 @@ func _can_drop_data(at_position, data):
 		slots = data.get_colliding_slots()
 		var draggable_size = data.get_draggable_size()
 		is_valid_size = slots.size() == draggable_size
+		
 		all_slots_valid = slots.all(func(s:Slot): return !s.isTaken || (s.isTaken && s.draggable_node == data ))
 	is_valid =  all_slots_valid && is_valid_size && data is Draggable
 	
@@ -49,11 +50,13 @@ func add_plant_here(plant:Plant):
 	planted_plant = plant
 	$SoilTexture.texture = soil_planted
 	$Outline.visible = false
+	isTaken = true
 
 func remove_plant():
 	$SoilTexture.texture = soil_unplanted
 	$PlantTexture.texture = null
 	planted_plant = null
+	isTaken = false
 	
 func debug_active():
 	self.isTaken = true
@@ -62,6 +65,9 @@ func debug_active():
 
 func _physics_process(delta: float) -> void:
 	if isTaken:
+		#In case something weird happened always keep the soil planted if taken
+		if $SoilTexture.texture == soil_unplanted:
+			$SoilTexture.texture == soil_planted
 		$Outline.visible = false
 		$Outline.modulate = Color.WHITE
 		return

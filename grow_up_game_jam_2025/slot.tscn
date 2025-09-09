@@ -8,7 +8,7 @@
 size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_khion"]
-size = Vector2(10, 10)
+size = Vector2(24, 25)
 
 [node name="Slot" type="Control" groups=["Slots"]]
 custom_minimum_size = Vector2(32, 32)
@@ -89,7 +89,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlotArea"]
-position = Vector2(16, 16)
+position = Vector2(16, 16.5)
 shape = SubResource("RectangleShape2D_khion")
 debug_color = Color(0.259774, 0.611195, 0.484146, 0.42)
 

@@ -15,8 +15,8 @@ class_name GardenUI extends Control
 @export var test: Plant
 @export var test2: Plant
 
-var tromino = preload("res://scripts/tromino/CurveTromino.tscn")
-var tromino2 = preload("res://scripts/tromino/LineTromino.tscn")
+var tromino = preload("res://scripts/new_drag/new_curve.tscn")
+var tromino2 = preload("res://scripts/new_drag/new_line.tscn")
 
 
 @export var all_plants: Array[Plant]
@@ -31,15 +31,15 @@ func generate_plants():
 	var size_window : Vector2 = get_window().size
 	var trominos = [tromino, tromino2]
 	for i in range(8):
-		var object:DraggablePlant = trominos.pick_random().instantiate()
+		var object:Draggable = trominos.pick_random().instantiate()
 		add_child(object)
 		var margin:int = 100
 		object.global_position = Vector2(randf_range(margin, size_window.x-margin), randf_range(margin, size_window.y - margin))
 		var new_plant = all_plants.pick_random()
 		object.plant_data = new_plant
-		object.UpdateImages()
-		object.on_shovel.connect(_on_shovel_event);
-		object.on_plant.connect(_on_plant_event);
+		object.set_plant()
+		#object.on_shovel.connect(_on_shovel_event);
+		#object.on_plant.connect(_on_plant_event);
 
 
 
@@ -57,10 +57,11 @@ func _process(delta: float):
 func generate_grid() -> void: 
 	%GridContainer.columns = grid_width
 	var alt: bool = false
-	
+
 	for i in grid_height:
 		for j in grid_width:
 			var slot_instance:Slot = slot_scene.instantiate()
+			slot_instance.name = "Slot"+str(i)+"_"+str(j)
 			slot_instance.location = Vector2(j, i);
 			if alt:
 				slot_instance.soil_unplanted = light_soil
