@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdn8wfc52lh4g"]
+[gd_scene load_steps=11 format=3 uid="uid://bdn8wfc52lh4g"]
 
 [ext_resource type="Script" uid="uid://7en4enswpsj7" path="res://scenes/experiment/test_grid.gd" id="1_3q45w"]
 [ext_resource type="Theme" uid="uid://be0cfe1malgy4" path="res://scripts/resources/Theme/Main_Theme.tres" id="1_6c5lo"]
@@ -7,10 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dq6jj0bc8qmtl" path="res://scenes/experiment/textures/dark_soil_unplanted.tres" id="4_ir7cu"]
 [ext_resource type="Texture2D" uid="uid://b5vvtv1mjt2lk" path="res://scenes/experiment/textures/ligh_soil_planted.tres" id="5_e3052"]
 [ext_resource type="Texture2D" uid="uid://d0fc42jeka4um" path="res://scenes/experiment/textures/dark_soil_planted.tres" id="6_dc1x2"]
-[ext_resource type="Texture2D" uid="uid://cxgb3x1a713lc" path="res://Assets/Sprites/VegLettuceStanding.png" id="8_ir7cu"]
-[ext_resource type="Script" uid="uid://dycloq4fgijlp" path="res://scripts/new_drag/Draggable.gd" id="9_e3052"]
-[ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/resources/plant_data/Lettuce.tres" id="9_fu154"]
-[ext_resource type="Script" uid="uid://dqfltc7f60bpu" path="res://scenes/experiment/maintain_texture_up.gd" id="10_dc1x2"]
+[ext_resource type="PackedScene" uid="uid://b70f3161gctdf" path="res://scripts/new_drag/new_line.tscn" id="8_e3052"]
+[ext_resource type="PackedScene" uid="uid://ivpbw2s0gjri" path="res://scripts/new_drag/new_curve.tscn" id="8_gi5hu"]
+[ext_resource type="Resource" uid="uid://bt73q2gq4s313" path="res://scripts/resources/plant_data/Eggplant.tres" id="12_lrb64"]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_3q45w")
@@ -32,106 +31,15 @@ size_flags_vertical = 6
 theme = ExtResource("1_6c5lo")
 columns = 5
 
-[node name="Draggable" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 225.0
-offset_top = 357.0
-offset_right = 225.0
-offset_bottom = 357.0
-mouse_filter = 1
-script = ExtResource("9_e3052")
-plant_data = ExtResource("9_fu154")
+[node name="Line" parent="." instance=ExtResource("8_e3052")]
+offset_left = 212.0
+offset_top = 327.0
+offset_right = 212.0
+offset_bottom = 327.0
+plant_data = ExtResource("12_lrb64")
 
-[node name="Plant" type="TextureRect" parent="Draggable"]
-offset_left = -20.0
-offset_top = -27.0
-offset_right = 20.0
-offset_bottom = 21.0
-pivot_offset = Vector2(19, 25)
-texture = ExtResource("8_ir7cu")
-stretch_mode = 5
-script = ExtResource("10_dc1x2")
-metadata/_edit_use_anchors_ = true
-
-[node name="Plant2" type="TextureRect" parent="Draggable"]
-offset_left = 12.0
-offset_top = -27.0
-offset_right = 52.0
-offset_bottom = 21.0
-pivot_offset = Vector2(19, 25)
-texture = ExtResource("8_ir7cu")
-stretch_mode = 5
-script = ExtResource("10_dc1x2")
-metadata/_edit_use_anchors_ = true
-
-[node name="Plant3" type="TextureRect" parent="Draggable"]
-offset_left = -20.0
-offset_top = 5.0
-offset_right = 20.0
-offset_bottom = 53.0
-pivot_offset = Vector2(19, 25)
-texture = ExtResource("8_ir7cu")
-stretch_mode = 5
-script = ExtResource("10_dc1x2")
-metadata/_edit_use_anchors_ = true
-
-[node name="PlantCollisionArea" type="Area2D" parent="Draggable"]
-position = Vector2(15, 10)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Draggable/PlantCollisionArea"]
-polygon = PackedVector2Array(-24, 10, -18, -9, 14, -14, 24, -9, 21, -3, -2, -5, -12, 2, -10, 14, -12, 25, -23, 22)
-
-[node name="Draggable2" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 227.0
-offset_top = 442.0
-offset_right = 227.0
-offset_bottom = 442.0
-mouse_filter = 1
-script = ExtResource("9_e3052")
-plant_data = ExtResource("9_fu154")
-
-[node name="Plant" type="TextureRect" parent="Draggable2"]
-offset_left = -20.0
-offset_top = -27.0
-offset_right = 20.0
-offset_bottom = 21.0
-pivot_offset = Vector2(19, 25)
-texture = ExtResource("8_ir7cu")
-stretch_mode = 5
-script = ExtResource("10_dc1x2")
-metadata/_edit_use_anchors_ = true
-
-[node name="Plant2" type="TextureRect" parent="Draggable2"]
-offset_left = 12.0
-offset_top = -27.0
-offset_right = 52.0
-offset_bottom = 21.0
-pivot_offset = Vector2(19, 25)
-texture = ExtResource("8_ir7cu")
-stretch_mode = 5
-script = ExtResource("10_dc1x2")
-metadata/_edit_use_anchors_ = true
-
-[node name="Plant3" type="TextureRect" parent="Draggable2"]
-offset_left = -20.0
-offset_top = 5.0
-offset_right = 20.0
-offset_bottom = 53.0
-pivot_offset = Vector2(19, 25)
-texture = ExtResource("8_ir7cu")
-stretch_mode = 5
-script = ExtResource("10_dc1x2")
-metadata/_edit_use_anchors_ = true
-
-[node name="PlantCollisionArea" type="Area2D" parent="Draggable2"]
-position = Vector2(15, 10)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Draggable2/PlantCollisionArea"]
-polygon = PackedVector2Array(-24, 10, -18, -9, 14, -14, 24, -9, 21, -3, -2, -5, -12, 2, -10, 14, -12, 25, -23, 22)
+[node name="Curve" parent="." instance=ExtResource("8_gi5hu")]
+offset_left = 140.0
+offset_top = 167.0
+offset_right = 140.0
+offset_bottom = 167.0

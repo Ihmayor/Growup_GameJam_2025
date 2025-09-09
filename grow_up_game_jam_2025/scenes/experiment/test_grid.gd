@@ -37,10 +37,7 @@ func generate_grid() -> void:
 				slot_instance.soil_planted = dark_planted_soil
 			%GridContainer.add_child(slot_instance)
 			
-			
 			if (i == 0 && j == 1):
-				print("what are you setting")
 				slot_instance.debug_active()
-			
 			
 			alt = !alt

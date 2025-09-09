@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://b70f3161gctdf"]
+
+[ext_resource type="Script" uid="uid://dycloq4fgijlp" path="res://scripts/new_drag/Draggable.gd" id="1_uylya"]
+[ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/resources/plant_data/Lettuce.tres" id="2_htdc4"]
+[ext_resource type="Texture2D" uid="uid://cxgb3x1a713lc" path="res://Assets/Sprites/VegLettuceStanding.png" id="3_4k8r2"]
+[ext_resource type="Script" uid="uid://dqfltc7f60bpu" path="res://scenes/experiment/maintain_texture_up.gd" id="4_f586o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrb64"]
+radius = 2.0
+
+[node name="Line" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_uylya")
+plant_data = ExtResource("2_htdc4")
+
+[node name="Plant" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -29.0
+offset_right = 16.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 29)
+texture = ExtResource("3_4k8r2")
+stretch_mode = 4
+flip_h = true
+script = ExtResource("4_f586o")
+
+[node name="Plant2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -29.0
+offset_right = 48.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 29)
+texture = ExtResource("3_4k8r2")
+stretch_mode = 4
+flip_h = true
+script = ExtResource("4_f586o")
+
+[node name="Plant3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -29.0
+offset_right = -16.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 29)
+texture = ExtResource("3_4k8r2")
+stretch_mode = 4
+flip_h = true
+script = ExtResource("4_f586o")
+
+[node name="PlantCollisionArea" type="Area2D" parent="."]
+position = Vector2(16, 10)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantCollisionArea"]
+position = Vector2(-16, -10)
+shape = SubResource("CircleShape2D_lrb64")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlantCollisionArea"]
+position = Vector2(-48, -10)
+shape = SubResource("CircleShape2D_lrb64")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlantCollisionArea"]
+position = Vector2(16, -10)
+shape = SubResource("CircleShape2D_lrb64")

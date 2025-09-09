@@ -15,6 +15,12 @@ var facingDir = 0
 var is_dragging = false
 var is_mouse_over = false
 
+
+func _ready():
+	var all_images = get_children().filter(func(n): return n is TextureRect)
+	for img in all_images:
+		img.texture = plant_data.first_image
+
 func _get_drag_data(at_position):
 	var preview_texture:Control = self.duplicate()
 	preview_texture.modulate.a = 0.4
@@ -34,7 +40,7 @@ func _notification(notification_type: int) -> void:
 		NOTIFICATION_DRAG_END:
 			is_dragging = false
 			toggle_mouse_filter(false)
-
+			reset_rotation()
 		
 func toggle_mouse_filter(is_ignore:bool):
 	if is_ignore:
@@ -54,11 +60,10 @@ func snap_to_place():
 	#Adjust to the size of the slot since the position if the top left slot
 	var offset = Vector2(16,16)
 	
+	print(preview_control.get_child(0).name)
 	var find_slot_near_main_child = find_closest_slot(preview_control.get_child(0).global_position)
 	if find_slot_near_main_child != null :
 		global_position = find_slot_near_main_child.global_position + offset
-	else:
-		print("error finding slot")
 	
 	if curr_slots != null:
 		for old_slot:Slot in curr_slots:
@@ -76,28 +81,24 @@ func snap_to_place():
 	if has_rotation_changed:
 		var children_textures = get_children().filter(func(n): return n is MaintainTextureUp);
 		for i in range(abs(rotationInput)):
-			print("rotating")
 			rotation_degrees = fmod((rotation_degrees + 90), 360)
 			for child:MaintainTextureUp in children_textures:
 				child.rotate()
-		has_rotation_changed = false
-		rotationInput = 0
+		reset_rotation()
 
-
+func reset_rotation():
+	has_rotation_changed = false
+	rotationInput = 0
 
 func find_closest_slot(found_position:Vector2):
 	var closest_slot = null
 	var closest_dist_sq:float = INF
-	print(get_colliding_slots())
 	for slot in get_colliding_slots():
-		var slot_pos = slot.global_position
-		print(slot_pos)
-		print(found_position)
+		var slot_pos = slot.global_position - Vector2(4,4)
 		var curr_dist_sq:float = slot_pos.distance_to(found_position)
 		if curr_dist_sq < closest_dist_sq:
 			closest_dist_sq = curr_dist_sq
 			closest_slot = slot
-	print(closest_slot.name)
 	return closest_slot	
 		
 #Get the amount of plants that make up this mino
@@ -117,7 +118,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			rotationInput = (rotationInput -1) % -4
 			has_rotation_changed = true
 		if self.name.contains("Preview"):
-			print("rotated")
 			rotate_self_and_children()		
 	if event.is_action_pressed("rotate_right"):
 		facingDir += 1
@@ -129,4 +129,5 @@ func rotate_self_and_children():
 	rotation_degrees = fmod((rotation_degrees + 90), 360)
 	for child:MaintainTextureUp in children_textures:
 		child.rotate()
+	global_position = get_global_mouse_position()
 	
