@@ -24,6 +24,8 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(66, -39)
+size_flags_horizontal = 4
 mouse_filter = 1
 script = ExtResource("1_c24ra")
 
