@@ -68,7 +68,7 @@ func _mouse_exited():
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if data is Draggable:
-		data.snap_to_place(global_position + Vector2(0,-10))
+		data.snap_to_place()
 
 func _can_drop_data(at_position, data):
 	print("is over")
