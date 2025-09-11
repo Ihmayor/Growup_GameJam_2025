@@ -38,16 +38,13 @@ func generate_plants():
 		var new_plant = all_plants.pick_random()
 		object.plant_data = new_plant
 		object.set_plant()
-		#object.on_shovel.connect(_on_shovel_event);
-		#object.on_plant.connect(_on_plant_event);
+		object.on_moving.connect(_on_pickup_event);
+		object.on_locking.connect(_on_plant_event);
 
-
-
-func _on_shovel_event():
+func _on_pickup_event():
 	%PickupSFX.play()
 
 func _on_plant_event():
-	%PickupSFX.stop()
 	%PlantSFX.play()
 
 func _process(delta: float):

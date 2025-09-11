@@ -19,6 +19,9 @@ shape = SubResource("RectangleShape2D_qodtd")
 position = Vector2(50, 8)
 shape = SubResource("RectangleShape2D_87f1h")
 
+[node name="Area2D2" parent="." index="2"]
+input_pickable = false
+
 [node name="Sizebox" type="TextureRect" parent="." index="3"]
 custom_minimum_size = Vector2(16, 16)
 offset_right = 40.0

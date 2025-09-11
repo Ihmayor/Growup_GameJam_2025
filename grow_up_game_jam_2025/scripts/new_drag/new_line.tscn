@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b70f3161gctdf"]
+[gd_scene load_steps=7 format=3 uid="uid://b70f3161gctdf"]
 
 [ext_resource type="Script" uid="uid://dycloq4fgijlp" path="res://scripts/new_drag/Draggable.gd" id="1_uylya"]
 [ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/resources/plant_data/Lettuce.tres" id="2_htdc4"]
 [ext_resource type="Texture2D" uid="uid://cxgb3x1a713lc" path="res://Assets/Sprites/VegLettuceStanding.png" id="3_4k8r2"]
 [ext_resource type="Script" uid="uid://dqfltc7f60bpu" path="res://scenes/experiment/maintain_texture_up.gd" id="4_f586o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uylya"]
+radius = 4.12311
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrb64"]
 radius = 2.0
@@ -34,6 +37,7 @@ offset_right = 16.0
 offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 6.28319
 pivot_offset = Vector2(16, 29)
 texture = ExtResource("3_4k8r2")
 stretch_mode = 4
@@ -77,6 +81,16 @@ texture = ExtResource("3_4k8r2")
 stretch_mode = 4
 flip_h = true
 script = ExtResource("4_f586o")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -13)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.18034e-06, 13)
+shape = SubResource("CircleShape2D_uylya")
+debug_color = Color(0.899963, 0.173749, 0.642994, 0.42)
 
 [node name="PlantCollisionArea" type="Area2D" parent="."]
 position = Vector2(16, 10)

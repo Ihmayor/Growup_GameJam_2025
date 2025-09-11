@@ -15,28 +15,61 @@ var facingDir = 0
 var is_dragging = false
 var is_mouse_over = false
 
-
 var is_planted = false
 
+signal on_moving
+signal on_locking
+
+var trowel = load("res://Assets/UI/TrowelCursor.png")
+
+var original_position
 
 func _ready():
+	original_position = position
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	var all_images = get_children().filter(func(n): return n is TextureRect)
 	for img in all_images:
 		img.texture = plant_data.first_image
+
+func _on_mouse_entered():
+	if (!is_planted && trowel != null):
+		is_mouse_over = true
+		Input.set_custom_mouse_cursor(trowel)
+
+func _on_mouse_exited():
+	is_mouse_over = false
+	Input.set_custom_mouse_cursor(null)
+
 
 func set_plant():
 	var all_images = get_children().filter(func(n): return n is TextureRect)
 	for img in all_images:
+		img.position = img.original_position + img.rotate_offset
 		img.texture = plant_data.first_image
 
+func lock_plant():
+	if !is_mouse_over || is_planted:
+		return
+	is_planted = true
+	var tween = create_tween().set_trans(Tween.TRANS_ELASTIC)
+	var tween_sound = create_tween().set_trans(Tween.TRANS_EXPO)
+	var all_images = get_children().filter(func(n): return n is TextureRect)
+	for img:MaintainTextureUp in all_images:
+		tween.tween_property(img, "position", img.position - img.rotate_offset, 0.4)
+		tween_sound.tween_callback(_on_lock).set_delay(0.3)
+
+func _on_lock():
+	on_locking.emit()
 
 func _get_drag_data(at_position):
 	var preview_texture:Control = self.duplicate()
 	preview_texture.modulate.a = 0.4
 	preview_texture.name = "Preview"
 	var c = Control.new()
+	c.global_position = at_position - Vector2(16,16)
 	c.add_child(preview_texture)
-	preview_texture.position = Vector2.ZERO - at_position
+	preview_texture.position = Vector2.ZERO - at_position - Vector2(2,2)
 	preview_control = preview_texture
 	toggle_mouse_filter(true)
 	set_drag_preview(c)
@@ -45,6 +78,7 @@ func _get_drag_data(at_position):
 func _notification(notification_type: int) -> void:
 	match notification_type:
 		NOTIFICATION_DRAG_BEGIN:
+			on_moving.emit()
 			is_dragging = true
 		NOTIFICATION_DRAG_END:
 			is_dragging = false
@@ -73,14 +107,13 @@ func temp_spot(at_position:Vector2):
 	global_position = at_position
 	
 
-
 func snap_to_place():
 	toggle_mouse_filter(false)
 	
 	#Adjust to the size of the slot since the position if the top left slot
 	var offset = Vector2(16,16)
 	
-	var find_slot_near_main_child = find_closest_slot(preview_control.get_child(0).global_position)
+	var find_slot_near_main_child = find_touching_slot()
 	if find_slot_near_main_child != null :
 		global_position = find_slot_near_main_child.global_position + offset
 	
@@ -96,6 +129,10 @@ func snap_to_place():
 	#Handle Rotation
 	if has_rotation_changed:
 		if rotationInput != 0:
+			var all_images = get_children().filter(func(n): return n is TextureRect)
+			for img in all_images:
+				img.position -= Vector2(0, 10)
+			
 			for i in range(abs(rotationInput)):
 				rotate_self_and_children(rotationInput < 0)
 		reset_rotation()
@@ -111,17 +148,13 @@ func reset_slots():
 			old_slot.remove_plant()
 
 
-func find_closest_slot(found_position:Vector2):
-	var closest_slot = null
-	var closest_dist_sq:float = INF
-	for slot in get_colliding_slots():
-		var slot_pos = slot.global_position - Vector2(4,4)
-		var curr_dist_sq:float = slot_pos.distance_to(found_position)
-		if curr_dist_sq < closest_dist_sq:
-			closest_dist_sq = curr_dist_sq
-			closest_slot = slot
-	return closest_slot	
-		
+func find_touching_slot():
+	var center_area:Area2D = preview_control.find_child("Area2D", true,false)
+	if center_area != null:
+		return center_area.get_overlapping_areas()[0]
+	else:
+		return null
+
 #Get the amount of plants that make up this mino
 func get_draggable_size():
 	var all_images = get_children().filter(func(n): return n is TextureRect)
@@ -133,22 +166,25 @@ func get_colliding_slots():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if !is_dragging:
-		return
-	if event.is_action_pressed("rotate_left"):
-		if preview_control != null:
-			rotationInput = (rotationInput -1) % -4
-			has_rotation_changed = true
-		if self.name.contains("Preview"):
-			rotate_self_and_children(true)
-			global_position = get_global_mouse_position()
-					
-	if event.is_action_pressed("rotate_right"):
-		if preview_control != null:
-			rotationInput = (rotationInput + 1) % 4
-			has_rotation_changed = true
-		if self.name.contains("Preview"):
-			rotate_self_and_children(false)
-			global_position = get_global_mouse_position()
+		if event.is_action_pressed("Shovel"):
+			lock_plant()
+	elif !is_planted:
+		if event.is_action_pressed("rotate_left"):
+			if preview_control != null:
+				rotationInput = (rotationInput -1) % -4
+				has_rotation_changed = true
+			if self.name.contains("Preview"):
+				rotate_self_and_children(true)
+				global_position = get_global_mouse_position()
+						
+		if event.is_action_pressed("rotate_right"):
+			if preview_control != null:
+				rotationInput = (rotationInput + 1) % 4
+				has_rotation_changed = true
+			if self.name.contains("Preview"):
+				rotate_self_and_children(false)
+				global_position = get_global_mouse_position()
+	
 		
 func rotate_self_and_children(is_left:bool):
 	var children_textures = get_children().filter(func(n): return n is MaintainTextureUp);

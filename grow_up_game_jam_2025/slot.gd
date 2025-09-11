@@ -5,7 +5,6 @@ var soil_unplanted: Texture2D
 var soil_planted: Texture2D
 var is_valid: bool = false
 var planted_plant:Plant
-var plant_node: DraggablePlant
 var draggable_node : Draggable
 
 var location: Vector2
@@ -24,6 +23,7 @@ func _ready():
 	
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if data is Draggable:
+		print("number of times")
 		data.snap_to_place()
 		
 func _can_drop_data(at_position, data):
