@@ -9,6 +9,7 @@ signal on_final_plant_placed(success:bool)
 
 func _init() -> void:
 	triggered_next_level = false
+	install_sounds(self)
 
 func _ready() -> void:
 	music.play_music()
@@ -140,3 +141,12 @@ func _on_replay_pressed() -> void:
 
 func _on_garden_lock_in_plant() -> void:
 	calculate_plant_total()
+
+#Register sounds for every relevant signal for every found button
+func install_sounds(node :Node):
+	for i in node.get_children():
+		if i is Button:
+			i.pressed.connect(func(): $ButtonSFX.play())
+
+		#recursive call
+		install_sounds(i)

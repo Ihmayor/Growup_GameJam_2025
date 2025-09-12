@@ -101,7 +101,6 @@ func _notification(notification_type: int) -> void:
 #Prevents old positions from blocking new positions if you wanted to rotate or just shift it over
 func toggle_mouse_filter(is_ignore:bool):
 	var all_control = get_children().filter(func(n): return n is Control)
-	print(all_control)
 	if is_ignore:
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 		for img:Control in all_control:
