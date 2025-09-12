@@ -16,9 +16,11 @@ var is_dragging = false
 var is_mouse_over = false
 
 var is_planted = false
+var is_locking = false
 
 signal on_moving
 signal on_locking
+signal on_particle_trigger(location)
 
 var trowel = load("res://Assets/UI/TrowelCursor.png")
 
@@ -28,9 +30,9 @@ func _ready():
 	original_position = position
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	var all_images = get_children().filter(func(n): return n is TextureRect)
-	for img in all_images:
-		img.texture = plant_data.first_image
+	var all_images = get_children().filter(func(n): return n is AnimatedSprite2D)
+	for img:AnimatedSprite2D in all_images:
+		img.animation = plant_data.name.to_lower()
 
 func _on_mouse_entered():
 	if (!is_planted && trowel != null):
@@ -43,26 +45,36 @@ func _on_mouse_exited():
 
 
 func set_plant():
-	var all_images = get_children().filter(func(n): return n is TextureRect)
-	for img in all_images:
-		img.position = img.original_position + img.rotate_offset
-		img.texture = plant_data.first_image
+	var all_images = get_children().filter(func(n): return n is MaintainTextureUp)
+	for img:MaintainTextureUp in all_images:
+		img.position = img.original_position + img.rotate_offset 
+		img.animation = plant_data.name.to_lower()
+		img.play()
+		
 
 func lock_plant():
-	if !is_mouse_over || is_planted:
+	if !is_mouse_over || is_planted || is_locking:
 		return
-	is_planted = true
+	is_locking = true
 	var tween = create_tween().set_trans(Tween.TRANS_ELASTIC)
 	var tween_sound = create_tween().set_trans(Tween.TRANS_EXPO)
-	var all_images = get_children().filter(func(n): return n is TextureRect)
+	var all_images = get_children().filter(func(n): return n is MaintainTextureUp)
+	on_particle_trigger.emit(global_position)
 	for img:MaintainTextureUp in all_images:
-		tween.tween_property(img, "position", img.position - img.rotate_offset, 0.4)
+		tween.tween_property(img, "position", img.position - img.rotate_offset/2, 0.4)
 		tween_sound.tween_callback(_on_lock).set_delay(0.3)
+	tween.finished.connect(_on_tween_lock_plant_finish)
+
+func _on_tween_lock_plant_finish():
+	is_planted = true
+	
 
 func _on_lock():
 	on_locking.emit()
 
 func _get_drag_data(at_position):
+	if is_planted:
+		return
 	var preview_texture:Control = self.duplicate()
 	preview_texture.modulate.a = 0.4
 	preview_texture.name = "Preview"
@@ -85,19 +97,18 @@ func _notification(notification_type: int) -> void:
 			toggle_mouse_filter(false)
 			reset_rotation()
 		
-		
 #Allows the player to put a piece in a position that overlaps with its own position
 #Prevents old positions from blocking new positions if you wanted to rotate or just shift it over
 func toggle_mouse_filter(is_ignore:bool):
+	var all_control = get_children().filter(func(n): return n is Control)
+	print(all_control)
 	if is_ignore:
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
-		var all_images = get_children().filter(func(n): return n is TextureRect)
-		for img:TextureRect in all_images:
+		for img:Control in all_control:
 			img.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	else:
 		mouse_filter = Control.MOUSE_FILTER_PASS
-		var all_images = get_children().filter(func(n): return n is TextureRect)
-		for img:TextureRect in all_images:
+		for img:Control in all_control:
 			img.mouse_filter = Control.MOUSE_FILTER_PASS
 
 func temp_spot(at_position:Vector2):
@@ -129,7 +140,7 @@ func snap_to_place():
 	#Handle Rotation
 	if has_rotation_changed:
 		if rotationInput != 0:
-			var all_images = get_children().filter(func(n): return n is TextureRect)
+			var all_images = get_children().filter(func(n): return n is AnimatedSprite2D)
 			for img in all_images:
 				img.position -= Vector2(0, 10)
 			
@@ -157,12 +168,12 @@ func find_touching_slot():
 
 #Get the amount of plants that make up this mino
 func get_draggable_size():
-	var all_images = get_children().filter(func(n): return n is TextureRect)
+	var all_images = get_children().filter(func(n): return n is AnimatedSprite2D)
 	return all_images.size()
 
 func get_colliding_slots():
 	var area:Area2D = preview_control.find_child("PlantCollisionArea", true,false)
-	return area.get_overlapping_areas().map(func(n): return n.get_parent()).filter(func(s):return s!= self)
+	return area.get_overlapping_areas().map(func(n): return n.get_parent()).filter(func(s):return s!= self && s is Slot)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if !is_dragging:
@@ -191,7 +202,10 @@ func rotate_self_and_children(is_left:bool):
 	var degrees = 90
 	if !is_left:
 		degrees *= -1
-	rotation_degrees = fmod((rotation_degrees + degrees), 360)
+	var tween = create_tween().set_ease(Tween.EASE_IN)
+	var value = fmod((rotation_degrees + degrees), 360)
+	rotation_degrees = value
+	#rotation_degrees = 
 	for child:MaintainTextureUp in children_textures:
-		child.rotate()
+		child.on_player_rotate()
 	

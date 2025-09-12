@@ -23,6 +23,9 @@ var tromino2 = preload("res://scripts/new_drag/new_line.tscn")
 
 var grid_size: int = 32
 
+signal lock_in_plant
+signal trigger_particle(location:Vector2)
+
 func _ready():
 	generate_plants()
 	generate_grid()
@@ -40,12 +43,18 @@ func generate_plants():
 		object.set_plant()
 		object.on_moving.connect(_on_pickup_event);
 		object.on_locking.connect(_on_plant_event);
+		object.on_particle_trigger.connect(_on_plant_particle)
 
 func _on_pickup_event():
 	%PickupSFX.play()
 
 func _on_plant_event():
 	%PlantSFX.play()
+	lock_in_plant.emit()
+
+func _on_plant_particle(position:Vector2):
+	trigger_particle.emit(position)
+
 
 func _process(delta: float):
 	%GridContainer.global_position = ((get_window().size - Vector2i(grid_width * grid_size,grid_height * grid_size))/2)
@@ -71,6 +80,7 @@ func generate_grid() -> void:
 
 
 func _on_node_2d_on_final_plant_placed(success: bool) -> void:
+	visible = false
 	if (success):
 		#Clear old grid
 		for slot in %GridContainer.get_children():

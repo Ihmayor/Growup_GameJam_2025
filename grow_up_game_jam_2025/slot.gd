@@ -23,7 +23,6 @@ func _ready():
 	
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if data is Draggable:
-		print("number of times")
 		data.snap_to_place()
 		
 func _can_drop_data(at_position, data):
@@ -38,10 +37,10 @@ func _can_drop_data(at_position, data):
 		all_slots_valid = slots.all(func(s:Slot): return !s.isTaken || (s.isTaken && s.draggable_node == data ))
 	is_valid =  all_slots_valid && is_valid_size && data is Draggable
 	
-	if is_valid:
-		#Tell all neighbours this is now valid
-		for s in slots:
-			s.is_valid = true
+	#Tell all neighbours this is now valid
+	for s:Slot in slots:
+		s.is_valid = is_valid
+		s.show_outline()
 	
 	return is_valid
 
@@ -77,6 +76,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		$Outline.modulate = Color.RED
 		
+func show_outline():
+	$Outline.visible = true
+	
 
 func _on_slot_area_area_entered(area: Area2D) -> void:
 	$Outline.visible = true

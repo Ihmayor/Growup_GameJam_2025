@@ -26,8 +26,8 @@ func _physics_process(delta: float) -> void:
 		compare_to_limit_for_level()
 	
 	#Check if all the slots are taken 	
-	var array_of_slots_taken:Array[Node] = get_tree().get_nodes_in_group("Slots").filter(func(slot:Slot): return slot.planted_plant != null)
-	if (array_of_slots_taken.size() > (level.grid_height * level.grid_width)/2) && array_of_slots_taken.all(func(s:Slot): return s.draggable_node.is_planted):
+	var array_of_slots_taken:Array[Node] = get_tree().get_nodes_in_group("Slots").filter(func(slot:Slot): return slot.isTaken)
+	if ((array_of_slots_taken.size() > (level.grid_height * level.grid_width)/2)) && array_of_slots_taken.all(func(s:Slot): return s.draggable_node.is_planted):
 		compare_to_limit_for_level()
 		
 
@@ -113,12 +113,14 @@ func calculate_neighbour(plant_neighbour_dictionary, plant_id, main_plant_data:P
 	return main_plant_data.base_stat + buff_amount - debuff_amount
 
 func compare_to_limit_for_level():
+	calculate_plant_total()
 	triggered_next_level = true
 	if player_data.running_total_score >= level.quota:
 		player_data.overflow = player_data.running_total_score - level.quota
 		player_data.running_total_score = player_data.overflow
+		await get_tree().create_timer(1)
 		on_final_plant_placed.emit(true)
-		level.quota += 30
+		level.quota += 15
 		level.phase += 1
 		music.play_music()
 		triggered_next_level = false
@@ -128,8 +130,13 @@ func compare_to_limit_for_level():
 		level.quota = 100
 		level.phase = 0
 		$GameMusic.stop_music()
+		await get_tree().create_timer(0.4)
 		on_final_plant_placed.emit(false)
 
 
 func _on_replay_pressed() -> void:
-	get_tree().change_scene_to_file("res://main_garden.tscn")
+	get_tree().reload_current_scene()
+
+
+func _on_garden_lock_in_plant() -> void:
+	calculate_plant_total()

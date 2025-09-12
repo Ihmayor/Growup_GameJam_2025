@@ -1,9 +1,14 @@
 class_name GameMusicManager extends Node
 
 @export var level: LevelData
+signal on_game_finish
 
 func play_music():
+	stop_music()
 	get_child(0).play()
+	if level.phase >= get_children().size():
+		on_game_finish.emit()
+		return
 	for i in range(1, level.phase):
 		get_child(i).play()
 		print("play next phase")

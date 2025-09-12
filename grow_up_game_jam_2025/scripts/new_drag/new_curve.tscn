@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dycloq4fgijlp" path="res://scripts/new_drag/Draggable.gd" id="1_vclm2"]
 [ext_resource type="Resource" uid="uid://o54fv0lu1jdf" path="res://scripts/resources/plant_data/Lettuce.tres" id="2_eoacs"]
-[ext_resource type="Texture2D" uid="uid://cxgb3x1a713lc" path="res://Assets/Sprites/VegLettuceStanding.png" id="3_vmxpx"]
+[ext_resource type="SpriteFrames" uid="uid://bdgd8urlwdugx" path="res://Assets/Sprites/animations/all_plants.tres" id="3_vclm2"]
 [ext_resource type="Script" uid="uid://dqfltc7f60bpu" path="res://scenes/experiment/maintain_texture_up.gd" id="4_rtlyb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vclm2"]
 radius = 4.12311
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrb64"]
-radius = 2.0
+radius = 3.0
 
 [node name="Curve" type="Control" groups=["Plants"]]
 layout_mode = 3
@@ -24,62 +24,48 @@ mouse_filter = 1
 script = ExtResource("1_vclm2")
 plant_data = ExtResource("2_eoacs")
 
-[node name="Plant" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -29.0
-offset_right = 16.0
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 29)
-texture = ExtResource("3_vmxpx")
-stretch_mode = 4
+[node name="Plant" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+sprite_frames = ExtResource("3_vclm2")
+animation = &"cucumber"
 flip_h = true
 script = ExtResource("4_rtlyb")
+offset_factor = 16
 
-[node name="Plant2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 16.0
-offset_top = -29.0
-offset_right = 48.0
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 29)
-texture = ExtResource("3_vmxpx")
-stretch_mode = 4
+[node name="Plant2" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 32)
+sprite_frames = ExtResource("3_vclm2")
+animation = &"cucumber"
 flip_h = true
 script = ExtResource("4_rtlyb")
+offset_factor = 16
 
-[node name="Plant3" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = 3.0
-offset_right = 16.0
-offset_bottom = 51.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 29)
-texture = ExtResource("3_vmxpx")
-stretch_mode = 4
+[node name="Plant3" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(32, -1)
+sprite_frames = ExtResource("3_vclm2")
+animation = &"cucumber"
+offset = Vector2(0, 1)
 flip_h = true
 script = ExtResource("4_rtlyb")
+offset_factor = 16
+
+[node name="ControlCoverage" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -11.0
+offset_top = -33.0
+offset_right = 12.0
+offset_bottom = 38.0
+mouse_filter = 1
+
+[node name="ControlCoverage2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -14.0
+offset_top = -35.0
+offset_right = 44.0
+offset_bottom = 2.0
+mouse_filter = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-16, -29)
@@ -104,9 +90,9 @@ position = Vector2(-16, -10)
 shape = SubResource("CircleShape2D_lrb64")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlantCollisionArea"]
-position = Vector2(18, -10)
+position = Vector2(16, -11)
 shape = SubResource("CircleShape2D_lrb64")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="PlantCollisionArea"]
-position = Vector2(-14, 22)
+position = Vector2(-14, 17)
 shape = SubResource("CircleShape2D_lrb64")
