@@ -6,3 +6,11 @@ func _on_button_pressed() -> void:
 func _on_game_music_on_game_finish() -> void:
 	visible = true
 	$AudioStreamPlayer2D.play()
+
+
+func _on_button_2_pressed() -> void:
+	$CreditsRect.visible = true
+
+
+func _on_back_pressed() -> void:
+	$CreditsRect.visible = false

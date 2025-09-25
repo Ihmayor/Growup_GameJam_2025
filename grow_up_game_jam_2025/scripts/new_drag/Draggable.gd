@@ -64,6 +64,7 @@ func lock_plant():
 		tween.tween_property(img, "position", img.position - img.rotate_offset/2, 0.4)
 		tween_sound.tween_callback(_on_lock).set_delay(0.3)
 	tween.finished.connect(_on_tween_lock_plant_finish)
+	toggle_mouse_filter(true)
 
 func _on_tween_lock_plant_finish():
 	is_planted = true

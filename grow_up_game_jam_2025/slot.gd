@@ -35,7 +35,7 @@ func _can_drop_data(at_position, data):
 		is_valid_size = slots.size() == draggable_size
 		
 		all_slots_valid = slots.all(func(s:Slot): return !s.isTaken || (s.isTaken && s.draggable_node == data ))
-	is_valid =  all_slots_valid && is_valid_size && data is Draggable
+	is_valid =  all_slots_valid && is_valid_size
 	
 	#Tell all neighbours this is now valid
 	for s:Slot in slots:
